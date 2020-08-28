@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 17:26:49
+ * @LastEditTime: 2020-07-06 17:50:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\03_webStorage\05_sessionStorage.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./06_student.php" method="post" name="form1">
+        学号: <input type="text" name="scode"><br><br>
+        姓名: <input type="text" name="sname"><br><br>
+        班级: <input type="text" name="class"><br><br>
+        <input type="submit" value="登记">
+        <input type="button" value="存入草稿" id="btn2">
+    </form>
+    <script>
+        var form = document.forms['form1'];
+        var scode_input = document.forms['form1']['scode'];
+        var sname_input = document.forms['form1']['sname'];
+        var class_input = document.forms['form1']['class'];
+
+        // 进来/刷新 -> 就去获取存储数据
+        var session_data = sessionStorage.getItem('stu');//json字符串
+        if(sessionStorage.length){//如果有数据
+            session_data = JSON.parse(session_data);//json对象
+            scode_input.value = session_data.scode;
+            sname_input.value = session_data.sname;
+            class_input.value = session_data.class;
+        }
+        
+        // 点击按钮2: 存入草稿,浏览器关闭前,数据不会丢失
+        btn2.onclick = function() {
+            // 存储数据->sessionStorage
+            var data = {
+                "scode": scode_input.value,
+                "sname": sname_input.value,
+                "class": class_input.value
+            }
+            sessionStorage.setItem('stu',JSON.stringify(data));
+        }
+    </script>
+</body>
+</html>

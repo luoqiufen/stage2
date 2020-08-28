@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_案例</title>
+</head>
+<body>
+<script>
+    // 禁用sort方法
+    // 案例1:定义函数,返回数值数组里的最大值
+    var arr1 = [5,8,6,9,12,36,45,26];
+    function max(arr){
+        var max = arr[0];//默认最大值为第一个数
+        for(var key in arr){
+            if(max<arr[key]){
+                max = arr[key];
+            } 
+        }
+        return max;
+    }
+    console.log(max(arr1));
+    
+    // 案例2:定义函数,返回数值数组里的最大值
+    function min(arr){
+        var min = arr[0];
+        for(var key in arr){
+            if(min>arr[key]){
+                min = arr[key];
+            } 
+        }
+        return min;
+    }
+    console.log(min(arr1));
+
+    // 案例3:用一个函数,返回数值数组里的做大致和最小值
+    function getNum(arr){
+        var max = arr[0];
+        var min = arr[0];
+        for(var key in arr){
+            if(arr[key]>max){
+                max = arr[key];
+            }
+            if(arr[key]<min){
+                min = arr[key];
+            }
+        }
+        return [max,min];
+    }
+    console.log(getNum(arr1));
+
+    // 案例4:数组去重,返回一个新数组
+    var arr2 = ['aa','15','bb','8','15','aa','cc','6','7','15','9','dd','cc','ee'];
+    function getArr(arr){
+        var newArr=[];//定义新数组
+        for(var key in arr){
+            if(newArr.indexOf(arr[key])==-1){
+                newArr.push(arr[key]);
+            }
+        }
+        return newArr;
+    }
+    console.log(getArr(arr2));
+
+</script>
+</body>
+</html>

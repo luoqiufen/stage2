@@ -1,0 +1,159 @@
+第一章 JS高级
+第三天
+
+一、函数Function\
+    封装代码块
+    定义一次,多次调用
+    函数可以传递参数,可以有返回值
+    <script>
+        // 1)定义函数  整个提前
+        function 函数名(参1,参2...){
+            // 代码块
+        }
+        // 2)定义函数2 (声明提前,赋值留在原地)
+        var init = function((参1,参2...){
+            // 代码块
+        }
+        // 3)定义函数3(了解 不推荐)
+        var init1 = new Function(参数1,参数2...,代码块);
+        var fun3 = new Function('a','b','c','console.log(a*b*c)');
+        fun3(3,4,5);
+        
+    
+    </script>
+
+二、作用域
+    1.变量作用域
+        <script>//var address;调用之后
+            var uname = 'apple';//全局
+            var age = 18;//全局
+            function info(){//var school;
+                uname = 'banana';//找28行
+                age = 20;//找29行
+                var school = '清华大学';//局部
+                address = 北京;//变量提升
+            }
+            info(); 
+        </script>
+
+    2.函数作用域
+        <script>
+            // fun1:全局
+            function fun1(){
+                // fun2局部
+                function fun2(){
+
+                }
+            }
+        </script>
+
+    全局作用域:
+        可以在任意地方调用
+        一直保留在内存里,占内存
+    局部作用域:
+        只能在(父)函数内访问
+        用完即销毁,调用时重新创建,不会一直留在内存里,节省内存
+
+三、return返回值
+        return 值;
+        值 可以是任意数据类型
+        一个函数最终只有一个返回值
+        返回值可以用变量接收
+        函数调用的结果就是返回值
+        遇到return,跳出函数
+        <script>
+            function func(){
+                // 代码块
+                return 值;
+            }
+            func();//结果就是 值
+            // JS的API方法都是返回值
+        </script>
+
+四、参数
+        <script>
+            // 所有形参都是局部变量
+            // uname:形参1
+            // age:形参2
+            function fun(uname,age){
+                // uname
+                // age
+            }
+            
+            // 调用
+            // 'apple':实参1
+            // 18:实参2
+            fun('apple',18);
+
+            var uname = 'banana';//全局
+            var age = 20;//全局
+            fun(uname,age);
+        </script>
+
+五、arguments对象
+    实参信息对象
+    函数内置的参数对象(函数创建时,自动创建arguments对象)
+
+    arguments:记录实参相关信息
+    arguments.length:实参个数;
+    arguments.callee:所属的函数本身
+
+    <!-- 扩展 -->
+    函数名.length; 形参个数
+    arguments.caller.length == 函数名.length
+
+六、匿名函数
+    1.dom事件应用
+        <script>
+            // 匿名函数
+            btn1.onclick = function(){
+
+            }
+            // 命名函数
+            function fun1(){
+                console.log('添加');
+            }
+            btn2.onclick = fun1;
+            /* btn2.onclick = function fun1(){
+                console.log('添加');
+            } */
+        </script>
+    2.自调/立即执行函数
+        注意:
+            1)两个自调函数之间必须分隔(;/+/-)
+            2)自调函数默认调用一次
+            3)节省内存(变量都是局部变量)
+        <script>
+            // 方法1: ()()  (匿名函数)(实参)
+            (function(uname){
+                console.log('用户名:'+uname);
+            })();
+
+            // 方法2: (())  (匿名函数(实参))
+            (function(uname){
+                console.log('用户名:'+uname);
+            }());
+        </script>
+    3.匿名函数可以当成参数传递
+        <script>
+            function calc(num1,num2,func){
+                // num1 = 10;
+                // num2 = 8;
+                // func = function(a,b){}
+                // 调用函数
+                func(num1,num2);
+            }
+
+            calc(10,8,function(a,b){
+                console.log(a+b);
+            })
+        </script>
+
+七、回调函数
+    在主函数里面去执行 子函数(当做参数)
+
+    js是单线程:事情只能一件一件去做
+    如果事情比较多,后边的只能等待,这是一个缺陷,设计了回调函数,解决这个问题
+
+    主要借助于计时器(回调函数)
+    jq提供的效果都结合了回调函数

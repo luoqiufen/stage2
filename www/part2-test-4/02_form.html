@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../jquery-1.9.1.min.js"></script>
+	<style type="text/css">
+		body{
+			font-size: 14px;
+		}
+		input[type=text]{
+			width: 220px;
+			height: 30px;
+		}
+		.search{
+			background: skyblue;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			width: 60px;
+			line-height: 34px;
+			font-size: 17px;
+			/*padding: 3px 0;*/
+			display: inline-block;
+
+		}
+		.p1{
+			width: 300px;
+			/*border:1px solid red;*/
+		}
+		.p1 span{
+			padding: 5px;
+			display: inline-block;
+			margin:3px;
+			background: #ccc;
+			color: #333;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+<form>
+	<input type="text" name="keywords">
+	<a href="#" class="search"> 搜索	</a>
+</form>
+<div>
+	<h3>历史记录:</h3>
+	<p class="p1">
+		<span>图书</span>
+		<span>花盆</span>
+		<span>电器dsa</span>
+		<span>电器fdsf</span>
+		<span>电器d</span>
+		<span>电器da</span>
+	</p>
+</div>
+<input type="button" value="清空历史记录">
+
+<script>
+	$(function(){
+		// 0)初始化: 取历史记录显示到页面中
+		var localData = localStorage.getItem('search%words');
+
+		// 1)点击搜索按钮: 保存搜索信息到历史记录里
+		// 追加到历史记录
+		$('.search').click(function(){
+			var search = $('input[name=keywords').val();
+			var history = localStorage.getItem('search%words');
+			// 存数据: 先去判断
+			// 如果有数据,追加进去
+			// 如果没有,写入
+			if(history){//追加进去
+				console.log('有数据');
+				history = JSON.parse(history);//字符串->数组
+				console.log(history);
+				history.push({'key':search});//追加进去
+				history = JSON.stringify(history);//数组->字符串
+				localStorage.getItem('search%words',history);//在一起写入本地存储
+			}else{//写入
+				var arr = [];
+				arr[0]={'key':search};
+				arr = JSON.stringify(arr);
+
+				console.log('没有数据');
+				localStorage.getItem('search%words',search);
+			}
+
+		})
+
+
+		// 2)点击清空: 清除历史记录
+
+
+
+	})
+
+
+	/* var p1_text = '';
+	$('.search').click(function(){
+		p1_text+='<span>'+$('input[name=keywords]').val()+'</span>';
+		$('.p1').html(p1_text);
+	})
+
+	$('input[type=button]').click(function(){
+		p1_text ='';
+		$('.p1').html(p1_text);
+	}) */
+
+</script>
+
+</body>
+</html>

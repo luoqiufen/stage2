@@ -1,0 +1,39 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-02 15:37:43
+ * @LastEditTime: 2020-07-04 12:56:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\02_test.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <script>
+        // 请求数据 -data.json
+        
+        $.getJSON('http://172.17.12.225/03_php+Ajax_05/03_index.php',"",function(response){
+            console.log(response);
+        })
+
+        // 访问自己的
+        $.getJSON('http://localhost/03_php+Ajax_05/03_index.php',"",function(response){
+            console.log(response);
+        })
+
+ 
+        // 两个同源地址
+        // 可以访问
+        // http://localhost/03_php+Ajax_05/01_Ajax/data.json
+        // http://localhost/03_php+Ajax_05/02_test.html
+
+    </script>
+</body>
+</html>

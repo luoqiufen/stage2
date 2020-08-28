@@ -1,0 +1,118 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-13 14:17:05
+ * @LastEditTime: 2020-07-13 15:41:14
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_05\06_输入框组.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_输入框组</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+</head>
+
+<body>
+    <h3>
+        输入框组: .input-group
+        <small>两边添加元素 .input-group-addon</small>
+    </h3>
+    <div class="input-group container">
+        <span class="input-group-addon">user</span>
+        <input type="text" name="uname" class="form-control">
+    </div>
+
+    <br>
+    <div class="input-group container">
+        <span class="input-group-addon">email</span>
+        <input type="text" name="email"" class="form-control">
+        <span class="input-group-addon">@163.com</span>
+    </div>
+
+    <h3>额外元素 用字体图标</h3>
+    <div class="input-group container">
+        <span class="input-group-addon">
+            <label class="glyphicon glyphicon-user"></label>
+        </span>
+        <input type="text" name="uname" class="form-control">
+        <span class="input-group-addon">
+            <label class="glyphicon glyphicon-tag"></label>
+        </span>
+    </div>
+
+    <h3>额外元素 放 单选/多选按钮</h3>
+    <div class="input-group container">
+        <span class="input-group-addon">
+            <input type="checkbox">
+        </span>
+        <input type="text" name="like" class="form-control">
+    </div>
+
+    <style>
+        .group1 .input-group-addon{
+            padding: 0;
+        }
+        .group1 input{
+            height: 36px;
+        }
+        .group1 .btn-prev{
+            border-radius: 4px 0 0 4px;
+        }
+        .group1 .btn-next{
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+    <h3>额外元素 放 按钮</h3>
+    <div class="group1 input-group container">
+        <span class="input-group-addon">
+            <button class="btn-prev btn btn-primary
+            ">keywords</button>
+        </span>
+        <input type="text" name="like" class="form-control">
+        <span class="input-group-addon">
+            <button class="btn-next btn btn-primary
+            ">add</button>
+        </span>
+    </div>
+    
+    <h3>输入框组: 嵌套下拉列表</h3>
+    <div class="input-group container">
+        <!-- 1) 按钮组 input-group-btn -->
+        <div class="input-group-btn dropdown">
+            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">那些年看过的动画 <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">虹猫蓝兔七侠传</a></li>
+                <li><a href="#">名侦探柯南</a></li>
+                <li><a href="#">神兵小将</a></li>
+            </ul>
+        </div>
+
+        <!-- 2) 输入框 -->
+        <input type="text" name="keywords" class="form-control">
+
+        <!-- 3) 右侧添加一个按钮: 图标 -->
+        <div class="input-group-btn">
+            <button class="btn btn-info">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

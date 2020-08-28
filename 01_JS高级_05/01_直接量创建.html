@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_直接量创建</title>
+</head>
+<body>
+    <script>
+        // 1)直接量创建对象
+        var stu1 = {
+            uname:'小明',
+            age:15,
+            read:function(book){
+                console.log('最近在读'+book);
+            },
+            sing:function(song){
+                return '喜欢唱'+song;
+            }
+        }
+        console.log(stu1);
+        console.log(stu1.uname);
+        console.log(stu1.age);
+        stu1.age +=1;
+        console.log(stu1.age);
+
+        stu1.read('《js高级教程》');
+        console.log(stu1.sing('《菊花台》'));
+
+        // 删除
+        delete stu1.uname;
+        console.log(stu1);
+        console.log(stu1.uname);//undefined
+
+        console.log(stu1.school);//undefined
+
+    </script>
+</body>
+</html>

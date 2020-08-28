@@ -1,0 +1,90 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 18:34:21
+ * @LastEditTime: 2020-07-08 09:05:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\04_test\01_index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script src="./04_cookie.js"></script>
+</head>
+
+<body>
+    <h1>您好，欢迎
+        <font color=red>游客</font>
+        进入我的网站
+    </h1>
+    <h3>
+        <a href="01_index.html">首页</a>
+        <a href="./02_addArticle.html">文章页</a>
+    </h3>
+    
+    <form action="#">
+        <p>用户名:
+            <input type="text" name="uname">
+        </p>
+        <p>密码:
+            <input type="password" name="upass">
+        </p>
+        <p>
+            <input type="checkbox"> 记住我
+        </p>
+        <p>
+            <input type="button" value="登录">
+        </p>
+    </form>
+      
+    <script>
+        $(function() {
+            // 1) 进入首页: 先获取上次记住的用户名
+            console.log(document.cookie);
+            if(cookies.get('uname')){
+                $('h1 font').html(cookies.get('uname'));
+                $('input[name=uname]').val(cookies.get('uname'));
+            }else{
+                $('h1 font').html('游客');
+            }
+            
+            // 2) 登录验证
+            $('input[type=button]').click(function(){
+                var data = {
+                    uname:$('input[name=uname]').val(),
+                    upass:$('input[name=upass]').val()
+                };
+                $.post('./03_login.php?act=getName',data,function(response){
+                    console.log(response);
+                    if(response == 'ok'){//登录成功
+                        // 如果勾选记住我:保存一段时间
+                        if($('input[type=checkbox]').prop('checked')){
+                            document.cookie = "uname="+$('input[name=uname]').val()+";Max-Age=1200";
+                        }else{
+                            // 如果没有勾选,关闭浏览器失效
+                            document.cookie = "uname="+$('input[name=uname]').val();
+                        }
+                        // 显示到font标签
+                        $('h1 font').html($('input[name=uname]').val());
+                    }
+                })
+            })
+
+
+            
+        })
+        
+
+    </script>
+
+
+
+
+</body>
+
+</html>

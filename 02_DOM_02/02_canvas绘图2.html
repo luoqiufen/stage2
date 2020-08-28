@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_canvas绘图2</title>
+    <style>
+        canvas{border: 1px solid grey}
+    </style>
+</head>
+<body>
+    <canvas id="canvas1" height="300"></canvas>
+
+    <script>
+        var shape1 = canvas1.getContext('2d');
+        shape1.fillStyle = 'blue';
+        // 阴影
+        shape1.shadowColor = 'rgba(0,0,0,1)';
+        shape1.shadowBlur = '10';
+        shape1.fillRect(50,50,150,150);
+        
+        // 缩放
+        shape1.beginPath();
+        shape1.fillStyle = 'green';
+        shape1.translate(150,150);
+        shape1.scale(0.8,0.8);
+        shape1.translate(-50,-50);
+        shape1.fillRect(50,50,150,150);
+        shape1.closePath();
+        // 旋转
+        shape1.beginPath();
+        shape1.fillStyle = 'orange';  
+        shape1.translate(50,50);
+        shape1.rotate(30*Math.PI/180);
+        shape1.translate(-50,-50);
+        shape1.fillRect(50,50,150,150);
+        shape1.closePath();
+    </script>
+</body>
+</html>

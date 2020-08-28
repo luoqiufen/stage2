@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1) 原生跨域 -->
+    <script>
+        // 函数: 回调函数,接收响应数据
+        // 不调用
+        function init(response) {
+            console.log(response);
+        }
+    
+    </script>
+    <!-- scropt 是可以跨域的 -->
+    <script src="http://localhost/03_php+Ajax_05/05_index.php?callback=init"></script>
+
+
+    <!-- 2) jq跨域 -->
+    <script src="http://localhost/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function() {
+            // 跨域: get方式
+            // dataType: jsonp
+            $.get('http://localhost/03_php+Ajax_05/05_index.php','callback=?',function(response){
+                console.log('jq',response);
+            },'jsonp');
+
+
+            $.ajax({
+                type:'get',
+                url:'http://localhost/03_php+Ajax_05/05_index.php',
+                data:'callback=?',
+                dataType:'jsonp',
+                success:function(response){
+                    console.log('ajax',response);
+                }
+            });
+        })
+    
+    
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,8 @@
+{
+    "stus":[
+        {"ucode":"1001","uname":"鲁班七号","uage":12},
+        {"ucode":"1002","uname":"关羽","uage":25},
+        {"ucode":"1003","uname":"赵云","uage":20},
+        {"ucode":"1004","uname":"云中君","uage":22}
+    ]
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_原型链__proto__</title>
+</head>
+<body>
+    <script>
+        // 1)定义构造函数
+        function Car(brand,color){
+            // 私有属性
+            this.brand = brand;//品牌
+            this.color = color;//颜色
+        }    
+
+        console.log(Car.prototype);
+        // 往原型上添加属性和方法
+        Car.prototype = {
+            address:'南京市',
+            run: function(spped) {
+                console.log('当前运行时速'+speed+'km/s');
+            }
+        };
+        
+        console.log(Car.prototype);
+
+        // 创建实例/具体对象
+        var car1 = new Car('大众','白色');
+        var car2 = new Car('奔驰','银色');
+
+        console.log(car1);
+        console.log(car2);
+
+        // 访问 brand和color  --私有属性
+        console.log(car1.brand);
+        console.log(car2.color);
+
+        // 访问地址  -- 共享属性
+        console.log(car1.address);//南京市
+        console.log(car2.address);//南京市
+
+        // 修改 第一辆车的 addree 地址
+        car1.address = '杭州市';
+        console.log(car1.address);//杭州市 -- 给car1添加了一个私有属性address
+        console.log(car2.address);//南京市
+
+        console.log(car1);
+        console.log(car2);
+
+        // __proto__ 属性
+        // (实例)对象.__proto__
+        console.log(car1.__proto__);
+        console.log(car2.__proto__);
+        console.log(car1.__proto__ == car2.__proto__);//true
+        console.log(car1.__proto__ == Car.prototype);//true
+
+        // 总结描述:
+        // car1 和 car2 是通过 __proto__ 继承了Car.prototype
+        // 只是继承,不可修改
+    </script>
+</body>
+</html>

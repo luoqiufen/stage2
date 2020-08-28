@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_call和apply方法</title>
+</head>
+<body>
+    <script>
+        // 定义一个函数
+        function Fun1(uname,uage){
+            console.log(this);//window
+            this.uname = uname;
+            this.uage = uage;
+        }
+        
+        Fun1('aa',15);//window.Fun1
+        console.log(window.uname);//aa
+        console.log(uage);//15
+
+        // 函数调用call 和 apply
+        var obj1 = {
+            ucode:'1001'
+        }
+        var obj2 = {
+            ucode:'1002'
+        }
+
+        // 借调函数
+        // 改变this指针
+        // 可以添加属性和方法
+        Fun1.apply(obj1,['apple',21]);// this -> obj1
+        console.log(obj1.uname);//apple
+        console.log(obj1.uage);//21
+
+        Fun1.call(obj2,'pear',26);// this -> obj2
+        console.log(obj2.uname);//pear
+        console.log(obj2.uage);//26
+        
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_原生dom操作</title>
+    <style>
+        .nav{
+            width: 320px;
+            line-height: 40px;
+            background: pink;
+            text-align: center;
+        }
+        .nav a{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+        }
+        .nav a.current{
+            background: rgb(190, 10, 34);
+        }
+        .box ul{
+            display: none;
+        }
+        .box ul:first-child{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#" class="current">百度</a>
+        <a href="#">网易</a>
+        <a href="#">腾讯</a>
+    </div>
+    <div class="box">
+        <ul>
+            <li>百度新闻1</li>
+            <li>百度新闻2</li>
+            <li>百度新闻3</li>
+        </ul>
+        <ul>
+            <li>网易新闻1</li>
+            <li>网易新闻2</li>
+            <li>网易新闻3</li>
+            <li>网易新闻4</li>
+        </ul>
+        <ul>
+            <li>腾讯新闻1</li>
+            <li>腾讯新闻2</li>
+            <li>腾讯新闻3</li>
+            <li>腾讯新闻4</li>
+            <li>腾讯新闻5</li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 点击a:切换对应的ul列表
+    var ul_obj = document.querySelectorAll('.box ul');
+    var a_obj = document.querySelectorAll('.nav a');
+    // console.log(ul_obj);
+    // console.log(a_obj);
+
+   for(var i=0;i<a_obj.length;i++){
+        a_obj[i].onclick = (function(index){
+            // return 一个函数给onclick
+           return function(){//子函数
+               for(var k=0;k<a_obj.length;k++){
+                   a_obj[k].className='';
+                   ul_obj[k].style.display='none';
+               }
+               a_obj[index].classList.add('current');
+               ul_obj[index].style.display='block';
+           }
+       })(i)
+   }
+    
+</script>
+</html>

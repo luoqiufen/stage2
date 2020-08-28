@@ -1,0 +1,49 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-08 17:49:55
+ * @LastEditTime: 2020-07-08 17:57:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_02\02_flex-derection.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_flex-derection</title>
+    <style>
+        .con{
+            height: 800px;
+            border: 1px solid red;
+            display: flex;
+            /* 排列方式 */
+            flex-direction: row;/* 左->右 */
+            flex-direction: row-reverse;/* 右->左 */
+            flex-direction: column;/* 上->下 */
+            flex-direction: column-reverse;/* 下->上 */
+        }
+        .con div{
+            width: 100px;
+            height: 50px;
+            background: paleturquoise;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+    </div>
+</body>
+</html>

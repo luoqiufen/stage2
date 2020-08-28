@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_Tab栏切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 微软雅黑;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .item {
+            width: 350px;
+            line-height: 40px;
+            border: 1px solid red;
+            margin: 20px;
+        }
+
+        .item .nav {
+            background: pink;
+        }
+
+        .item .nav a {
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .item .nav a.current {
+            background: rgba(151, 25, 25, 0.712);
+            color: white;
+        }
+
+        .item .con ul {
+            display: none;
+        }
+
+        .item .con ul:first-child {
+            display: block;
+        }
+
+        .item2{
+            border: 1px solid blue;
+        }
+
+        .item2 .nav{
+            background: rgb(128, 236, 236);
+        }
+
+        .item2 .nav a.current{
+            background: rgb(16, 156, 211);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 操作dom
+            // 面向对象(多个tab栏切换)
+            // 功能:
+            /* dom元素(
+                属性:a_dom(a标签) 
+                ul_dom(ul标签))  */
+            // 切换(方法)
+            function Tabs(selector1, selector2) {
+                this.a_dom = document.querySelectorAll(selector1);
+                this.ul_dom = document.querySelectorAll(selector2);
+            }
+            Tabs.prototype.toggle = function () {// this -> tab1
+                var _this = this;//储存当前的实例对象
+            
+                for (var i = 0; i < this.a_dom.length; i++) {
+                    this.a_dom[i].onclick = (function (index) {
+                        return function(){// this -> a标签
+                            console.log(index);
+                            // 循环遍历a,去掉所有a的current
+                            // 把ul隐藏
+                            for(var k = 0; k < _this.a_dom.length; k++){
+                                _this.a_dom[k].classList.remove('current');
+                                _this.ul_dom[k].style.display = 'none';
+                            }
+                            // 给当前的a添加current,对应的ul显示
+                            _this.a_dom[index].classList.add('current');
+                            _this.ul_dom[index].style.display = 'block';
+                        }
+
+                    })(i);
+                }
+            }
+
+            // 调用测试
+            var tab1 = new Tabs('.item1 .nav a','.item1 .con ul');
+            tab1.toggle();
+
+            var tab2 = new Tabs('.item2 .nav a','.item2 .con ul');
+            tab2.toggle();
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="item item1">
+        <div class="nav">
+            <a href="#" class="current">百度</a>
+            <a href="#">新浪</a>
+            <a href="#">搜狐</a>
+            <a href="#">网易</a>
+            <a href="#">优酷</a>
+        </div>
+        <div class="con">
+            <ul>
+                <li>百度新闻1百度新闻百度新闻</li>
+                <li>百度新闻2百度新闻百</li>
+                <li>百度新闻3百度新闻3百度新闻3</li>
+            </ul>
+            <ul>
+                <li>新浪新闻1新浪新闻1新浪新闻1</li>
+                <li>新浪新闻2新浪新闻2新浪新闻2新浪新闻2</li>
+                <li>新浪新闻3新浪新闻3新浪新闻3新浪新闻3新</li>
+                <li>新浪新闻4新浪新闻新浪新闻</li>
+                <li>新浪新闻新浪新闻5</li>
+            </ul>
+            <ul>
+                <li>搜狐新闻1搜狐新闻1搜狐新闻1</li>
+                <li>搜狐新闻2搜狐新闻2搜狐新闻2搜狐新闻2</li>
+                <li>搜狐新闻3搜狐新闻3搜狐新闻3搜狐新闻3新</li>
+                <li>搜狐新闻4搜狐新闻搜狐新闻</li>
+            </ul>
+            <ul>
+                <li>网易新闻1网易新闻1网易新闻1</li>
+                <li>网易新闻2网易新闻2网易新闻2网易新闻2</li>
+                <li>网易新闻3网易新闻3网易新闻3网易新闻3新</li>
+                <li>网易新闻4网易新闻网易新闻</li>
+                <li>网易新闻网易新闻5</li>
+                <li>网易新闻网易新闻6网易新闻6网易</li>
+            </ul>
+            <ul>
+                <li>优酷新闻1优酷新闻1优酷新闻1</li>
+                <li>优酷新闻2优酷新闻2优酷新闻2优酷新闻2</li>
+                <li>优酷新闻3优酷新闻3优酷新闻3优酷新闻3新</li>
+                <li>优酷新闻4优酷新闻优酷新闻</li>
+            </ul>
+        </div>
+    </div>
+    <div class="item item2">
+        <div class="nav">
+            <a href="#" class="current">百度</a>
+            <a href="#">新浪</a>
+            <a href="#">搜狐</a>
+            <a href="#">网易</a>
+            <a href="#">优酷</a>
+        </div>
+        <div class="con">
+            <ul>
+                <li>百度新闻1百度新闻百度新闻</li>
+                <li>百度新闻2百度新闻百</li>
+                <li>百度新闻3百度新闻3百度新闻3</li>
+            </ul>
+            <ul>
+                <li>新浪新闻1新浪新闻1新浪新闻1</li>
+                <li>新浪新闻2新浪新闻2新浪新闻2新浪新闻2</li>
+                <li>新浪新闻3新浪新闻3新浪新闻3新浪新闻3新</li>
+                <li>新浪新闻4新浪新闻新浪新闻</li>
+                <li>新浪新闻新浪新闻5</li>
+            </ul>
+            <ul>
+                <li>搜狐新闻1搜狐新闻1搜狐新闻1</li>
+                <li>搜狐新闻2搜狐新闻2搜狐新闻2搜狐新闻2</li>
+                <li>搜狐新闻3搜狐新闻3搜狐新闻3搜狐新闻3新</li>
+                <li>搜狐新闻4搜狐新闻搜狐新闻</li>
+            </ul>
+            <ul>
+                <li>网易新闻1网易新闻1网易新闻1</li>
+                <li>网易新闻2网易新闻2网易新闻2网易新闻2</li>
+                <li>网易新闻3网易新闻3网易新闻3网易新闻3新</li>
+                <li>网易新闻4网易新闻网易新闻</li>
+                <li>网易新闻网易新闻5</li>
+                <li>网易新闻网易新闻6网易新闻6网易</li>
+            </ul>
+            <ul>
+                <li>优酷新闻1优酷新闻1优酷新闻1</li>
+                <li>优酷新闻2优酷新闻2优酷新闻2优酷新闻2</li>
+                <li>优酷新闻3优酷新闻3优酷新闻3优酷新闻3新</li>
+                <li>优酷新闻4优酷新闻优酷新闻</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

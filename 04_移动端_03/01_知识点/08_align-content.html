@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 11:46:47
+ * @LastEditTime: 2020-07-09 16:28:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\08_align-content.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08_align-content</title>
+    <style>
+        .con{
+            width: 700px;
+            height: 600px;
+            border: 2px solid black;
+            display: flex;
+        }
+        .con div{
+            background: skyblue;
+            height: 50px;
+            width: 200px;
+            padding: 30px;
+            margin: 5px;
+        }
+        .con1{
+            flex-wrap: wrap;
+            /* 多行对齐 */
+            align-content: flex-start;
+            align-content: flex-end;
+            align-content: center;
+            align-content: space-between;
+            align-content: space-around;
+            align-content: stretch;
+
+            /* 修改主轴 */
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="con con1">
+        <div>盒子1盒子1盒子1盒子</div>
+        <div>盒子2</div>
+        <div>盒子3盒子3盒子3盒子3盒子3盒子3</div>
+        <div>盒子4盒子4</div>
+        <div>盒子5</div>
+        <div>盒子6盒子6盒子6盒子6盒子6子6盒子6盒子6</div>
+        <div>盒子7</div>
+        <div>盒子8</div>
+    </div>  
+</body> 
+</html>

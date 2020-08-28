@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>描述个人信息</title>
+</head>
+<body>
+    <script>
+        // 描述一个人,并访问属性和方法
+        // 姓名：apple 年龄:18 性别:女 地址:南京
+        // 自我介绍：模板:我是xx,xx岁,来自于xx
+        // 听音乐:听什么音乐
+        var person = {
+            uname:'apple',
+            age:18,
+            gender:"女",
+            address:'南京',
+            introduction:function(){
+                console.log('我是'+person.uname+','+person.age+'岁,来自于'+person.address);
+            },
+            /* introduction:function(uname,age,address){
+                console.log('我是'+uname+','+age+'岁,来自于'+address);
+            }, */
+            listen:function(music){
+                console.log('听音乐:'+music);
+            }
+        }
+        person.introduction();
+        //person.introduction(person.uname,person.age,person.address);
+        person.listen('mojito');
+    </script>
+</body>
+</html>

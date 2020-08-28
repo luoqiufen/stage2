@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_移入移出事件</title>
+    <style>
+        #box3{
+            width: 150px;
+            height: 150px;
+            background: palevioletred;
+            margin: 30px;
+        }
+        #box2{
+            width: 250px;
+            height: 250px;
+            background: yellow;
+            margin: 30px;
+            border: 1px solid orange;
+        }
+        #box1{
+            width: 320px;
+            height: 320px;
+            background: skyblue;
+            border: 1px solid lightseagreen
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3"></div>
+        </div>
+    </div>
+
+    <script>
+        // 移入/移出事件
+        // 支持冒泡
+        // mouseover 移入
+        // mouseout 移出
+        box1.onmouseover = function(){
+            console.log('box1移入');
+            this.style.background = 'blue';
+        }
+        box1.onmouseout = function(){
+            console.log('box1移出');
+            this.style.background = 'lightseagreen';
+        }
+        box2.onmouseover = function(){
+            console.log('box2移入');
+            this.style.background = 'lightgreen';
+        }
+        box2.onmouseout = function(){
+            console.log('box2移出');
+            this.style.background = 'yellow';
+        }
+        box3.onmouseover = function(){
+            console.log('box3移入');
+            this.style.background = 'pink';
+        }
+        box3.onmouseout = function(){
+            console.log('box3移出');
+            this.style.background = 'palevioletred';
+        }
+
+
+        // mouseenter 鼠标进入
+        // mouseleave 鼠标离开
+        // 不支持冒泡
+
+        /* box1.onmouseenter = function(){
+            console.log('box1移入');
+            this.style.background = 'blue';
+        }
+        box1.onmouseleave = function(){
+            console.log('box1移出');
+            this.style.background = 'lightseagreen';
+        }
+        box2.onmouseenter = function(){
+            console.log('box2移入');
+            this.style.background = 'lightgreen';
+        }
+        box2.onmouseleave = function(){
+            console.log('box2移出');
+            this.style.background = 'yellow';
+        }
+        box3.onmouseenter = function(){
+            console.log('box3移入');
+            this.style.background = 'pink';
+        }
+        box3.onmouseleave = function(){
+            console.log('box3移出');
+            this.style.background = 'palevioletred';
+        } */
+    </script>
+
+    <style>
+        #father{
+            width: 400px;
+            border: 1px solid greenyellow;
+            margin: 10px;
+        }
+        #son{
+            background: lightseagreen;
+            margin: 10px;
+        }
+        #p1{
+            background: lightcoral;
+            line-height: 30px;
+        }
+    </style>
+    <div id="father">
+        <div id="son">
+            <a href="#">百度</a>
+        </div>
+        <p id="p1">段落</p>
+    </div>
+
+    <script>
+        // 1)father
+        // 移入： 给段落加文字：数字
+        // 移出： -1
+        
+        var i=1;
+        father.onmouseover = function () {
+            i++;
+            p1.innerHTML = "段落"+i;
+        }
+        father.onmouseout = function () {
+            i--;
+            p1.innerHTML = "段落"+i;
+        }
+
+        // 2）son
+        // 移入: 添加内容:'热门'
+        // 移出: 删除内容:'热门'
+        son.onmouseenter = function () {
+            this.innerHTML += '<span>热门</span>';
+        }
+        son.onmouseleave = function () {
+            this.querySelector('span').remove();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_多态</title>
+</head>
+<body>
+    <script>
+        // 多态: 方法的重写,就是实现多态
+        // 1)动物类
+        function Animal() {
+        }
+        Animal.prototype.species = '动物';
+        Animal.prototype.speak = function() {
+            console.log('会说话');
+        }
+
+        // 2)猫类
+        function Cat(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Cat.prototype = new Animal();//继承动物类
+        Cat.prototype.speak = function() {
+            console.log(this.name = '喵喵喵');
+        }
+
+        // 3)狗类
+        function Dog(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Dog.prototype = new Animal();//继承动物类
+        Dog.prototype.speak = function() {
+            console.log(this.name = '汪汪汪');
+        }
+
+        // 1)实例化
+        var cat1 = new Cat('汤姆','3');
+        console.log(cat1);
+        cat1.speak();
+
+        var dog1 = new Dog('旺财','2');
+        console.log(dog1);
+        dog1.speak();
+
+
+        // 重载
+        function init(obj) {
+            if(obj){//有对象
+                obj.speak();
+            }else{//没有
+                console.log('没有对象');
+            }
+        }
+        init(new Cat('黑猫警长','5'));
+        init(new Dog('哮天犬','4'));
+        init();
+    </script>
+</body>
+</html>

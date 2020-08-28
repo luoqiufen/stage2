@@ -1,0 +1,88 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 17:27:47
+ * @LastEditTime: 2020-06-30 19:12:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_03\03_json\02_index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="获取信息" id="btn">
+    <div id="box"></div>
+
+    <script>
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = xhr.responseText;
+                    // 取数据
+                    console.log(data);
+                    /* 
+                    {
+                        "uname":"虹猫",
+                        "uage": 15,
+                        "boo":true,
+                        "like":["打豆豆","吃饭","睡觉"]
+                    }
+                     */
+                    // 转成json对象再操作
+                    var json_obj = JSON.parse(data);
+                    console.log(json_obj);
+                    box.innerHTML = "姓名:"+json_obj['uname']+"<br>";
+                    box.innerHTML += "年龄:"+json_obj['uage']+"<br>";
+                    box.innerHTML += "bool:"+json_obj['boo']+"<br>";
+
+                    // 生成'爱好'的下拉列表
+                    var list = "爱好: <select>";
+                    for(var i=0;i<json_obj.like.length;i++){
+                        list += "<option>"+json_obj.like[i]+"</option>"
+                    }
+                    list += "</select>";
+                    box.innerHTML += list;
+                }
+                
+            }
+            xhr.open('get', './03_index.php');
+            xhr.send(null);
+        }
+        
+    </script>
+
+
+    <br>
+    <br>
+    <br>
+    <input type="button" value="搜索" id="btn2">
+
+    <script>
+        btn2.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }  
+            }
+            xhr.open('post', './04_search.php');
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            // 带数据过去
+            var data={
+                "ucode":"1001",
+                "uname":"猪猪侠",
+                "upass":'13579'
+            }//json对象 -> 只有js认识
+            var str = JSON.stringify(data);
+            xhr.send("data="+str);
+        }
+        
+    </script>
+</body>
+</html>

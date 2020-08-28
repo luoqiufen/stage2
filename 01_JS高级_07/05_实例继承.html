@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_实例继承</title>
+</head>
+<body>
+    <script>
+        // 1)父类 Father
+        function Father(province,city) {
+            this.province = province;
+            this.city = city;
+        }
+        Father.prototype.aleep = function (h) {
+            console.log('每天睡' + h+'小时');
+        }
+
+        // 2)子类 Son(工厂模式)
+        function Son(province, city, name, age) {
+            var obj = new Father(province, city);
+            // 再添加
+            obj.name = name;
+            obj.age = age;
+
+            // 没有办法给子类添加共享的属性和方法,目前这样写,是比较耗内存的
+            obj.sing = function(song) {
+                console.log('喜欢唱'+song);
+            }
+            // 出厂
+            return obj;
+        }
+
+        // 创建子类的实例
+        var s1 = Son('江苏省','无锡市','虹猫',25);
+        var s2 = Son('浙江省','杭州市','蓝兔',23);
+
+        console.log(s1);
+        console.log(s2);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_Error错误</title>
+</head>
+<body>
+    <script>    
+        // console.log('aa');
+        // 用户名
+        // console.log('bb');
+        var age = 10;
+        if(age < 18){
+            //不允许上网
+            console.log('不允许上网');
+            throw new SyntaxError('不允许上网');
+        }else{
+            //可以上网
+            console.log('可以上网');
+        }
+        console.log('继续学习...');
+    </script>
+     
+</body>
+</html>

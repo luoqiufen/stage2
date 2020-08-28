@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0}
+    html,body{
+      font-family: 微软雅黑;
+      font-size: 13px;
+    }
+    .list{
+      width: 800px;
+      border:1px solid red;
+      margin:0 auto;
+      overflow: hidden;
+    }
+    .list h3{
+      color: green;
+      line-height: 30px;
+      border-bottom: 1px solid green;
+    }
+    .list .item{
+      width: 200px;
+      /* outline:1px solid blue; */
+      float: left;
+      height: 230px;
+    }
+    /* 第1，2行 */
+    .list .item .title,.list .item .row2{
+      height:20px;
+      width: 120px;
+      line-height: 20px;
+      overflow: hidden;
+    }
+
+    .list .item .row2{
+      color: #ccc;
+    }
+    .list .item .newP{color: red;}
+    .list .item .oldP{color: #ccc;}
+
+
+  </style>
+  <!-- 引入外部js -->
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/template-web.js"></script>
+  <script>
+  $(function(){
+    $.getJSON('./data.json','',function(response){
+      console.log(response);
+      //数据渲染
+      var rs = template('demo1',response);
+      $('.list').append(rs);//追加到list盒子里
+    })
+  })
+
+  </script>
+</head>
+<body>
+<!-- 模板 -->
+<script type="text/html" id="demo1">
+
+{{ each pros }} 
+<a href="./02_pro.php?key={{$index}}">
+<div class="item">
+  <img src="./imgs/{{$value.img}}">
+  <h4 class="title">{{$value.title}}</h4>
+  <p class="row2">{{$value.author}} {{$value.public}}</p>
+  <p>
+    <span class="newP">¥{{$value.newP}}</span>
+    <s class="oldP">¥{{$value.oldP}}</s>
+  </p>
+  {{ if $value.book }}
+  <font color=#ccc>电子书¥{{$value.book}}</font>
+  {{ /if }}
+</div>
+</a>
+{{ /each }}
+</script>
+
+<div class="list">
+  <h3>新书上架</h3>
+  <!-- 模板渲染完数据显示在这 -->
+</div>
+  
+</body>
+</html>

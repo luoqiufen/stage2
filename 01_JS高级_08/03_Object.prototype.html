@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_Object.prototype</title>
+</head>
+<body>
+    <script>
+        // Object.prototype 是所有对象的顶级父对象
+        // 原始类型: String Number Boolean undefined null
+        // 引用类型: Object
+
+        var str1 = 'apple';//原始值
+        console.log(str1);//'apple
+
+        var str2 = new String('banana');
+        console.log(str2);//String:{}
+
+        var num1 = 10;//只是一个值
+        var num2 = new Number(20);
+        console.log(num1);
+        console.log(num2);
+        console.log(num1.toFixed(2));
+        //开始调用方法时: 会进入包装类 Number(10)
+        // 用完就还原回 => 原始值
+        // 还原值不可以操作自定义属性和方法
+
+        console.log(num2.toFixed(1));
+
+        num1.src = '01.jpg';//还原值  不可用操作
+        num2.src = '02.jpg';//对象    可以操作
+        console.log(num1.src,num2.src);
+
+        // 可以验证原始类型
+        console.log(typeof'apple');//string
+        console.log(typeof new String('banana'));//object
+
+        console.log(typeof 15);//number
+        console.log(typeof true);//boolean
+        console.log(typeof undefined);//undefined
+        console.log(typeof null);//object
+
+        console.log(typeof [1,2,3]);//object
+        console.log(typeof (new Date()));//object
+
+        // 引用类型不能用typeof来检测
+
+        // 引用类型的检测
+        // 使用类型都继承了Object
+        // toString()   在 Object.prototype
+
+        /* console.log('apple'.toString());//apple
+        console.log([2,3,4].toString());//2,3,4 */
+        // 使用父类的toString()
+        console.log(Object.prototype.toString.call('apple'));//'[object String]'
+        console.log(Object.prototype.toString.call([2,3,4]));//'[object Array]'
+        console.log(Object.prototype.toString.call(new Date()));//'[object Date]'
+        console.log(Object.prototype.toString.call(/[0-9]/));//'[object RegExp]'
+
+        // slice(8,-1)
+        function typeName(obj) {
+            return Object.prototype.toString.call(obj).slice(8,-1);
+        }
+        
+        console.log(typeName({age:10}));
+        console.log(typeName((Math)));
+        console.log(typeName([1,2,3]));
+
+        function Father(province) {
+            this.province = province;
+        }
+        Father.prototype.country = '中国';
+
+        function Son(province,name, age) {
+            Father.call(this,province)
+            this.name = name;
+            this.age = age;
+        }
+
+        function F() {};
+        F.prototype = Father.prototype;
+        Son.prototype = new F();
+        Son.prototype.constructor = Son;
+
+        Son.prototype.study = function(){
+            console.log(this.name+'在学习')
+        }
+
+
+        var f1 = new Father('江苏省');
+        var s1 = new Son('虹猫',20);
+        console.log(typeName(f1));//Object
+        console.log(typeName(s1));//Object
+
+        // 自定义的类型
+        // 对象 instanceof 类型/构造函数
+        console.log(f1 instanceof Father);//true
+        console.log(s1 instanceof Son);//true
+
+        console.log(s1 instanceof Array);//false
+
+
+        console.log('-----------------------------');
+        // 对象.hasOwnProperty(属性名)
+        // 判断对象的私有属性
+        var fa1 = new Father('浙江省');
+        var son1 = new Son('湖南省','蓝兔',15);
+        console.log(fa1);
+        console.log(son1);
+
+        console.log(son1.hasOwnProperty('name'));//true
+        console.log(son1.hasOwnProperty('province'));//true
+        console.log(son1.hasOwnProperty('gender'));//false
+        console.log(son1.hasOwnProperty('country'));//false
+        
+        console.log('-------------------------------')
+
+        // 属性名 in 对象
+        // 该属性在不在原型链上
+        console.log('name' in son1);//true
+        console.log('country' in son1);//true
+        console.log('gender' in son1);//false
+        
+        // 是否是共享的属性
+        // 必须有这个属性 且 不是私有的
+        function isShareProperty(property, obj) {
+            return (property in obj) == true && !obj.hasOwnProperty(property);
+        }
+        console.log(isShareProperty('country',son1));//true
+
+
+        // 原型对象.isPrototypeOf(对象);
+        console.log('--------------------------');
+        console.log(Object.prototype.isPrototypeOf([1,3,5,7]));//true
+        console.log(Array.prototype.isPrototypeOf([1,3,5,7]));//true
+        console.log(Father.prototype.isPrototypeOf(son1));//true
+        console.log(Son.prototype.isPrototypeOf(son1));//true
+
+        // 删除属性或方法
+        console.log('------------------------------');
+
+        console.log(son1);
+        /* age:15
+        name:"蓝兔"
+        province:"湖南省" */
+
+        delete son1.name;
+        console.log(son1.name);//undefined
+
+        delete son1.study;//删不掉
+        son1.study();
+
+        delete son1.country;//删不了
+        console.log(son1.country);
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 14:06:33
+ * @LastEditTime: 2020-07-10 16:12:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\06_表单.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>06_表单</title>
+<!-- 引入css -->
+<link rel="stylesheet" href="./boot/css/bootstrap.css">
+<!-- 低于IE9处理 -->
+<!-- [if lt IE9] >
+<script src="./boot/js/html5shiv.min.js"></script>
+<script src="./boot/js/respond.min.js"></script>
+< ![endif] -->
+
+<style>
+    .form1{
+        border: 1px solid red;
+        width: 80%;
+        margin: 10px auto;
+    }
+
+</style>
+</head>
+<body>
+    <!-- 所有内容在一行 .form-inline -->
+    <form action="#" class="form1 form-inline">
+        <h3>表单</h3>
+        <!-- 姓名 -->
+        <div class="form-group">
+            <label for="#">姓名:</label>
+            <input class="form-control" type="text" name="uname">
+            <label for="#">密码:</label>
+            <input class="form-control" type="password" name="upass" placeholder="8位数秘密">
+        </div>
+        <!-- 提交按钮 -->
+        <input type="submit" value="登录" class="btn btn-primary">
+    </form>
+
+    <!-- .form-horizontal -->
+    <!-- 换行显示 -->
+    <form action="#" class="form1 form-horizontal">
+        <!-- 用户名 -->
+        <div class="form-group">
+            <label class="col-xs-2">姓名:</label>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" name="uname">  
+            </div>      
+        </div>
+        
+        <!-- 密码 -->
+        <div class="form-group">
+            <label class="col-xs-2">密码:</label>
+            <div class="col-xs-10">
+               <input class="form-control" type="password" name="upass">  
+            </div>    
+        </div>  
+        
+        <!-- 性别 -->
+        <div class="form-group">
+            <label for="#" class="col-xs-2">性别:</label>
+            <div class="col-xs-10">
+                <input type="radio" name="gender" value="男">男
+                <input type="radio" name="gender" value="女">女
+            </div> 
+        </div>
+
+        <!-- 爱好 -->
+        <div class="form-group">
+            <label for="#" class="col-xs-2">爱好:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" name="like" value="0">吃饭
+                <input type="checkbox" name="like" value="1">睡觉
+                <input type="checkbox" name="like" value="2">打豆豆
+            </div>                
+        </div>
+    </form>
+
+    <form action="#" class="form1">
+        <h3>单选/复选</h3>
+        <h4>1)以下哪个选项是正确的?(单选)</h4>
+        <div class="radio">
+            <div>
+                <label>
+                    <input type="radio" name="test1" value="A">A: input标签的值是储存在innerHTML里的
+                </label>
+            </div> 
+            <div>
+                <label>
+                    <input type="radio" name="test1" value="B">B: input标签的值是储存在value里的
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="test1" value="C">C: teaxarea标签的值是储存在value里的
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="test1" value="D">D: div是不会换行的
+                </label>
+            </div>
+        </div>
+
+        <h4>2)以下选项是正确的是?(多单选)</h4>
+        <div class="checkbox">
+            <div>
+                <label>
+                    <input type="checkbox" name="test1" value="A">A: input标签的值是储存在innerHTML里的
+                </label>
+            </div> 
+            <div>
+                <label>
+                    <input type="checkbox" name="test1" value="B">B: input标签的值是储存在value里的
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="test1" value="C">C: teaxarea标签的值是储存在value里的
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="test1" value="D">D: div是要换行的
+                </label>
+            </div>
+        </div>
+        <input type="submit" value="提交" class="btn btn-info" disabled>
+    </form>
+
+    <form action="#" class="form1 form-horizontal">
+        <h3>其他控件</h3>
+        <div class="form-group">
+            <label class="col-xs-4">省份:</label>
+            <div class="col-xs-8">
+                <select name="province" class="form-control">
+                    <option value="0">江苏省</option>
+                    <option value="1">安徽省</option>
+                    <option value="2">浙江省</option>
+                    <option value="3">四川省</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3">自我介绍:</label>
+            <div class="col-xs-9">
+                <textarea name="inf" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <input type="file">
+    </form>
+    
+<!-- 引入js -->
+<script src="./boot/js/jquery-1.9.1.min.js"></script>
+<script src="./boot/js/bootstrap.js"></script>
+</body>
+</html>

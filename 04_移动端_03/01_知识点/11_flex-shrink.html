@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 14:39:59
+ * @LastEditTime: 2020-07-09 14:51:08
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\11_flex-shrink.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11_flex-shrink</title>
+    <style>
+        .con{
+            border: 1px solid red;
+            margin: 10px;
+            display: flex;
+        }
+        .con div{
+            width: 100px;
+            height: 100px;
+            background: palegreen;
+            margin: 5px;
+        }
+        .con div:nth-child(2){
+            width: 200px;
+            background: lightblue;
+
+            /* 不缩放 */
+            flex-shrink: 0;
+            /* 设置子项的大小 */
+            flex-basis: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con con1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+</body>
+</html>

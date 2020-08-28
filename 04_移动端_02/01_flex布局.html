@@ -1,0 +1,80 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-08 17:26:21
+ * @LastEditTime: 2020-07-08 17:46:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_02\01_Flex布局.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_flex布局</title>
+    <style>
+        .container{
+            border: 1px solid red;
+            display: flex;
+        }
+        .container .item{
+            width: 200px;
+            height: 200px;
+            background: skyblue;
+            margin: 10px;
+        }
+        /* 无效
+        .container .item:last-child{
+            float: right;
+        } */
+
+        /* 容器2 */
+        .con2{
+            width: 300px;
+            height: 300px;
+            border: 1px blue solid;
+            display: inline-flex;
+        }
+        .con2 div{
+            background: lightgreen;
+            margin: 5px;
+        }
+
+        /* 容器3 */
+        .con3{
+            width: 300px;
+            height: 400px;
+            border: 2px orangered solid;
+            display: inline-flex;
+        }
+        .con3 div{
+            background: orange;
+            margin: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">第1个子项</div>
+        <div class="item">第2个子项</div>
+        <div class="item">第3个子项</div>
+        <div class="item">第4个子项</div>
+    </div>
+
+    <div class="con2">
+        <div>盒子1盒子1</div>
+        <div>盒子2盒子2</div>
+        <div>盒子3盒子3</div>
+        <div>盒子4盒子4</div>
+    </div>
+
+    <div class="con3">
+        <div>子项1子项1</div>
+        <div>子项2子项2</div>
+        <div>子项3子项3</div>
+        <div>子项4子项4</div>
+    </div>
+</body>
+</html>

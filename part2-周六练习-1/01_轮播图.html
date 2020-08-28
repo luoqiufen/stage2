@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_轮播图</title>
+    <style>
+		*{margin: 0;padding: 0;}
+		a{text-decoration: none;}
+
+		.bannerbox{
+			width: 600px;
+			border: 2px solid black;
+			margin: 20px auto;
+			position: relative;
+		}
+
+		/* 广告图 */
+		.bannerbox .imgs img{
+			width: 600px;
+            height: 330px;
+			display: none;
+		}
+
+		.bannerbox .imgs img:first-child{
+			display: block;
+		}
+
+		/* 圆点 */
+		.bannerbox .points{
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+            margin-left: -56px;
+		}
+
+		.bannerbox .points span{
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background:grey;
+			/* 圆角 */
+			border-radius: 50%;
+		}
+        .bannerbox .points span.current{
+            background: rgb(172, 233, 228);
+        }
+
+	</style>
+</head>
+<body>
+    <div class="bannerbox">
+		<!-- 广告图 -->
+		<div class="imgs">
+			<img src="img-轮播图/53f7fd9391f21.jpg">
+			<img src="img-轮播图/57d228e7f2cb1.jpg">
+			<img src="img-轮播图/57d228e1779f9.jpg">
+			<img src="img-轮播图/57d228e57985d.jpg">
+			<img src="img-轮播图/57d228ee3375d.jpg">
+		</div>
+
+		<!-- 底部圆点 -->
+		<div class="points">
+			<span class="current"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+    </div>
+    <script>
+        var span_obj = document.querySelectorAll('.points span');
+        var img_obj = document.querySelectorAll('.imgs img');
+        
+        for(var i=0;i<span_obj.length;i++){
+            span_obj[i].onclick = (function(index){
+                return function(){
+                    for(var k=0;k<span_obj.length;k++){
+                        span_obj[k].classList.remove('current');
+                        img_obj[k].style.display='none';
+                    }
+                    span_obj[index].classList.add('current');
+                    img_obj[index].style.display='block';
+                }
+            })(i)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-13 15:41:32
+ * @LastEditTime: 2020-07-13 16:02:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_05\07_导航条.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_导航</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+</head>
+<body>
+    <h3>1) Tab栏导航: .nav-tabs</h3>
+    <ul class="nav nav-tabs container">
+        <li class="active"><a href="#">京东</a></li>
+        <li><a href="#">天猫</a></li>
+        <li><a href="#">当当</a></li>
+        <li><a href="#">淘宝</a></li>
+    </ul>
+
+    <h3>2) 胶囊式导航: .nav-pills</h3>
+    <ul class="nav nav-pills container">
+        <li class="active"><a href="#">京东</a></li>
+        <li><a href="#">天猫</a></li>
+        <li><a href="#">当当</a></li>
+        <li><a href="#">淘宝</a></li>
+    </ul>
+
+    <h3>3) 垂直胶囊式导航: .nav-pills nav-stacked</h3>
+    <ul class="nav nav-pills nav-stacked container">
+        <li class="active"><a href="#">京东</a></li>
+        <li><a href="#">天猫</a></li>
+        <li><a href="#">当当</a></li>
+        <li><a href="#">淘宝</a></li>
+    </ul>
+
+    <h3>4) 两端对齐导航: .nav-justified</h3>
+    <ul class="nav nav-justified nav-pills container">
+        <li class="active"><a href="#">京东</a></li>
+        <li><a href="#">天猫</a></li>
+        <li><a href="#">当当</a></li>
+        <li><a href="#">淘宝</a></li>
+        <li><a href="#">亚马逊</a></li>
+    </ul>
+
+    <h3>5) 导航里有下拉列表</h3>
+    <ul class="nav nav-tabs container">
+        <li class="active"><a href="#">京东</a></li>
+        <li><a href="#">天猫</a></li>
+        <li><a href="#">当当</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">淘宝 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">零食</a></li>
+                <li><a href="#">服装</a></li>
+                <li><a href="#">玩具</a></li>
+            </ul>
+        </li>
+        <li><a href="#">亚马逊</a></li>
+    </ul>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+</html>

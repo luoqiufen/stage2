@@ -1,0 +1,84 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-13 11:08:34
+ * @LastEditTime: 2020-07-13 11:34:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_05\04_下拉菜单.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_下拉菜单</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+</head>
+
+<body>
+    <h3>下拉菜单1: .dropdown</h3>
+    <div class="dropdown">
+        <!-- 1)点击的按钮区域 -->
+        <button class="dropdown-toggle" data-toggle="dropdown">
+            服装 <span class="caret"></span>
+        </button>
+        <!-- 2) 点击展开列表(下拉菜单) .dropdown-menu -->
+        <ul class="dropdown-menu">
+            <li>男装</li>
+            <li>女装</li>
+            <li>童装</li>
+        </ul>
+    </div>
+
+    <h3>上拉菜单2: .dropup</h3>
+    <div class="dropup">
+        <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown">图书 <span class="caret"></span></a>
+        
+        <ol class="dropdown-menu">
+            <li><a href="#">童话故事</a></li>
+            <li><a href="#">励志文学</a></li>
+            <li><a href="#">青春故事</a></li>
+            <li><a href="#">悬疑推理</a></li>
+        </ol>
+    </div>
+
+    <h3>下拉菜单3: .dropdown</h3>
+    <div class="dropdown">
+        <a href="#" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">图书 <span class="caret"></span></a>
+        
+        <ol class="dropdown-menu">
+            <li>童话故事</li>
+            <li><a href="#">安徒生童话</a></li>
+            <li><a href="#">格林童话</a></li>
+            <li class="divider"></li>
+
+            <li>励志文学</li>
+            <li><a href="#">钢铁是怎样炼成的</a></li>
+            <li><a href="#">假如给我三天光明</a></li>
+            <li class="divider"></li>
+
+            <li>青春故事</li>
+            <li><a href="#">谁的青春不迷茫</a></li>
+            <li><a href="#">那些回不去的年少时光</a></li>
+            <li class="divider"></li>
+
+            <li>悬疑推理</li>
+            <li><a href="#">白夜行</a></li>
+            <li><a href="#">十宗罪</a></li>
+        </ol>
+    </div>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

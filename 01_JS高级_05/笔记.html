@@ -1,0 +1,187 @@
+第一章 JS高级
+<script>
+    var aa = (function(i){//i:形参 局部
+      return function(){
+        console.log(i);
+      }
+    })(2);
+    //结果:
+    var aa = function(){
+        console.log(i);
+    }
+    
+    aa();
+    
+    //点击切换
+    // length：5    0-4
+    for(var i=0;i<a_obj.length;i++){
+      a_obj[i].onclick=(function(index){//父函数
+        //return 一个函数给onclick
+        return function(){//子函数
+          console.log(index);
+        }
+      })(i)
+    
+    }
+    // i:5
+</script>
+第五天
+一、对象
+    一切皆对象
+    两个成员：属性和方法
+    对象都是独立的，互相不受影响
+    面向对象的开发模式(分析功能)
+    面向对象的三大特征:封装、继承、多态
+    
+    1.创建对象
+        1)字面量/直接量     -1个对象
+            <script>
+                var obj = {
+                    属性名:值,
+                    属性名:值,
+                    方法名:function(arg1){
+
+                    },
+                    方法名:function(arg1){
+
+                    }
+                };    
+                // 使用对象属性和方法 
+                    // 1)属性
+                    obj.属性名;
+                    obj.属性名 = 值;
+                    // 2)方法
+                    obj.方法名(实参);
+                    obj.方法名 = function(){}
+                    // 3)删除
+                    delete obj.属性名
+                    delete obj.方法名       
+            </script>
+        2)new关键字 系统构造函数    -1个对象
+            <script>
+                var obj = new Object();
+                obj.属性名 = 值;
+                obj.方法名 = function(){};
+            </script>
+        3)工厂 模式 - 批量生产
+            <script>
+                function 工厂名(name,uname){
+                    // 1)原料
+                    var obj = new Object();//var obj = {}
+                    // 2)加工
+                    obj.uname = uname;
+                    obj.uage = uage;
+                    obj.read = function(){}
+                    // 3)出厂
+                    return obj;
+                }
+
+                //生产对象
+                var obj1 = 函数名('apple',18);
+                var obje2 = 函数名('banana',20);
+            </script>
+        4)自定义 构造函数  -批量生产
+            建议: 构造函数名 大驼峰
+            <script>
+                function 函数名(uname,uage){
+                    //定义属性和方法
+                    // 用this关键字
+                    this.属性名 = 值;
+                    this.uname = uname;
+                    this.uage = uage;
+                    this.read = function(){};
+                }
+
+                // 调用
+                // new 函数名()
+                var obj = new 函数名('apple',18);
+
+                // 补充:
+                // 直接调用 函数:就是普通函数
+                函数名('banana',20);
+            </script>
+
+        ----------------------
+        总结:
+        1)创建一个具体的对象
+            var obj = {}; 字面量
+            var obj = new Object(); 系统构造函数
+        2)创建一个类型(批量生成)
+            工厂模式: - 全都是Object类型
+            自定义构造函数: - 指定的类型
+        -----------------------
+二、this关键字
+    一个指针:指向调用该函数的对象
+    全局范围:指向window
+    全局变量 ->window的属性
+    全局函数 ->window的方法
+    <script>
+        var uname = 'apple';//window.uname
+        function fun1(){
+            console.log('函数');
+        }
+        fun1();//window.fun1();
+    </script>
+    --------------------------
+    <script>
+        function Aa(){
+            this.num = 10;
+        }
+        Aa();//window.num:undefined
+        
+        function Bb(){
+            this.price = 15;//b1.price
+        }
+        var b1 = new Bb();//b1就是一个对象
+        console.log(b1.price);//15
+    </script>
+三、定义带特性的属性
+    <script>
+        // 1)语法
+        Object.defineProperty(obj,prop,descriptor);
+        // obj:对象
+        // prop:属性名 
+        // descriptor:描述特征
+            {
+                value:值,
+                configurable:false/true,//是否可删除
+                enumerable:false/true,//是否可枚举
+                writable:false/true,//是否可重写
+                get:function(){
+
+                },
+                set:function(){
+                    
+                }
+            }
+
+        //- 定义多个属性
+        Object.defineProperties(obj2,{
+            "count":{
+                value:20,
+                enumerable:true,
+                writable:true
+            },
+            "address":{
+                value:'天猫超市',
+                enumerable:true
+            }
+        });
+    </script>
+
+
+    2)使用对象 属性或方法
+    <script>
+        //1)属性
+        obj.属性名;
+        obj.属性名 = 值;
+
+        //2)方法
+        obj.方法名(实参);
+        obj.方法名 = function(){}
+
+        //3)删除
+        delete obj.属性名;
+        delete obj.方法名;
+    </script>
+  

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_工厂模式</title>
+</head>
+<body>
+    <script>
+        // 3)工厂模式:批量生产 对象
+        // 工厂函数
+        function factory(ucode,uname,age){
+            // 1)生产什么? 
+            var obj = new Object();
+            // 2)加工
+            obj.ucode = ucode;
+            obj.uname = uname;
+            obj.age = age;
+            obj.read = function(book){
+                return obj.uname+'喜欢读'+book;
+            };
+            obj.sing = function(song){
+                return obj.uname+'喜欢听'+song;
+            };
+            // 3)出厂
+            return obj;
+        }
+        // 开始生产
+        var stu1 = factory('1001','小蓝',14);
+        console.log(stu1);
+
+        var stu2 = factory('1002','虹猫',16);
+        console.log(stu2);
+        
+        var stu3 = factory('1003','蓝兔',15);
+        console.log(stu3);
+
+        // 访问
+        console.log(stu2.age);
+        console.log(stu2.read('《钢铁是怎样炼成的》'));
+        
+
+        // 练习:生成车
+        // 特征:
+        /* 
+        品牌:brand
+        颜色:color
+        容纳:count
+        方法run:车速:目前运行车速speed?
+         */
+        function carFactory(brand,color,count){
+            var obj = {};
+            obj.brand = brand;
+            obj.color = color;
+            obj.count = count;
+            obj.run = function(speed){
+                return obj.brand+'的运行车速是'+speed;
+            }
+            return obj;
+        }
+        var car1 = carFactory('大众','黑色',7);
+        console.log(car1);
+        var car2 = carFactory('奥迪','白色',4);
+        console.log(car2);
+        console.log(car2.run('60'));
+
+        // new 系统构造函数
+        // new Object()  --- 都是object类型
+
+        // --- 默认都属于object类型
+        // new Array()
+        // new Date()
+        // new RegExp()
+        
+    </script>
+</body>
+</html>

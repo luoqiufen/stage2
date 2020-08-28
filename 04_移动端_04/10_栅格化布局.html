@@ -1,0 +1,84 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 17:36:25
+ * @LastEditTime: 2020-07-10 18:01:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\10_栅格化布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10_栅格化布局</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+    <style>
+        .con1{
+            border: 1px solid red;
+            /* height: 100px; */
+        }
+        .con1 p{
+            border: 1px solid green;
+            line-height: 30px;
+        }
+        .con2{
+            border: 1px solid blue;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>容器1: .container</h3>
+    <div class="con1 container">
+        <h3>手机:一行显示2列</h3>
+        <div class="row">
+            <p class="col-xs-3">第1列</p>
+            <p class="col-xs-9">第2列</p>
+        </div>
+        <h3>平板:显示3列</h3>
+        <div class="row">
+            <p class="col-sm-3">第1列</p>
+            <p class="col-sm-2">第2列</p>
+            <p class="col-sm-7">第3列</p>
+        </div>
+        <h3>电脑显示屏:显示4列</h3>
+        <div class="row">
+            <p class="col-md-3">第1列</p>
+            <p class="col-md-2">第2列</p>
+            <p class="col-md-2">第3列</p>
+            <p class="col-md-3">第4列</p>
+        </div>
+        <h3>电脑显示超大屏:显示5列</h3>
+        <div class="row">
+            <p class="col-md-3">第1列</p>
+            <p class="col-md-2">第2列</p>
+            <p class="col-md-1">第3列</p>
+            <p class="col-md-1">第4列</p>
+            <p class="col-md-3">第4列</p>
+        </div>
+    </div>
+
+
+    <h3>容器2: .container-fluid</h3>
+    <div class="con2 container-fluid"></div>
+
+    
+    
+
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

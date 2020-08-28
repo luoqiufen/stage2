@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel='stylesheet' href='../boot/css/bootstrap.css'>
+<!-- 低版本IE不能用 -->
+<!-- [if lt IE9]>
+<script src="../boot/js/html5shiv.min.js"></script>
+<script src="../boot/js/respond.min.js"></script>
+<![end if] -->
+</head>
+<body>
+<h3><mark> 下拉列表1：.dropdown</mark></h3>
+<div class="container">
+  <div class="dropdown">
+    <!-- 按钮 .dropdown-toggle-->
+    <a href="#" class="dropdown-toggle" 
+    data-toggle="dropdown">
+      图书<b class="caret"></b>
+    </a>
+    <!-- 折叠-》下拉菜单 -->
+    <ul class="dropdown-menu">
+      <li><a href="#">科幻</a></li>
+      <li><a href="#">童话绘</a></li>
+      <li><a href="#">励志</a></li>
+      <li><a href="#">武侠</a></li>
+    </ul>
+  </div>
+</div>
+
+<br>  
+<h3><mark>上拉列表1：.dropup</mark></h3>
+<div class="container">
+  <div class="dropup ">
+    <!-- 按钮 .dropdown-toggle-->
+    <a href="#" class="dropdown-toggle btn btn-primary" 
+    data-toggle="dropdown">
+      图书<b class="caret"></b>
+    </a>
+    <!-- 折叠-》下拉菜单 -->
+    <ul class="dropdown-menu">
+      <li><a href="#">科幻</a></li>
+      <li><a href="#">童话绘</a></li>
+      <li><a href="#">励志</a></li>
+      <li><a href="#">武侠</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3><mark> </mark></h3>
+<div class="container">
+  <div class="dropdown">
+    <!-- 按钮 .dropdown-toggle-->
+    <a href="#" class="dropdown-toggle" 
+    data-toggle="dropdown">
+      图书<b class="caret"></b>
+    </a>
+    <!-- 折叠-》下拉菜单 带标题和分割线 -->
+    <ul class="dropdown-menu">
+      <li class="dropdown-header"><h4>科幻</h4></li>
+      <li><a href="#">三体</a></li>
+      <li><a href="#">海底两万里</a></li>
+      <li class="divider"> </li>
+      
+      <li class="dropdown-header"><h4>童话</h4></li>
+      <li><a href="#">安徒生童话</a></li>
+      <li><a href="#">格林童话</a></li>
+      <li class="divider"> </li>
+
+      <li class="dropdown-header"><h4>励志</h4></li>
+      <li><a href="#">青年文摘</a></li>
+      <li><a href="#">谁的青春不孤独</a></li>
+
+      <li class="dropdown-header"><h4>悬疑</h4></li>
+      <li><a href="#">嫌疑人X的献身</a></li>
+      <li><a href="#">白夜行</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="../boot/js/jquery-1.9.1.min.js"></script>
+<script src="../boot/js/bootstrap.js"></script>
+</body>
+</html>

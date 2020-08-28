@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = 10;//window.x = 10
+        function test(){//this->obj
+            var a = 789;
+            x = 1; 
+            console.log('1)a:'+a);//789
+            console.log('2)x:'+this.x);//123
+            console.log('2)x:'+x);//1
+            return function(){
+                console.log('3)x:'+this.x);
+            }
+        }
+        
+        var obj = {
+            x:123//obj.x=123
+        }
+        
+        var obj2 = {//this->obj2
+            x:321,//obj2.x = 321
+            met:function(){
+                var x = 456;
+                console.log('obj2:'+this.a);//test.a: undefined
+            }
+        }
+        
+        //分析以下调用过程
+        obj2.met.call(test);
+        test.call(obj);
+
+        //原题: 
+        test.call(obj).call(obj2.met.call(test))
+    </script>
+                
+</body>
+</html>

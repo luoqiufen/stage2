@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入模板引擎 -->
+    <script src="../js/template-web.js"></script>
+</head>
+<body>
+    <h3>案例1: {{}}</h3>
+    <script type="text/html" id="item1">
+        <ul>
+            <li>商品名:{{proname}}</li>
+            <li>单价:{{price}}</li>
+            <li>库存:{{num}}</li>
+            <li>平台:{{app}}</li> 
+        </ul>
+    </script>
+    
+
+    <script>
+        // 数据
+        var data = {
+            "proname":"iphone11",
+            "price":9880,
+            "num":520,
+            "app":"京东"
+        };
+        document.write(template('item1',data))
+    </script>
+
+
+    <h3>案例2: {{each 循环}}</h3>
+    <script type="text/html" id="item2">
+        <!-- 第一种each用法: as可省略 -->
+        <ul>
+            {{each stus value index}}
+             <!-- {{index}}  {{value}} 
+            {{value.uname}}  -->
+            <li>学生{{index+1}}: 姓名:{{value.uname}} 年龄:{{value.uage}} </li>
+            {{/each}}
+        </ul>
+
+
+        <!-- 第二种each用法: value index可自定义 -->
+        <ul type="square">
+            {{each stus as v k}}
+            <!-- v: 值   k: 下标 -->
+            <li>学生{{k+1}}: 姓名:{{v.uname}} 年龄:{{v.uage}} </li>
+            {{/each}}
+        </ul>
+
+
+        <!-- 第三种each用法: value index省略 -->
+        <ol type="A">
+            {{each stus}}
+            <!--默认 value: 值   index: 下标 -->
+            <li>学生{{$index+1}}: 姓名:{{$value.uname}} 年龄:{{$value.uage}} </li>
+            {{/each}}
+        </ol>
+    </script>
+
+
+    <script>
+        // 数据:
+        var data={
+            "stus":[
+                {"uname":"庄周","uage":20},
+                {"uname":"李白","uage":25},
+                {"uname":"兰陵王","uage":30},
+                {"uname":"白起","uage":35}
+            ]
+        };
+
+        document.write(template('item2',data));
+    
+    </script>
+
+    <h3>案例3: 案例3: if判断-单条件</h3>
+    <script type="text/html" id="item3">
+        <!-- 1) 单条件判断: 根据类型显示对应的列表 -->
+        {{ if type == "无序"}}
+        <ul>
+            <li>第一行</li>
+            <li>第二行</li>
+        </ul>
+        {{ else }}
+        <ol>
+            <li>第一行</li>
+            <li>第二行</li>
+        </ol>
+        {{/if}}
+
+        <!-- 2)多条件判断: 根据颜色显示内容 -->
+        {{ if color == "skyblue" }}
+        <font color=skyblue>天蓝色</font>
+        {{ else if color == "orange" }}
+        <font color=orange>橙色</font>
+        {{ else if color == "green" }}
+        <font color=green>绿色</font>
+        {{ else }}
+        <font color=balck>黑色</font>
+        {{/if}}
+
+    </script>
+        
+    <script>
+        var data={
+            "color":"green",
+            "type":"无序"
+        };
+        document.write(template('item3',data));
+    </script>
+
+
+</body>
+</html>

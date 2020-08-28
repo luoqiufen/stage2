@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_下雪咯</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+            background: url("./imgs/雪景.jpg");
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas1" width="800" height="600"></canvas>
+    <script>
+        // 创建形状
+        var shape = canvas1.getContext('2d');
+
+        // 1)存储雪花信息
+        // 雪花数目:100
+        // 雪花形状:圆形 arc(x,y,r,0,2*Math.PI)
+        // 雪花位置: x,y - 随机
+        // 雪花半径: r - 随机
+        // 水平偏移: vx
+        // 垂直偏移: vy
+        var snows = []; //存储雪花信息
+        for (var i = 0; i < 1000; i++) {
+            snows.push({
+                x: Math.random() * 800,
+                y: Math.random() * 600,
+                r: Math.random() * 2.5,
+                vx: Math.random() * 2 - 0.5,
+                vy: Math.random() * 2 + 0.5,
+            })
+        }
+        console.log(snows)
+
+        // 把雪花一次绘制到画布上
+        function snowDown() {
+            // 先清屏
+            shape.clearRect(0,0,800,600);
+            for(var key in snows) {
+                // 更新雪花坐标
+                snows[key].x += snows[key].vx;
+                snows[key].y += snows[key].vy;
+
+                // 控制坐标点
+                snows[key].x<0?snows[key].x=800:snows[key].x;
+                snows[key].x>800?snows[key].x=0:snows[key].x;
+                snows[key].y>=600?snows[key].y=0:snows[key].y;
+
+                var x = snows[key].x;
+                var y = snows[key].y;
+                var r = snows[key].r;
+                shape.beginPath();
+                shape.fillStyle = "white";
+                shape.arc(x,y,r,0,2*Math.PI);
+                shape.fill();
+                shape.closePath();
+            }
+        }
+        
+
+        // 计时器: 控制雪花降落
+        setInterval(snowDown,30)
+    
+
+    </script>
+</body>
+
+</html>

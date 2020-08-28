@@ -1,0 +1,67 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 14:21:43
+ * @LastEditTime: 2020-06-29 15:31:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_02\05_form.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .form1{
+            width: 400px;
+            border: 1px solid red;
+            padding: 10px;
+        }
+        .form2{
+            border: 2px solid blue;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 表单1: 收集文章信息 -->
+    <form class="form1" action="./06_response.php?act=addArt" method="POST">
+        <h3>发布文章</h3>
+        <p>
+            标题: <input type="text" name="title">
+        </p>
+        <p>
+            内容: <textarea name="con"></textarea>
+        </p>
+        <p>
+            作者: <input type="text" name="author">
+        </p>
+        <input type="submit" value="发布">
+
+            
+    </form>
+
+
+    <!-- 表单2: 收集用户信息 -->
+    <form action="./06_response.php?act=register" class="form1 form2" method="POST">
+        <h3>用户注册</h3>
+        <p>
+            用户名: <input type="text" name="uanme">
+        </p>
+        <p>
+            密码: <input type="password" name="upass">
+        </p>
+        <p>
+            手机号: <input type="text" name="utel">
+        </p>
+        <input type="submit" value="注册">
+
+    </form>
+
+
+
+
+</body>
+</html>

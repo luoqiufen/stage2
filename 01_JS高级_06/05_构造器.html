@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_构造器</title>
+</head>
+<body>
+    <script>
+        // 1)构造函数
+        function People(uname,uage,usex){
+            // 私有属性
+            this.uname = uname;
+            this.uage = uage;
+            this.usex = usex;
+        }
+        People.prototype.star = 'earth'
+        // 第一个人
+        var people1 = new People('狄仁杰',35,'男');
+        console.log(people1);
+    </script>
+</body>
+</html>

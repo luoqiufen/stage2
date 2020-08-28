@@ -1,0 +1,60 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-03 08:59:21
+ * @LastEditTime: 2020-07-03 11:14:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\06_test\02_list.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            $.getJSON('./data2.json', '', function (response) {
+                console.log(response);
+                var tab = '<table border =1>';
+                tab += '<tr>';
+                tab += '<th>姓名</th>'
+                tab += '<th>性别</th>'
+                tab += '<th>籍贯</th>'
+                tab += '<th>班级</th>'
+                tab += '</tr>';
+                for (var key in response) {
+                    tab += "<tr>"
+                    tab += "<td>" + response[key].uname + "</td>";
+                    tab += "<td>" + response[key].gender + "</td>";
+                    tab += "<td>" + response[key].proname + "--" + response[key].cityname + "</td>";
+                    tab += "<td>" + response[key].class + "</td>";
+                    tab += "</tr>"
+                }
+                tab += '<table>';
+                $('.list').append(tab);
+            })
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <h3>学生信息</h3>
+    <div class="list">
+        <!-- 在这里显示学生信息:表格 -->
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

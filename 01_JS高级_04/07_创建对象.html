@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_创建对象</title>
+</head>
+<body>
+<script>
+    // 对象:描述事物:有属性有方法
+    // 描述一个人
+    // 属性: uname:小明 age:12 school:清华大学 
+    // 方法:会学习 会唱歌
+    var stu1 = {
+        uname:'小明',
+        age:12,
+        school:'清华大学',
+        study:function(){
+            console.log('最近在学计算机编程');
+        },
+        sing:function(){
+            console.log('喜欢唱周杰伦的歌');
+        }
+    };
+    console.log(stu1);
+
+    // 访问属性和方法
+    console.log(stu1.uname);
+    console.log(stu1.school);
+
+    stu1.study();
+    stu1.sing();
+
+    var uname = '小红';
+    function study(){
+        console.log('我要学习');
+    }
+    console.log(uname);
+    study();
+
+
+    stu1.uname = '小兰';
+    console.log(stu1);
+
+
+    //定义学生2
+    var stu2 = {};
+    // 添加属性特征
+    stu2.uname = '小丽';
+    stu2.age = 15;
+    stu2.school = '南京大学';
+    console.log(stu2);
+    console.log(stu2.uname);
+    console.log(stu2.school);
+
+    // -----例子-------
+    // 变量和函数
+    var uname1 = '小明';
+    var uname2 = '小丽';
+
+    function study1(){
+        console.log('学生1:学习语文');
+    };
+    function study2(){
+        console.log('学生2:学习数学');
+    }
+    
+</script>
+</body>
+</html>

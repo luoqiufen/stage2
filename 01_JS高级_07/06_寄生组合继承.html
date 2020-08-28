@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_寄生组合继承</title>
+</head>
+
+<body>
+    <script>
+        //4)寄生组合继承
+        // - 1.原型继承：可以继承私有和共享的;不能往父类传参
+        // - 2.构造函数继承：只能继承私有的;可以往父类传参
+        //---------形成了互补-----------
+        // - 既可以向父类传参(方式2)
+        // - 也可以继承私有+共享(方式1)
+
+        //1)父类
+        function Father(province, city) {
+            //私有
+            this.province = province;
+            this.city = city;
+        }
+        //共享
+        Father.prototype.country = '中国';
+        Father.prototype.sleep = function (h) {
+            console.log('每天睡眠' + h + '小时');
+        }
+
+        //2)子类 Son
+        function Son(province, city, name, age) {
+            // 继承父类(私有属性)
+            Father.call(this, province, city);
+            // 再添加属性
+            this.name = name;
+            this.age = age;
+        }
+        // 改原型指针
+        // Son.prototype = new Father();
+        // Son.prototype = Father.prototype;会改变父类的原型
+
+        // 继承共享的属性和方法
+        // 1)创建中介构造函数
+        function F(){}
+        // 2)把中介构造函数 原型 -> 父类的原型
+        F.prototype = Father.prototype;
+        // 3)把子类的原型 -> 中介的实例
+        Son.prototype = new F();
+        // 4)把构造器归位
+        Son.prototype.constructor = Son;
+
+
+        Son.prototype.study = function(course) {
+            console.log('学习'+course);
+        }
+        Son.prototype.sing = function(song) {
+            console.log('最爱听'+song);
+        }
+
+        // 实例化1个儿子
+        var s1 = new Son('江苏省','苏州市','汤姆猫','12');
+        console.log(s1);
+    </script>
+</body>
+
+</html>

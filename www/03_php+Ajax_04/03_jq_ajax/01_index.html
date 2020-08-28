@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 17:30:14
+ * @LastEditTime: 2020-07-01 18:52:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_04\03_jq的ajax请求\01_index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function(){
+            // 按钮1: get请求
+            $('.btn1').click(function(){
+                $.get('./02_index.php','act=btn1',function(response){
+                    console.log(response);
+                },'json')
+            })
+
+            // 按钮2: post请求
+            $('.btn2').click(function(){
+                $.post('./02_index.php','act=btn2',function(response){
+                    console.log(response);
+                },'html')
+            })
+
+            // 按钮3: ajax请求
+            $('.btn3').click(function(){
+                $.ajax({
+                    url:'./02_index.php',
+                    data:'act=btn3',
+                    dataType:'json',
+                    success: function(response){
+                        console.log(response);
+                    },
+                    beforeSend:function(){
+                        // 发请求之前去做的事情
+                        console.log('表单验证');
+                        // return false;
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type="button" value="按钮1" class="btn1">
+    <input type="button" value="按钮2" class="btn2">
+    <input type="button" value="按钮3" class="btn3">
+</body>
+</html>

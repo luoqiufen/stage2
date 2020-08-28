@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 17:02:28
+ * @LastEditTime: 2020-06-29 19:38:24
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_02\09_Ajax_post.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>欢迎进入我的QQ空间</h1>
+    <div class="main">
+        <h3>朋友1: 今天天气真好!</h3>
+        <ul id="list1">
+            <li>留言1:呵呵</li>
+            <li>留言2:哈哈哈哈哈</li>
+        </ul>
+        <p>
+            <input type="text" name="txt1" id="txt1">
+            <input type="button" value="留言" id="btn1">
+        </p>
+
+        <h3>朋友2: 今天天气真是糟糕透了!</h3>
+        <ul>
+            <li>留言1:吃葡萄不吐葡萄皮</li>
+            <li>留言2:哈哈哈哈哈</li>
+        </ul>
+        <p>
+            <input type="text" name="txt2" id="txt2">
+            <input type="button" value="留言" id="btn2">
+        </p>
+
+        <h3>朋友3: 今天又要上晚自习!</h3>
+        <ul>
+            <li>留言1:不开心</li>
+            <li>留言2:好好学习,天天向下</li>
+        </ul>
+        <p>
+            <input type="text" name="txt3" id="txt3">
+            <input type="button" value="留言" id="btn3">
+        </p>
+    </div>
+
+
+    <script>
+        //留言按钮1:
+        btn1.onclick = function () {
+            // 1)创建对象
+            var xhr = new XMLHttpRequest();
+            // 2)建立连接
+            xhr.open('post','./10_Ajax_post.php');
+            // 如果是post请求,还要设置请求头
+            xhr.setRequestHeader('content-type','application/X-WWW-form-urlencoded');
+            // 3)发送请求
+            xhr.send('con='+txt1.value);
+            // 4)注册监听
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    console.log(xhr.responseText);
+                    list1.innerHTML += '<li>留言3:'+xhr.responseText+'</li>'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_编程模式</title>
+</head>
+<body>
+    <div class="box1">盒子1</div>
+    <div class="box2">盒２</div>
+    <script>
+        // 1)找到div
+        var div1 = document.querySelector('.box1');
+        div1.style = 'width:150px;height:100px;border:1px solid red';
+
+        var div2 = document.querySelector('.box2');
+        div2.style = 'width:200px;height:150px;border:1px solid blue';
+    
+    </script>
+    <h1 class="t1">标题1-1</h1>
+    <h1 class="t2">标题1-2</h1>
+    <script>
+        // 面向对象:分功能
+        // 功能1:找dom -封装函数
+        // 功能2:设置style样式 -封装函数
+
+        // 找dom
+        function getEle(selecter){
+            return document.querySelector(selecter);
+        }
+        console.log(getEle('.t2'));
+        // 设置css样式
+        function css(dom,property){
+            dom.style = property;
+        }
+        css(getEle('.t1'),'background:lightgreen;width:400px;line-height:50px;');
+        css(getEle('.t2'),'background:skyblue;width:300px;line-height:70px;');
+    
+    </script>
+</body>
+</html>

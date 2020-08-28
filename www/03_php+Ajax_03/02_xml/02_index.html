@@ -1,0 +1,94 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 15:23:58
+ * @LastEditTime: 2020-06-30 20:31:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_03\02_xml\02_index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="获取班级信息" id="btn">
+    <div>
+        <p>
+            学校:
+            <span id="sName"></span>
+            地址:
+            <span id="sAddress"></span>
+        </p>
+    </div>
+    <h3>班级1: 学生信息</h3>
+    <div id="class1_1">
+
+    </div>
+    <h3>班级2: 学生信息</h3>
+    <div id="class2_1">
+
+    </div>
+
+    <script>
+        // 单击按钮: 发送请求,取数据
+        btn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseXML);
+                    var xmlDom = xhr.responseXML; //dom树
+                    // 可以操作数据
+                    var school = xmlDom.querySelector('学校'); //获取学校标签
+                    var s_name = school.getAttribute('name'); //获取name属性值
+                    var s_address = school.getAttribute('address'); //获取address属性值
+                    // 放到html标签里显示
+                    sName.innerText = s_name;
+                    sAddress.innerText = s_address;
+
+                    // 获取班级1学生信息: 生成列表
+                    var class1 = xmlDom.querySelectorAll('班级1 学生');
+                    console.log(class1);
+                    var list = '<ul>';
+                    for (var k = 0; k < class1.length; k++) {
+                        var ucode = class1[k].querySelector('学号').innerHTML;
+                        var uname = class1[k].querySelector('姓名').innerHTML;
+                        list += '<li>';
+                        list += '学号:'+ucode;
+                        list += ' 姓名:'+uname;
+                        list += '</li>';
+                    }
+                    list += '</ul>';
+                    // 放到div里
+                    class1_1.innerHTML = list;
+
+                    // 需求: 把学生2的信息取出来生成表格
+                    // 放到div盒子2里
+                    var class2 = xmlDom.querySelectorAll('班级2 学生');
+                    var tab = '<table border="1" width="200" height="100" cellspacing="0">';
+                        for(var i = 0; i < class1.length; i++){
+                            tab += '<tr align="center">';
+                                var ucode = class2[i].getAttribute('学号');
+                                var uname = class2[i].getAttribute('姓名');
+                                var uage = class2[i].getAttribute('年龄');
+                                tab += '<td>'+ucode+'</td>'
+                                tab += '<td>'+uname+'</td>'
+                                tab += '<td>'+uage+'</td>'
+                            tab += '</tr>';
+                        }
+                    tab += '<table>';
+                    class2_1.innerHTML = tab;
+                }
+            }
+            xhr.open('get', './03_index.php');
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>

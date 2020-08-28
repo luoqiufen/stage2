@@ -1,0 +1,111 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 16:18:19
+ * @LastEditTime: 2020-07-10 17:13:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\08_图片.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08_图片</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+    <style>
+        .box1{
+            width: 90%;
+            border: 1px solid blue;
+            margin: 10px auto;
+        }
+        .box2{
+            background: rgb(136, 241, 236);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>图片: 默认状态</h3>
+    <div class="box1">
+        <img src="./boot/img/1.jpg">
+    </div>
+
+    <h3>图片: 响应式 .img-responsive</h3>
+    <div class="box1">
+        <img class="img-responsive" src="./boot/img/1.jpg">
+    </div>
+    <h3>图片形状</h3>
+    <div class="box1 box2">
+        <img class="img-circle" src="./boot/img/1.jpg" width="150" height="150">
+        <img class="img-rounded" src="./boot/img/1.jpg">
+        <img class="img-thumbnail" src="./boot/img/1.jpg">
+    </div>
+
+    <h3>情景文字</h3>
+    <p class="text-muted">虹猫蓝兔奇侠传</p>
+    <p class="text-primary">名侦探柯南</p>
+    <p class="text-success">神兵小将</p>
+    <p class="text-info">神厨小福贵</p>
+    <p class="text-warning">中华小当家</p>
+    <p class="text-danger">喜羊羊与灰太狼不得不说的缘分</p>
+    <style>
+        p{
+            line-height: 30px;
+        }
+    </style> 
+
+    <h3>背景修饰</h3>
+    <p class="bg-primary">名侦探柯南</p>
+    <p class="bg-success">神兵小将</p>
+    <p class="bg-info">神厨小福贵</p>
+    <p class="bg-warning">中华小当家</p>
+    <p class="bg-danger">喜羊羊与灰太狼不得不说的缘分</p>
+
+    <h3>关闭按钮</h3>
+    <form class="box">
+        <h3><button class="close btn1">&times;</button></h3>
+        <div class="form-group">
+            <input type="text" name="uname" class="form-control" placeholder="用户名">
+        </div> 
+        <div class="form-group">
+            <input type="password" name="upass" class="form-control" placeholder="密码">
+        </div> 
+        <div class="form-group">
+            <input type="submit" value="登录" class="btn btn-success btn-block" placeholder="用户名">
+        </div> 
+    </form>
+    <style>
+        .box{
+            width: 80%;
+            margin: 30px auto;
+            padding: 5px 6px;
+            box-shadow: 0 0 5px 4px rgba(55, 223, 120, 0.5);
+        }
+        .box .btn1{
+            font-size: 30px;
+        }
+    </style>
+    
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

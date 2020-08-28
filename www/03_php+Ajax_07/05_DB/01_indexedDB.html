@@ -1,0 +1,193 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-07 11:27:09
+ * @LastEditTime: 2020-07-07 16:52:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\05_DB\01_indexedDB.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 100px;
+            border: 1px solid red;
+        }
+
+        #box2 {
+            height: 200px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 按钮:增删改查 -->
+    <input type="button" value="添加" id=btn1>
+    <input type="button" value="删除" id=btn2>
+    <input type="button" value="修改" id=btn3>
+    <input type="button" value="查询1条" id=btn4>
+    <input type="button" value="查询全部" id=btn5>
+    <h3>查询1条</h3>
+    <div id="box1"></div>
+    <h3>查询全部</h3>
+    <div id="box2"></div>
+
+
+    <script>
+        // indexedDB -->客户端数据库(非关系型)
+        // 创建自己的数据库
+        // 在自己的库->创建数据表
+        // 数据表 ->添加数据
+
+        var db; //数据库实例对象
+
+        // 1) 打开 数据库(自定义)
+        var request = indexedDB.open('stDB', 2);
+        // 1-1 监听数据库,打开操作
+        request.onsuccess = function (e) {
+            db = e.target.result;
+            // console.log('数据库创建成功');
+        }
+        request.onerror = function (e) {
+            // console.log('数据库打开失败');
+        }
+        request.onupgradeneeded = function (e) {
+            console.log('数据库更新成功');
+            db = e.target.result;
+            // 2) 创建数据表
+            // 没有该数据表"person" 再创建
+            if (!db.objectStoreNames.contains('person')) { //无该数据表
+                // 创建person表,指定主键'id'
+                var objectStore = db.createObjectStore('person', {
+                    keyPath: 'id'
+                })
+            }
+            // 添加索引(列头)
+            objectStore.createIndex('name', 'name', {
+                unique: true
+            });
+            objectStore.createIndex('age', 'age');
+            objectStore.createIndex('gender', 'gender');
+
+        }
+
+        // 3)数据操作:增删改查
+        // 公共函数:找stuDB库 -> person表
+        function getObjectStore() {
+            return db.transaction(['person'], ['readwrite']).objectStore('person');
+        }
+
+        // 3-1 添加数据
+        function addDate(data) {
+            var store = getObjectStore(); //数据表对象
+            // 添加数据
+            var req = store.add(data);
+            req.onsuccess = function () {
+                console.log('数据添加成功');
+            }
+            req.onerror = function () {
+                console.log('数据添加成功');
+            }
+        }
+        // 3-2 删除数据
+        function deleteData(id) {
+            var store = getObjectStore();
+            var req = store.delete(id); //根据主键id删除
+            req.onsuccess = function () {
+                console.log('删除成功');
+            }
+            req.onerror = function () {
+                console.log('删除石板');
+            }
+        }
+        // 3-3 修改数据
+        function updata(data) {
+            var store = getObjectStore();
+            var req = store.put(data);
+            req.onsuccess = function () {
+                console.log('修改成功');
+            }
+        }
+        // 3-4 查询一条数据
+        function query(key,callback) {
+            var store = getObjectStore();
+            var req = store.get(key);
+            req.onsuccess = function () {
+                console.log('查询成功');
+                console.log(req.result);
+                callback(req.result);
+            }
+        }
+        // 3-5 查询所有数据
+        function queryAll(callback) {
+            var store = getObjectStore();
+            // 开开启游标 自动查询(下一个) 类似于遍历
+            var req = store.openCursor(); //打开游标
+            req.onsuccess = function () {
+                console.log('查询成功');
+                var cursor = req.result;//查询的结果
+                if(cursor){//如果有数据,可以下一条
+                    callback(cursor.value);
+                    cursor.continue();//继续下一条
+                }
+            }
+        }
+
+
+        // 点击按钮1: 添加数据
+        btn1.onclick = function () {
+            addDate({id: 1001,name: "虹猫",gender: "男"});
+            addDate({id: 1002,name: "蓝兔",gender: "女"});
+            addDate({id: 1003,name: "莎莉",gender: "女"});
+            addDate({id: 1004,name: "逗逗",gender: "男"});
+            addDate({id: 1005,name: "达达",gender: "男"});
+            addDate({id: 1006,name: "apple",gender: "女"});
+        }
+        // 点击按钮2: 删除数据
+        btn2.onclick = function () {
+            deleteData(1001);
+        }
+        // 点击按钮3: 修改数据
+        btn3.onclick = function () {
+            updata({
+                id: 1002,
+                name: "猪猪侠",
+                gender: "男"
+            });
+        }
+        // 点击按钮4: 查询一条数据
+        btn4.onclick = function () {
+            var box1=document.querySelector('#box1');
+            console.log(box1);
+            query(1003, function (result) {
+                console.log(box1);
+                box1.innerHTML += '学号:' + result.id;
+                box1.innerHTML += '学号:' + result.name;
+                box1.innerHTML += '性别:' + result.gender;
+            })
+        }
+        // 点击按钮5: 查询所有数据
+        btn5.onclick = function () {
+            queryAll(function(result){
+                console.log(result);
+                box2.innerHTML += "<p>";
+                box2.innerHTML += '学号:' + result.id;
+                box2.innerHTML += '姓名:' + result.name;
+                box2.innerHTML += '性别:' + result.gender;
+                box2.innerHTML += "</p>";
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

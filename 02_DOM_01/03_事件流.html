@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_事件流</title>
+    <style>
+        .yeye {
+            width: 200px;
+            height: 200px;
+            background: lightblue;
+        }
+
+        .baba {
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+            background: lightseagreen;
+        }
+
+        .son {
+            width: 50px;
+            height: 50px;
+            background: lightpink;
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="yeye" id="yeye">
+        爷爷
+        <div class="baba" id="baba">
+            爸爸
+            <div class="son" id="son">
+                儿子
+                <a href="./02事件处理函数.html" id="a1">百度新闻</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // 默认: 冒泡阶段显示
+        /* yeye.onclick = function() {
+            console.log('爷爷');
+        }
+        baba.onclick = function() {
+            console.log('爸爸');
+        }
+        son.onclick = function() {
+            console.log('儿子');
+        } */
+
+        // 冒泡: 儿子 - 爸爸 - 爷爷
+
+        // 2)显示"捕获阶段"触发过程
+        yeye.addEventListener('click', function () {
+            console.log('爷爷');
+            yeye.style.color = 'white';
+            yeye.style.outline = '2px solid blue';
+            yeye.style.background = 'lightgreen'
+        })
+        baba.addEventListener('click', function () {
+            console.log('爸爸');
+            baba.style.outline = '2px solid orange';
+            baba.style.background = 'lightcoral';
+            // 阻止冒泡
+            event.stopPropagation();
+        })
+        son.addEventListener('click', function () {
+            console.log('儿子');
+            son.style.outline = '2px solid lightslategray';
+            son.style.background = 'lightgray';
+            // 阻止冒泡
+            event.stopPropagation();
+        })
+
+        a1.onclick = function() {
+            a1.style.color = 'red';
+            a1.style.fontSize = '20px';
+            // 取消默认行为
+            event.preventDefault();
+        }
+    </script>
+</body>
+
+</html>

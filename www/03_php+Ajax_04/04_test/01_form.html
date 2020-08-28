@@ -1,0 +1,144 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 18:17:02
+ * @LastEditTime: 2020-07-02 19:35:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_04\04_test\01_form.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            // 功能1: 用户名验证(无刷新)
+            var isRegister = false;//默认未被注册过
+            $('input[name=uname]').blur(function () {
+                if ($(this).val()) { //不为空 才验证
+                    $.post('./php.php?act=checkUname', 'uname=' + $(this).val(), function (response) {
+                        // console.log(response);
+                        if (response == '0') {
+                            $('input[name=uname]').next().html('<font color=red>用户名已被注册</font>');
+                            isRegister = true;
+                        } else {
+                            $('input[name=uname]').next().html(
+                                '<font color=blue>用户名可以使用</font>');
+                            isRegister = false;
+                        }
+                    })
+                }
+            })
+
+            // 功能2: 文件无刷新上传
+            $('input[type=file]').change(function () { //jq文件上传只能用ajax
+                var datas = new FormData();
+                datas.append('img', this.files[0]);
+
+                $.ajax({
+                    type: 'post',
+                    url: './php.php?act=upload',
+                    data: datas,
+                    contentType: false, //等同于原生的去掉请求头
+                    processData: false, //如果上传文件,数据不转换
+                    success: function (response) {
+                        // console.log(response);
+                        $('.pic').attr('src', response);
+                    }
+                })
+            })
+
+            // 功能3: 点击button按钮,可以无属性上传
+            $('input[type=button]').click(function () {
+                // 利用FormData(指定表单)对象来收集表单信息
+                var data = new FormData(form1);
+                data.append('img',$('.pic').attr('src'));//添加图片(上传完)在服务器的地址
+                // console.log(data);
+                // console.log(data.get('uname'));
+
+                $.ajax({
+                    type: 'post',
+                    url: './php.php?act=form',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    dataType:'json',
+                    success: function (response) {
+                        console.log(response);
+                        var con='<table border="1" cellspacing="0" width="300">';
+                        for(var k in response){
+                            con += '<tr align="center">';
+                            if(k == 'img'){
+                                con += '<td>'+k+'</td>';
+                                con += '<td><img src='+response[k]+'></td>';
+                            }else{
+                                con += '<td>'+k+'</td>';
+                                con += '<td>'+response[k]+'</td>';
+                            }
+                            con += '<tr>';
+                        }
+                        con += '</table>';
+
+                        $('.showCon').html(con);
+                    },
+                    beforeSend:function() {
+                        // 发送之前去做...
+                        // console.log('验证');
+                        if($('input[name=uname]').val()&& $('input[name=gender]').val()&&$('input[name=utel]').val() && $('textarea').val() && !isRegister && $('.pic').attr('src')){
+                            console.log('都不为空,可以发送');
+                            return true;
+                        }else{
+                            console.log('请确认信息');
+                            return false;
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form action="#" id="form1">
+        <p>
+            用户名:
+            <input type="text" name="uname">
+            <span></span>
+        </p>
+        <p>
+            性别:
+            <input type="text" name="gender">
+            <span></span>
+        </p>
+        <p>
+            电话:
+            <input type="text" name="utel">
+        </p>
+        <p>
+            头像:
+            <input type="file">
+            <img src="" class="pic">
+        </p>
+        <p>
+            自我介绍:
+            <textarea name="info"></textarea>
+            <span>还可以输入100字</span>
+        </p>
+        <p>
+            <input type="button" value="发布">
+        </p>
+    </form>
+
+    <div class="showCon">
+        <!-- 发布成功后,把响应信息显示在这里 -->
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_定义带特性的属性</title>
+</head>
+<body>
+    <script>
+        // 1)定义带特定的属性
+        var obj1 = {
+            ucode:'1001'
+        };
+        // 添加属性
+        Object.defineProperty(obj1,'uname',{
+            value:'apple',
+            enumerable:true
+        })
+
+        console.log(obj1);
+        console.log(obj1.ucode);
+        console.log(obj1.uname);
+
+        // 删除        
+        /* delete obj1.ucode;
+        delete obj1.uname;//不可删 */
+
+        // 枚举
+        for(var key in obj1){
+            console.log(obj1[key]);
+        }
+
+        // 修改
+        obj1.ucode = '1002';
+        obj1.uname = 'banana';//不可修改
+
+        console.log(obj1);
+
+
+        var obj2 = {
+            proname:'安徒生童话',
+            price:25
+        }
+        // 添加2个带特性的属性
+        // 1)库存 20 可遍历 可修改 不可删除
+        // 2)商家地址:天猫超市 可遍历 不可修改 不可删除
+
+        // 定义多个属性
+        Object.defineProperties(obj2,{
+            'count':{
+                value:20,
+                enumerable:true,
+                writable:true
+            },
+            'address':{
+                value:'天猫超市',
+                enumerable:true
+            }
+        })
+        console.log(obj2);
+        for(var key in obj2){
+            console.log(key,obj2[key]);
+        }
+        obj2.address = '京东';
+        console.log(obj2.address);//obj2.address
+
+        delete obj2.price;
+        delete obj2.count;//不可删除
+        console.log(obj2);
+    </script>
+</body>
+</html>

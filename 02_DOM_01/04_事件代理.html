@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_事件代理</title>
+    <style>
+        .nav{
+            line-height: 40px;
+            width: 540px;
+            background: lightskyblue;
+        }
+        .nav a{
+            text-decoration: none;
+            color: #333;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+        }
+        .nav a.current{
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav" id="nav">
+        <a href="#" class="current">百度</a>
+        <a href="#">腾讯</a>
+        <a href="#">网易</a>
+        <a href="#">淘宝</a>
+        <a href="#">京东</a>
+    </div>
+
+
+    <script>
+        var a_obj = document.querySelectorAll('.nav a');
+        // div盒子代理: 所有a的单击事件
+        nav.onclick = function() {
+            for(var key in a_obj){
+                a_obj[key].className = '';
+            }
+            event.srcElement.classList.add('current');
+        }
+    </script>
+</body>
+</html>

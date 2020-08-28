@@ -1,0 +1,78 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-02 14:29:58
+ * @LastEditTime: 2020-07-03 11:18:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\01_index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 5px;
+        }
+    </style>
+    <script src="../../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function() {
+            // 按钮1: 请求json数据
+            $('#btn1').click(function() {
+                /* $.ajax({
+                    type:'post',//可省
+                    url:'./data.json',
+                    dataType:'json',
+                    success: function(response){
+                        console.log(response);
+                    }
+                }) */
+                $.getJSON('./data.json',function(response){
+                    console.log(response);
+                })
+            })
+
+            // 按钮2: 请求文本数据
+            $('#btn2').click(function() {
+                $.ajax({
+                    url:'./data.txt',
+                    dataType:'text',
+                    success: function(response){
+                        console.log(response);
+                        $('#box2').text(response);
+                    }
+                })
+            })
+
+            // 按钮3: 请求html数据
+            $('#btn3').click(function() {
+                $.get('./data.html','',function(response){
+                    console.log(response);
+                    $('#box3').html(response);
+                },'html')
+            })
+
+
+        })
+    
+    </script>
+</head>
+<body>
+    <input type="button" value="获取json数据" id="btn1">
+    <div id="box1"></div>
+
+    <input type="button" value="获取文本数据" id="btn2">
+    <div id="box2"></div>
+
+    <input type="button" value="获取html数据" id="btn3">
+    <div id="box3"></div>
+
+</body>
+</html>

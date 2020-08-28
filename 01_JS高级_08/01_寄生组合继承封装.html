@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_寄生组合继承封装</title>
+</head>
+
+<body>
+    <script>
+        function Father(province) {
+            this.province = province; //私有
+        }
+        Father.prototype.country = '中国'; //共享
+
+        function Son(province, name) {
+            //先继承私有的
+            Father.call(this, province);
+            //再添加自己的
+            this.name = name;
+        }
+
+        //继承共享的
+        // 封装成函数
+        function extend(Father, child) {
+            function F() {}
+            F.prototype = Father.prototype; 
+            child.prototype = new F();
+            child.prototype.constructor = child;
+        }
+        extend(Father, Son);
+
+        //给子类添加自己的共享属性
+        Son.prototype.identity = '学生';
+        Son.prototype.study = function () {
+            console.log(this.name + '学习');
+        }
+
+        // 实例化1个学生
+        var s1 = new Son('湖南', '虹猫');
+        console.log(s1);
+
+        // 别的类型
+        function Animal(name) {
+            this.name = name;
+        }
+        Animal.prototype.species = '动物';
+
+        function Cat(name, color) {
+            Animal.call(this.name); //继承私有
+            this.color = color;
+        }
+
+        // 继承共享
+        extend(Animal, Cat);
+
+        Cat.prototype.sleep = function () {
+            console.log(this.name + '正在睡觉');
+        }
+
+        // 实例化
+        var cat1 = new Cat('Kiity', '白色');
+        console.log(cat1);
+    </script>
+</body>
+
+</html>

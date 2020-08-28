@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新书上架</title>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <style></style>
+</head>
+
+<body>
+    <div class="box" style="width:800px; margin:0 auto">
+
+    </div>
+
+    <script>
+        $(function () {
+            // 拿数据
+            $.getJSON('./01_index.json', '', function (response) {
+                console.log(response);
+                // 外部链接html样式
+                $.get('./03_outer1.html', '', function (res) {
+                    // html模板处理
+                    var render = template.compile(res);
+                    // 渲染数据
+                    var rs = render(response);
+                    $('.box').html(rs);
+
+                }, 'html');
+            })
+        })
+    </script>
+</body>
+
+</html>

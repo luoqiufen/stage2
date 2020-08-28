@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_原型prototype</title>
+</head>
+<body>
+    <script>
+        // 定义构造函数
+        function Students(ucode, uname) {
+            this.ucode = ucode;
+            this.uname = uname;
+            // 添加一个共同属性和方法
+            /* this.school ='清华大学';
+            this.read = function(book){
+                console.log('喜欢读'+book);
+            };
+            this.join = function(club){ 
+                console.log('参加了'+club);
+            } */
+        }
+
+        // 访问 prototype
+        // 函数名.prototype
+        console.log(Students.prototype);//{}原型对象
+        // 在原型对象上添加属性和方法
+        Students.prototype.school = '清华大学';               
+        Students.prototype.read = function(book){
+            console.log('喜欢读'+book);
+        };
+        Students.prototype.join = function(club){
+            console.log('参加了'+club);
+        }
+
+        console.log('当前的原型对象');
+        console.log(Students.prototype);
+
+        // 创建(具体)对象
+        // 具体对象: 看作构造函数的"实例"
+        // 实例1: 学生1
+        var stu1 = new Students('1001','虹猫');
+        // 实例2: 学生2
+        var stu2 = new Students('1002','蓝兔');
+
+        console.log(stu1);
+        console.log(stu2);
+
+        // 单独添加不同属性                                                                                                                                                         
+        stu1.uage = 18;
+        stu2.usex = '男';
+
+        console.log(stu1);
+        console.log(stu2);
+
+        console.log(stu1.school);//清华大学
+        console.log(stu2.school);//清华大学
+
+        stu1.read('计算机编程');//喜欢读计算机编程
+        stu1.join('街舞社');//参加了街舞社
+    </script>
+</body>
+</html>

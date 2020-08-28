@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分析执行过程1</title>
+</head>
+<body>
+    <script>
+       // 分析以下程序执行的过程
+        var num1 = 15;// 全局num1:15
+        var aa = (function(){//
+            num1++;//全局num1:16 修改了12行num1的值
+            return function(num){//num:16
+                num += 5;//num:21
+                console.log(num,num1);
+            }
+        }(num1));//全局:15 值传递进去
+
+        // num1:16
+        /* aa = function(num){//num:16
+            num += 5;//num:21
+            console.log(num,num1);//21 16
+        } */
+        aa(num1);//21 16
+    </script>
+</body>
+</html>

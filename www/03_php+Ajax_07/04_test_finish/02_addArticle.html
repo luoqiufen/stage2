@@ -1,0 +1,148 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-07 11:19:12
+ * @LastEditTime: 2020-07-07 20:22:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-coded:\web2004\www\03_php+Ajax_07\04_test_finish\02_addArticle.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../jquery-1.9.1.min.js"></script>
+  <script src="./cookies.js"></script>
+  <script>
+  $(function(){ 
+    //获取控件
+    var code = $('input[name=code]');
+    var title = $('input[name=title]');
+    var author = $('input[name=author]');
+    var con = $('textarea[name=con]');
+
+    //1)先看是否有用户登录
+    if(cookies.get('uname')){ 
+      $('h1 font').html(cookies.get('uname'));
+    }else{//有些需求:未登录,可以直接返回登录页
+      alert('请先登录');
+    }
+    //2)文章列表(本地 localStorage)
+    function showArt(){
+      var len = localStorage.length;
+      var list = "";
+      for(var i=1;i<=len;i++){
+        var data = localStorage.getItem('art'+i);
+        data = JSON.parse(data);//数据
+        console.log(data);
+        list += "<tr>";
+        list += "<td>"+data.code+"</td>";
+        list += "<td>"+data.title+"</td>";
+        list += "<td>"+data.author+"</td>";
+        list += "<td>"+data.con+"</td>";
+        list += "</tr>";
+      }
+      console.log(list);
+      //追加显示到table里
+      $('.tbs').append(list);
+
+    }
+
+    showArt();//调用
+    
+    //-刷新不丢失数据:取本地sessionStorage信息->放表单里
+    var article = sessionStorage.getItem('article');//json字符串
+    if(article){//有文章草稿->才去执行...
+      article = JSON.parse(article);//json对象
+      // console.log(article);
+      //一一填充显示
+      code.val(article.code);
+      title.val(article.title);
+      author.val(article.author);
+      con.val(article.con);
+    }
+
+
+    //3)添加文章
+      //- 存入草稿 按钮(浏览器关闭之前有效)
+      // - sessionStorage
+      // - cookie (但是存储量少，不建议)
+      $('#btn2').click(function(){  
+        //存储当前文章信息
+        var data = {
+          "code":code.val(),
+          "title":title.val(),
+          "author":author.val(),
+          "con":con.val()  
+        };//json ->字符串
+        data = JSON.stringify(data);
+        console.log(data);
+        //本地存储
+        sessionStorage.setItem('article',data);
+
+      })
+
+
+      //- 发表 按钮(永久存储)
+      // - 方式1:发送到后端，存入数据库
+      // - 方式2:存储到本地 localStorage
+      $('#btn1').click(function(){ 
+        var data = {
+          "code":code.val(),
+          "title":title.val(),
+          "author":author.val(),
+          "con":con.val()  
+        };//json ->字符串
+        data = JSON.stringify(data);//json字符串
+
+        // 永久存储
+        // console.log(localStorage.length);
+        // console.log(sessionStorage.length);
+        //已经有的信息个数+1
+        var count = localStorage.length+1;
+        localStorage.setItem('art'+count,data);
+      })
+
+
+
+
+  
+  })
+
+
+
+  </script>
+
+
+</head>
+<body>
+<h1>您好，欢迎<font color=red>xx</font></h1>
+
+<!-- 文章列表 -->
+<h3>文章列表</h3>
+<table border=1 bordercolor=red cellspacing=0 cellpadding=10 class="tbs">
+  <tr>
+    <th>文章编号</th>
+    <th>文章标题</th>
+    <th>文章作者</th>
+    <th>文章内容</th>
+  </tr>  
+</table>
+
+<h3>添加文章</h3>
+<form action="#" name="form1">
+  编号: <input type="text" name="code">
+  <br><br>
+  标题: <input type="text" name="title">
+  <br><br>
+  作者: <input type="text" name="author">
+  <br><br>
+  内容：<textarea name="con" cols="30" rows="10"></textarea>
+  <br><br>
+  <input type="button" value="发表" id="btn1">
+  <input type="button" value="存入草稿" id="btn2">
+</form>
+  
+</body>
+</html>

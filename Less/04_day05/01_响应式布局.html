@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel='stylesheet' href='../boot/css/bootstrap.css'>
+<!-- 低版本IE不能用 -->
+<!-- [if lt IE9]>
+<script src="../boot/js/html5shiv.min.js"></script>
+<script src="../boot/js/respond.min.js"></script>
+<![end if] -->
+
+<style>
+.con{
+  border:1px solid red;
+  height: 600px;
+  padding:0;
+}
+.con .menu{
+  height: 100%;
+  
+}
+.con .menu .list{
+  height: 100%;
+  background: #333;
+  color: white;
+}
+
+
+.con .main{
+  height: 100%;
+  overflow:auto;
+  background: #e4dbdb;
+}
+.header{
+  height: 100px;
+  background: skyblue;
+}
+.leftSide{
+  background: pink;
+  height: 300px;
+}
+.rightSide{
+  background:lightgreen;
+  height: 300px;
+}
+
+  
+</style>
+</head>
+<body>
+
+<div class="con container-fluid">
+  <div class="menu col-md-2 col-sm-3">
+    <div class="list">
+      A
+    </div>
+  </div>
+  <div class="main col-md-10 col-sm-9">
+    <div class="header">B</div> 
+    <div class="bottom row">
+      <div class="col-md-8 col-sm-12">
+        <div class="leftSide">C</div>
+      </div>
+      <div class="col-md-4 col-sm-12">
+          <div class="rightSide">D</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+<script src="../boot/js/jquery-1.9.1.min.js"></script>
+<script src="../boot/js/bootstrap.js"></script>
+</body>
+</html>

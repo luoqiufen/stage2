@@ -1,0 +1,90 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 17:09:02
+ * @LastEditTime: 2020-07-09 17:29:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\04_媒介查询.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_媒介查询</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .nav{
+            line-height: 40px;
+            background: red;
+        }
+        .con{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .con p{
+            width: 20%; 
+            height: 100px;
+            background: rgb(137, 165, 241);
+            float: left;
+        }
+
+        /* 如果尺寸>1200px 5个20% */
+        @media screen and (min-width:1200px){
+            .nav{
+                background: lightgreen;
+            }
+        }
+        /* 如果尺寸 992-1200px 4个25% */
+        @media screen and (min-width:992px) and (max-width:1200px){
+            .nav{
+                background: palevioletred;
+            }
+            .con p{
+                width: 25%;
+            }
+        }
+        /* 如果尺寸 768-992px 4个25% */
+        @media screen and (min-width:768px) and (max-width:992px){
+            .nav{
+                background: skyblue;
+            }
+            .con p{
+                width: 33.33%;
+            }
+        }
+        /* 480-768 */
+        @media screen and (min-width:480px) and (max-width:768px){
+            .nav{
+                background: orange;
+            }
+            .con p{
+                width: 50%;
+            }
+        }
+        /* 小于480 */
+        @media screen and  (max-width:480px){
+            .nav{
+                background: orangered;
+            }
+            .con p{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">导航条</div>
+    <div class="con">
+        <p>段落1</p>
+        <p>段落2</p>
+        <p>段落3</p>
+        <p>段落4</p>
+        <p>段落5</p>
+        <p>段落6</p>
+    </div>
+</body>
+</html>

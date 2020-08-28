@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../jq/jquery-1.9.1.min.js"></script>
+	<style>
+		#box{
+			width: 300px;
+			height: 200px;
+			border: 1px solid red;	
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">盒子盒子盒子文字文字文字内容内容内容盒子盒子盒子文字文字文字内容内容内容</div>
+	<script>
+		//1)参数应用
+		// 模拟 jq的css方法
+		// - 获取css样式
+		// - 添加css样式(1个)
+		// - 添加css样式(多个)
+		function css(style,value){
+			if(arguments.length==1 && typeof(style)=='string'){//一个参数且是string类型--获取样式
+				console.log('获取样式');
+				console.log(box.style[style]);
+			}else if(arguments.length==2){//2个参数
+				console.log('添加一个样式');
+				box.style[style] = value;
+			}else if(arguments.length==1 && typeof(style)=='object'){//1个参数且是object类型
+				console.log('添加多个样式');
+				// 添加给p
+				for(var key in style)
+				// 样式名:key
+				// 值:style[key]
+				box.style[key]=style[key];
+
+			}
+		}
+		css('border');
+		css('background','lightgreen');
+		css({'color':'red','width':'300px','line-height':'30px'});
+
+		/* console.log($('.box').css('width'));
+		// 添加一个样式
+		function addStyle1(style,value) {
+			$('.box').css(style,value);
+		}
+		addStyle1('background','blue');
+		// 添加多个样式
+		var arr = [
+			['width','200px'],
+			['height','200px'],
+			['background','pink'],
+			['border-color','red'],
+			['padding','10px'],
+			['margin','0 auto']
+		];
+
+		function addStyles(array){
+			for(var key in array){
+				$('.box').css(array[key][0],array[key][1]);
+			}
+		}
+		addStyles(arr); */
+
+		//2)匿名函数
+		// - 自执行函数：2种写法(练习2遍)
+
+
+		//3)回调函数
+		// - 定义一个函数,打印学生信息
+		// - 信息: 姓名 性别 年龄(不需要时间控制)
+		// - 1s之后,去执行自己的事情
+		var arr2 = [
+			['小明','男','18'], 
+			['小红','女','19'],
+			['小花','女','17'],
+			['小刚','男','19']
+			]
+		function inform(info,func){
+			for(var key in info){
+				document.write('<p>姓名：'+info[key][0]+' 性别：'+info[key][1]+' 年龄：'+info[key][2]+'</p>');
+			}
+			setTimeout(func,1000);
+		}
+		inform(arr2,function(){
+				window.open("../01_JS高级_02/06_分页案例2.html",'top');
+			});
+
+		//4) 判断以下程序运行过程
+		// ()();
+		// (());
+		var num1 = 15;//全局变量
+		(function (num1) {
+			num1 = 20;
+			num1++;
+			console.log(num1);
+		})(num1);//21
+
+		(function (num1) {
+			num1 *= 5;
+			console.log(num1);
+		}(10));//50
+
+	</script>
+</body>
+
+</html>

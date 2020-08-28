@@ -1,0 +1,84 @@
+{
+    "图书": [{
+            "code": "1001",
+            "proname": "十万个为什么?",
+            "price": 20,
+            "count": 30
+        },
+        {
+            "code": "1002",
+            "proname": "海底两万里",
+            "price": 18,
+            "count": 20
+        },
+        {
+            "code": "1003",
+            "proname": "安徒生童话",
+            "price": 35,
+            "count": 15
+        }
+    ],
+    "电器": [{
+            "code": "2001",
+            "proname": "洗衣机",
+            "price": 2999,
+            "count": 50
+        },
+        {
+            "code": "2002",
+            "proname": "海尔冰箱",
+            "price": 3000,
+            "count": 20
+        },
+        {
+            "code": "2003",
+            "proname": "格力空调",
+            "price": 1999,
+            "count": 17
+        }
+    ],
+    "手机": [{
+            "code": "3001",
+            "proname": "华为note3",
+            "price": 1986,
+            "count": 20
+        },
+        {
+            "code": "3002",
+            "proname": "小米5",
+            "price": 2684,
+            "count": 20
+        },
+        {
+            "code": "3003",
+            "proname": "荣耀青春8",
+            "price": 3456,
+            "count": 17
+        },
+        {
+            "code": "3004",
+            "proname": "魅族pro7",
+            "price": 3578,
+            "count": 20
+        }
+    ],
+    "运动": [{
+            "code": "4001",
+            "proname": "折叠自行车",
+            "price": 1999,
+            "count": 16
+        },
+        {
+            "code": "4002",
+            "proname": "运动套装",
+            "price": 899,
+            "count": 30
+        },
+        {
+            "code": "4003",
+            "proname": "运动手环",
+            "price": 200,
+            "count": 50
+        }
+    ]
+}

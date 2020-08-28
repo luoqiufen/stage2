@@ -1,0 +1,37 @@
+// 语法:
+// 应用变量
+@color1:red;
+.box1{
+    width: 200px;
+    height: 300px;
+    background: @color1;
+}
+.box2{
+    border: 1px solid @color1;
+    height: 150px;
+}
+
+// 函数应用
+.init(@w,@h,@bgcolor){
+    width: @w;
+    height: @h;
+    background: @bgcolor;
+}
+
+h1{
+    .init(80%,80px,@color1);
+}
+h2{
+    .init(90%,100px,lightgreen)
+}
+
+// 运算
+@margin:500px;
+@padding:20px;
+
+p{
+    width: 300px-2*@padding;
+    height: 200px;
+    border: 1px solid blue;
+    padding: @padding;
+}

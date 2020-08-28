@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 16:10:31
+ * @LastEditTime: 2020-06-29 20:11:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_02\07_ajax_get.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <h3>搜索新闻</h3>
+        标题: <input type="text" name="title" id="t1">
+        <input type="button" value="搜索" id="btn">
+    </form>
+    
+    <div class="con" id="con"></div>
+
+    <script>
+        // 点击'搜索'按钮: 发送请求
+        btn.onclick = function() {
+            // 1)创建 xhr 对象
+            var xhr = new XMLHttpRequest();
+
+            // 2)建立连接(get)
+            xhr.open('get','./08_Ajax_get.php?title='+t1.value);
+            // 3)发送请求
+            xhr.send(null);
+
+            // 4)注册监听
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    // 响应成功
+                    // 响应数据: xhr.response | xhr.responseText
+                    console.log(xhr.responseText);
+
+                    // 显示在div里
+                    con.innerHTML = xhr.responseText;
+                }
+                
+            }
+        }
+    
+    </script>
+</body>
+</html>

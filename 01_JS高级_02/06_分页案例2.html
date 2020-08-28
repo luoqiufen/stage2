@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .article{
+            width: 500px;
+            line-height: 30px;
+            border: 1px solid black;
+        }
+        .pages{
+                width: 500px;
+                border: 1px solid blue;
+                margin-top: 30px;
+                text-align: center;
+        }
+        .page a{
+            display: inline-block;
+            padding: 3px 5px;
+            border: 1px solid #CCC;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="article"></div>
+    <div class="page"></div>
+<script>
+    //1)文章内容分页
+    var article = "1）[预售]三体：全三册 刘慈欣代表作，亚洲首部“雨果奖”获奖作品！2）你当像鸟飞往你的山（比尔·盖茨年度特别推荐，登顶《纽约报销榜80 周！多一个人读到这个真实故事，就多...3）汪曾祺图文集套装共4册：人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）新书上架：家坐，灯火可亲汪曾祺散文集（愿你有家可回，有人可等。三餐汪曾祺著，文通天下 出品¥38.30¥45.00电子书¥15.50社交新售5代的零售变革，读懂零售本质，抓住未来商机王欧飏著人天兀思出品¥37.82¥49.80显微镜下的古人生活《新周刊》杂志社 编¥55.60¥58.00电子书¥19.90,人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）新书上架：家坐，灯火可亲汪曾祺散文集（愿你有家可回，有人可等。三餐汪曾祺著，文通天下 出品¥38.30¥45.00电子书¥15.50社交新售5代的零售变革，读懂零售本质,人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）新书上架：家坐，灯火可亲汪曾祺散文集（愿你有家可回，有人可等。三餐汪曾祺著，文通天下 出品¥38.30¥45.00电子书¥15.50社交新售5代的零售变革，读懂零售本质,萨伦娜?泰勒 著，迈克?菲利普斯 绘，高源、董文灿译,DAMIANMATEUSZJASKOWSKI 玛丽安·马祖尔&亚历山德拉·乌拉托瓦斯佳 著1）[预售]三体：全三册 刘慈欣代表作，亚洲首部“雨果奖”获奖作品！2）你当像鸟飞往你的山（比尔·盖茨年度特别推荐，登顶《纽约报销榜80 周！多一个人读到这个真实故事，就多...3）汪曾祺图文集套装共4册：人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）新书上架：家坐，灯火可亲汪曾祺散文集（愿你有家可回，有人可等。三餐汪曾祺著，文通天下 出品¥38.30¥45.00电子书¥15.50社交新售5代的零售变革，读懂零售本质，抓住未来商机王欧飏著人天兀思出品¥37.82¥49.80显微镜下的古人生活《新周刊》杂志社 编¥55.60¥58.00电子书¥19.90,人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）新书上架：家坐，灯火可亲汪曾祺散文集（愿你有家可回，有人可等。三餐汪曾祺著，文通天下 出品¥38.30¥45.00电子书¥15.50社交新售5代的零售变革，读懂零售本质,人间有味+人间小暖+人间有趣+人间草木4）雅舍品谈话的艺术骂人的艺术 时间即友谊等）";
+
+// 每页100字:num
+// 字数 total=article.length
+// 页数 allPages=Math.ceil(total/num)
+// 当前页 current 
+// slice(start,end)
+// start:(current-1)*num
+// end:current*num
+
+var num = 100;
+var allPages = Math.ceil(article.length/num);
+var current = 1;
+
+// 显示信息
+function showCon(k){
+    current = k; 
+     
+    // console.log(current);
+    var start = (current-1)*num;
+    var end = current*num;
+    var con = article.slice(start,end);//当前页文章内容
+    document.querySelector('.article').innerHTML=con;
+
+    if(current==1){
+        current=current+1;
+    }
+    if(current==allPages){
+        current=current-1;
+    }
+}
+showCon(1);
+
+// 显示分页
+var page = '<a href=# onclick=showCon(current-1)>上一页</a>';
+    for(var i=1;i<=allPages;i++){
+        page += '<a href=# onclick=showCon('+i+')>'+i+'</a>';
+    }
+    page += '<a href=# onclick=showCon(current+1)>下一页</a>';
+document.querySelector('.page').innerHTML=page;
+
+</script>  
+</body>
+</html>

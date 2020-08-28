@@ -1,0 +1,151 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 09:12:27
+ * @LastEditTime: 2020-07-10 09:07:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\笔记.html
+--> 
+第四章 移动端
+第三天
+
+一、Flex弹性盒子布局
+    响应式布局
+    容器(父盒子: display: flex/inline-flex)
+    子项(子元素:自适应变化)
+
+    特征: 
+        1) 容器大小: 一般是百分比(自适应)
+        2) 子项会跟随容器大小去变换
+        3) 默认情况下,子项沿水平轴布局
+
+二、容器的属性
+    0) 弹性布局模式
+        display: flex/inline-flex
+    1) 排列的方向
+        flex-derection: row; 左->右
+                        row-reverse; 右->左
+                        column; 上->下
+                        column-reverse 下->上
+    2) 允许换行: 不允许(默认)
+        flex-wrap: nowrap; 不允许换行(子项要变换)
+                    wrap; 可以换行(子项不需要变换)
+                    wrap-reverse; 换行翻转
+    3) 合并用法
+        flex-flow: 方向 是否换行
+                row/row-reverse  wrap/nowrap/wrap-reverse
+    4) 在主轴(水平轴)的对齐方式
+        justify-content:flex-start; 向左对齐
+                        flex-end; 向右对齐
+                        center;中间对齐
+                        space-between;两端对齐
+                        space-around;等间距
+        ----------------------------------------------
+        主轴: 可以改变的
+        flex-direction: column; 主轴->垂直轴
+        justify-content: flex-start/flex-end/center/space-between/space-around
+
+    5) 在交叉轴(纵坐标轴)上的对齐方式
+        align-items:flex-start;
+                    flex-end;
+                    center;
+                    baseline; 基线对齐
+                    stretch; 拉伸
+        ------------------------------------------------
+        修改主轴: 纵坐标轴
+        交叉轴: 水平坐标轴
+        align-items:flex-start; 左对齐
+                    flex-end; 右对齐
+                    center; 水平居中
+                    <!-- baseline; (无效) -->
+                    stretch; 拉伸(水平)
+    
+    6) 多轴布局(参考: 交叉轴(纵坐标轴))
+        align-content: flex-start; 向左对齐
+                        flex-end; 向右对齐
+                        center;中间对齐
+                        space-between;两端对齐
+                        space-around;等间距
+                        stretch; 拉伸(水平)
+        ------------------------------------------------
+        修改主轴: flex-direction: column
+        主轴: 纵坐标轴 
+        交叉轴: 水平坐标轴
+
+三、子项(子元素)的属性
+    1) 调整/修改子元素的顺序,默认书写顺序是 order:0;数值越小,顺序越靠前
+    2) 分配"容器剩余空间"给子项
+        flex-grow: 0; 默认:不分配
+        flex-grow: 1; 如果都是1,平均分配
+        flex-grow: 2; 可分配到剩余空间的2份
+        注: 若没有剩余空间可用,该样式无效果
+    3) 是否缩放子项大小: 默认 会缩放
+        flex-shrink: 1; 缩放
+        flex-shrink: 0; 不缩放
+    4) 设置子项的占据空间大小
+        flex-basis: auto; 默认自动
+                    250px; 设置大小(宽/高)
+        作用等同于 width/height
+        会覆盖掉 width/height
+            
+    5) -合并用法---------
+        flex: flex-grow flex-shrink flex-basis;
+        flex: 0 1 auto; 默认值
+
+        display:flex;
+        flex-direction:row;
+        子项: 不占用剩余空间 不缩放大小 350px宽
+        flex: 0 0 350px;
+
+        ----------------------------------------
+        容器:
+        display:flex;
+        flex-direction:column;
+        子项: 不占用剩余空间 缩放大小 150px高
+        flex: 0 1 150px;
+    
+    6)设置单个子项的对齐方式(可覆盖容器 align-items)
+        align-self: flex-start;
+                    flex-end;
+                    center;
+                    baseline;
+                    stretch;
+
+四、媒介(体)查询
+    @media 媒介类型 and (条件){
+        CSS语法修饰
+        选择器{
+
+        }
+    }
+    - 媒介类型: screen -->显示屏:电脑/手机
+                all --->所有媒介设备:含打印机,手持设备... 
+    - 条件: 尺寸大小
+        min-width:780px;
+        max-width:1024px;
+
+    常用的设备尺寸设置:
+    <style>
+        /* 大屏幕 大于1200px */
+        @media screen and (min-width:1200px){
+
+        }
+        /* 常规屏 992px - 1200px */
+        @media screen and (min-width:992px) and (max-width:1200px){
+            
+        }
+        /* 中等屏 768px - 992px */
+        @media screen and (min-width:768px) and (max-width:992px){
+            
+        }
+        /* 小屏幕 480px - 768px */
+        @media screen and (min-width:480px) and (max-width:768px){
+            
+        }
+        /* 超小屏 小于480px */
+        @media screen and (max-width:480px){
+            
+        }
+    
+    </style>
+    

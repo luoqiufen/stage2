@@ -1,0 +1,67 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 14:20:15
+ * @LastEditTime: 2020-07-09 14:37:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\10_flex-grow.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10_flex-grow</title>
+    <style>
+        .con{
+            border: 1px solid blue;
+            margin: 20px;
+            display: flex;
+        }
+        .con span:first-child{
+            background: rgb(24, 238, 209);
+        }
+        .con span:nth-child(2){
+            background: rgb(128, 215, 250);
+        }
+        .con span:last-child{
+            background: rgb(42, 209, 42);
+        }
+
+        /* 容器1的子盒子 添加成长空间 */
+        .con1 span:first-child{
+            flex-grow: 1;
+        }
+        .con1 span:nth-child(2){
+            flex-grow: 3;
+        }
+        .con1 span:last-child{
+            flex-grow: 2;
+        }
+
+        /* 容器2的子盒子 添加成长空间 */
+        .con2 span:first-child{
+            flex-grow: 1;
+        }
+        .con2 span:nth-child(2){
+            flex-grow: 3;
+        }
+        .con2 span:last-child{
+            flex-grow: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="con con1">
+        <span class="span1">百度新闻</span>
+        <span>优酷视频</span>
+        <span>芒果TV</span>
+    </div>
+    <div class="con con2">
+        <span>百度新闻百度新闻百度新闻百度新闻百度新闻百度新闻百度新闻百度新闻百度新闻百度新闻</span>
+        <span>优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频优酷视频</span>
+        <span>芒果TV芒果TV芒果TV芒果TV芒果TV芒果TV芒果TV芒果TV芒果TV芒果TV</span>
+    </div>
+</body>
+</html>

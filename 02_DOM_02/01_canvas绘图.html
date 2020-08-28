@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_canvas绘图</title>
+    <style>
+        canvas{
+            border: 1px solid #333;
+            margin: 20px;
+            height: 300px;
+            width: 300px;
+        }      
+    </style>
+</head>
+<body>
+    <canvas id="canvas1" height="300"></canvas>
+    <script>
+        // 在画布上绘图
+        // 1)确定创建的图像 '2d
+        var shape1 = canvas1.getContext('2d');
+        // 2)设置 修饰属性
+        shape1.fillStyle = 'lightgreen';//填充色
+        shape1.strokeStyle = 'green';//描边色
+        shape1.lineWidth = '5';//线条宽
+        shape1.lineJoin = 'bevel';//斜角
+        shape1.lineJoin = 'round';//圆角
+
+        // 3)挑选工具
+        // 画线条(三角形)
+        shape1.moveTo(150,50);//起点
+        shape1.lineTo(50,200);//终点
+        shape1.lineTo(250,200);//终点
+        shape1.lineTo(150,50);//终点
+        shape1.lineTo(50,200);//终点
+        // 实际绘制
+        shape1.stroke();//描边控制
+        shape1.fill();//填充控制
+
+        // 画倒三角形
+        shape1.beginPath();//开启新路径
+
+        shape2.fillStyle = 'skyblue';//填充色
+        shape2.strokeStyle = 'blue';//描边色
+
+        shape1.moveTo(50,100);//起点
+        shape1.lineTo(150,250);//终点
+        shape1.lineTo(250,100);//终点
+        shape1.lineTo(50,100);//终点
+
+        shape1.stroke();//描边控制
+        shape1.fill();
+
+        shape1.closePath();//闭合路径
+    
+    
+    </script>
+
+    <canvas id="canvas2" height="300"></canvas>
+
+    <script>
+        // 1)确定形状 '2d'
+        var shape2 = canvas2.getContext('2d');
+        // 2)选择修饰
+        shape2.fillStyle = 'orange';
+        shape2.strokeStyle = 'balck';
+        // 3)画矩形
+        shape2.rect(30,30,100,100);
+        shape2.stroke();
+        shape2.fill();
+
+        // 再创建一个矩形
+        shape2.beginPath();
+        // 线性渐变 createLinearGradient(x0,y0,x1,y1)
+        var color = shape2.createLinearGradient(170,0,270,0);
+        // 径向渐变 createRadialGradient(x0,y0,r0,x1,y1,r1)
+        color = shape2.createRadialGradient(220,80,10,220,80,50);
+        color.addColorStop(0,'red');
+        color.addColorStop(1,'yellow');
+        shape2.fillStyle = color;
+
+        shape2.fillRect(170,30,100,100);
+
+        shape2.closePath();
+    </script>
+    <canvas id="canvas3" height="300"></canvas>
+
+    <script>
+        var shape3 = canvas3.getContext('2d');
+        shape3.fillStyle = 'black';
+        shape3.strokeStyle = 'white';
+        shape3.arc(150,150,100,0.5*Math.PI,Math.PI*1.5,true);
+        shape3.stroke();
+        shape3.fill();
+
+        shape3.beginPath();
+        shape3.fillStyle = 'white';
+        shape3.strokeStyle = 'black';
+        shape3.arc(150,150,100,0.5*Math.PI,Math.PI*1.5);
+        shape3.stroke();
+        shape3.fill();
+        shape3.closePath();
+
+        // 小圆1
+        shape3.beginPath();
+        shape3.fillStyle = 'white';
+        shape3.arc(150,100,50,0,2*Math.PI);
+        shape3.fill();
+        shape3.closePath();
+        // 小圆2
+        shape3.beginPath();
+        shape3.fillStyle = 'black';
+        shape3.arc(150,200,50,0,2*Math.PI);
+        shape3.fill();
+        shape3.closePath();
+
+        // 最小圆1
+        shape3.beginPath();
+        shape3.fillStyle = 'black';
+        shape3.arc(150,100,10,0,2*Math.PI);
+        shape3.fill();
+        shape3.closePath();
+        // 最小圆2
+        shape3.beginPath();
+        shape3.fillStyle = 'white';
+        shape3.arc(150,200,10,0,2*Math.PI);
+        shape3.fill();
+        shape3.closePath();
+    </script>
+
+    <canvas id="canvas4" height="300"></canvas>
+
+    <script>
+        // 画文字
+        var shape4 = canvas4.getContext('2d');
+        shape4.font = 'italic bold 50px 微软雅黑';
+        shape4.textAlign = 'start';
+        shape4.textBaseline = 'top';//基线对齐(顶部);
+
+        shape4.fillStyle = 'lightgreen';
+        shape4.strokeStyle = 'red';
+        shape4.strokeText('虹猫蓝兔',50,50);
+
+        shape4.fill();
+        shape4.stroke();
+    </script>
+<img src="./imgs/timg.jpg" id="image" width="300">
+<canvas id="canvas5" height="300"></canvas>
+
+<script>
+    var shape5 = canvas5.getContext('2d');
+
+    var img1 = new Image();
+    img1.src = './imgs/timg.jpg';
+    img1 .onload = function(){
+        // 图像加载完,绘制到画布上
+        shape5.drawImage(image,0,0,300,300);
+        // 加水印字
+        
+        // shape5.fillStyle = 'white';
+        shape5.font = '20px 宋体'
+        shape5.strokeStyle = 'grey';
+        shape5.fillText('花瓣网',140,180);
+    }
+    
+</script>
+</body>
+</html>

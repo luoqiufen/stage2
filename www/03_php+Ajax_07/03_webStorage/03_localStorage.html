@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 17:07:32
+ * @LastEditTime: 2020-07-06 17:24:27
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\03_webStorage\03_localStorage.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <h3 id="title">
+        <!-- 这里显示标题 -->
+    </h3>
+    <p id="con">
+        <!-- 显示段落 -->
+    </p>
+
+    <script>
+        // 如果本地有数据,直接取出来显示
+        if(localStorage.getItem('title')){
+            title.innerHTML = localStorage.getItem('title');
+        }
+        if(localStorage.getItem('con')){
+            con.innerHTML = localStorage.getItem('con');
+        }
+        // 如果本地没有,再去请求数据
+        if(!localStorage.getItem('title')&&!localStorage.getItem('con')){
+            // 请求数据
+            $.getJSON('./05_data.json','',function(response) {
+                console.log(response);
+                // 存储到本地(即使服务器数据有问题,还可以访问)
+                localStorage.setItem('title',response.title);
+                localStorage.setItem('con',response.con);
+
+                title.innerHTML = response.title;
+                con.innerHTML = response.con;
+            })
+        }
+    
+    </script>
+    
+</body>
+</html>

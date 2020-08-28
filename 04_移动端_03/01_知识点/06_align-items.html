@@ -1,0 +1,107 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 11:09:03
+ * @LastEditTime: 2020-07-09 11:43:04
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\06_align-items.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_align-items</title>
+    <style>
+        .con{
+            height: 300px;
+            border: 1px solid red;
+            margin: 10px;
+            display: flex;/* 水平轴分布 */
+        }
+        .con div{
+            width: 80px;
+            height: 100px;
+            background: palegreen;
+            margin: 5px;
+        }
+        .con .box2{
+            height: 80px;
+            background: paleturquoise;
+        }
+        .con .box3{
+            height: 120px;
+            background: powderblue;
+        }
+        .con .box4{
+            height: 150px;
+            background: skyblue;
+        }
+
+        /* 垂直方向对齐 */
+        .con1{
+            align-items: flex-start;
+        }
+        .con2{
+            align-items: flex-end;
+        }
+        .con3{
+            align-items: center;
+        }
+        .con4{
+            align-items: baseline;
+        }
+        .con4 .box1{padding: 20px;}
+        .con4 font{
+            color: red;
+            font-size: 30px;
+        }
+        .con5{
+            align-items: stretch;
+        }
+        .con5 .box{
+            height: auto;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>1. align-items:flex-start</h1>
+    <div class="con con1">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+    </div>
+    <h1>2. align-items: flex-end</h1>
+    <div class="con con2">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+    </div>
+    <h1>3. align-items:center</h1>
+    <div class="con con3">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+    </div>
+    <h1>4. align-items:baseline</h1>
+    <div class="con con4">
+        <div class="box1">1 <font>文字1文字1文字</font></div>
+        <div class="box2">2</div>
+        <div class="box3">3 <font>文字3文字3文字3文字</font></div>
+        <div class="box4">4</div>
+    </div>
+    <h1>5. align-items:stretch</h5>
+    <div class="con con5">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+    </div>
+    
+</body>
+</html>

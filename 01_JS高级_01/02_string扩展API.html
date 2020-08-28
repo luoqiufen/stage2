@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_string扩展API</title>
+</head>
+<body>
+    <script>
+        // 字符串扩展API
+        var str1 = 'happy new year';
+        // 1)根据下标获取字符
+        console.log(str1.charAt(2));//p
+        console.log(str1[2]);//p
+        // 2)根据下标获取字符的unicode编码
+        console.log(str1.charCodeAt(2));//112
+        // 3)从字符编码创建字符
+        console.log(String.fromCharCode(78));//N
+        // 4)连接字符串
+        console.log(str1.concat('apple'));//happy new year!apple
+        // 5)match() 匹配查找(可用正则)
+        console.log('apple banana'.match('a'));//a
+        console.log('apple banana'.match(/a/g));//["a", "a", "a", "a"]
+
+        // 6)search()(可用正则)
+        console.log('apple banana'.search('a'));//0
+        console.log('apple banana'.search('A'));//-1
+        console.log('apple banana'.search(/A/i));//0
+
+        console.log('apple banana'.indexOf(/A/i));//-1 indexOf 不能使用正则
+
+        // 7)提取/截取字符串[start,end)
+        console.log('happy-new-year'.slice(2,5));//ppy
+        console.log('happy-new-year'.slice(-5,-2));//-ye
+        console.log('happy-new-year'.slice(-5));//-year
+
+        // 8)根据分隔符把字符串拆分成数组
+        console.log('1992-3-15 15:23:24'.split('-'));//["1992", "3", "15 15:23:24"]
+        console.log('1992-3-15 15:23:24'.split('-',2));//["1992", "3"]
+
+        // 从-或:或空格 来分割
+        console.log('1992-3-15 15:23:24'.split(/[-:\s]/));//["1992", "3", "15", "15", "23", "24"]
+
+        // substr(start,len)
+        // substring(star,stop)
+        // slice(start,end)
+
+        console.log('js高级语法-面向对象'.substr(2,3));//高级语
+        console.log('js高级语法-面向对象'.substring(2,5));//高级语
+        console.log('js高级语法-面向对象'.substring(-5,-2));//不支持负数
+        console.log('js高级语法-面向对象'.slice(2,5));//高级语
+        console.log('js高级语法-面向对象'.slice(-5,-2));//-面向
+
+    </script>
+</body> 
+</html>

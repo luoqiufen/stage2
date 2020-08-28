@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 15:46:53
+ * @LastEditTime: 2020-07-01 16:23:06
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_04\02_test\01_index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入工具 -->
+    <script src="../02_ajaxTools.js"></script>
+</head>
+
+<body>
+    <input type="button" value="get请求" id="btn1">
+    <input type="button" value="post请求" id="btn2">
+    <input type="button" value="ajax请求" id="btn3">
+
+    <script>
+        btn1.onclick = function () {
+            $.get('./02_index.php', 'act=get&ucode=1001', function (mess) { //mess: 响应信息
+                console.log(mess);
+            })
+        }
+
+        btn2.onclick = function () {
+            $.post('./02_index.php', 'act=post&ucode=1002', function (mess) { //mess: 响应信息
+                console.log(mess);
+            })
+        }
+
+        btn3.onclick = function () {
+            $.ajax('post', './02_index.php', 'act=ajax&ucode=1003', function (mess) { //mess: 响应信息
+                console.log(mess);
+            })
+        }
+    </script>
+</body>
+
+</html>

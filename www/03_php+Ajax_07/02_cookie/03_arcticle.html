@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 14:53:47
+ * @LastEditTime: 2020-07-06 15:57:00
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\02_cookie\03_arcticle.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>用户: <span id="user">
+        <script>
+            // 如何处理 document.cookie ="uname=apple;upass=123"
+            // 处理cookie信息 
+            var cookies = {
+                // 获取指定的cookie信息
+                get:function(key){
+                    var arr= document.cookie.split('; ');
+                    // ["uname=apple","upass=123"]
+                    for(var i in arr){
+                        var newArr = arr[i].split('=');
+                        // ['uname','apple']
+                        // ['upass','123']
+                        if(key == newArr[0]) {
+                            return newArr[1];
+                        }
+                    }
+                },
+                // 设置cookie信息
+                set:function(key,value,time){
+                    document.cookie = key+"="+value+";Max-Age="+time;
+                }
+            }
+            // document.write(cookies.get('uname'));
+            // document.write(cookies.get('upass'));
+            
+            // 设置cookie
+            // cookies.set('ucode','1001',5);
+
+            var uname = cookies.get('uname');
+            console.log(uname);
+            if(!uname){// 未登录
+                alert('请登录');
+                document.write('匿名用户');
+            }else{// 显示
+                document.write(uname);
+            }
+            
+            
+        </script>
+
+    </span></h3>
+    <hr>
+    <h1>文章标题</h1>
+    <h3>作者: author</h3>
+    <p>段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本段落文本</p>
+</body>
+</html>

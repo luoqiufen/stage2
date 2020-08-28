@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_自定义构造函数</title>
+</head>
+
+<body>
+    <script>
+        // 4)自定义构造函数
+        function Car(brand, color, count) {
+            this.brand = brand;
+            this.color = color;
+            this.count = count;
+            this.run = function (speed) {
+                console.log(this.brand + '的当前运行车速是' + speed + 'km/h');
+            }
+        }
+
+        // 创建对象
+        var car1 = new Car('奥迪', '白色', 5);
+        var car2 = new Car('奔驰', '黑色', 6);
+        console.log(car1);
+        console.log(car2);
+
+        // new 系统构造函数
+        var obj = new Object();
+        console.log(obj);
+        var arr = new Array('奥迪', '白色', 5);
+        console.log(arr);
+
+        // -------------------------
+        // 构造函数2
+        function fun1(price, num) {
+            this.price = price;
+            this.num = num;
+        }
+        var f1 = new fun1(188.8, 58);
+        console.log(f1);
+
+        // 构造函数的使用
+        function People(uname, usex) {
+            var ucode = '1001';
+            var address = '南京市';
+
+            this.uname = uname;
+            this.usex = usex;
+            this.address = address;
+            console.log(ucode, address);
+        }
+        // 使用函数
+        // 直接调用 函数名()
+        People('小花', 18); //普通函数调用
+
+        // new 函数名()  -具体的对象
+        var p1 = new People('小丽','女');
+        console.log(p1);
+    </script>
+</body>
+
+</html>

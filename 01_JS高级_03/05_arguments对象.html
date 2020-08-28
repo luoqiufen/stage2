@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_arguments对象</title>
+</head>
+<body>
+<script>
+    // 案例1:
+    // 输入学生姓名,依次换行显示
+    function info(stu1,stu2,stu3){
+        console.log(arguments);
+        for(var key in arguments){
+            document.write(arguments[key]+'<br>')
+        }
+    }
+    // 班级1:小明,小红,小丽,小蓝
+    info('小明','小红','小丽','小蓝');
+    document.write('<hr>');
+    // 班级2:red,blue,green,orange,purple
+    info('red','blue','green','orange','purple');
+
+    // 案例2:定义一个函数,传递数值
+    // 如果传递1个数值,返回他的三次方
+    // 如果传递2个数值,返回乘积
+    // 如果传递两个以上,返回求和的结果
+    function info2(){
+        if(arguments.length==1){
+            var num1 = Math.pow(arguments[0],3)
+            return num1;
+        }
+        if(arguments.length==2){
+            return (arguments[0]*arguments[1]);
+        }
+        if(arguments.length>2){
+            var sum = 0;
+            for(var key in arguments){
+                sum += arguments[key];
+            }
+            return sum;
+        }
+    }
+    console.log(info2(5));
+    console.log(info2(4,5));
+    console.log(info2(4,5,6,12));
+
+    // 重载: js里没有重载用法
+    // java 语言里有重载用法
+    // 函数名相同,传参不同,去做不同的事情
+    // 譬如:
+    function aa(num){
+        console.log('求'+num+'的三次方');
+    }
+    function aa(num1,num2){
+        console.log('求'+num1+'和'+num2+'的乘积');
+    }
+    aa(2);//第一个aa调用
+    aa(2,5);//第二个aa调用
+</script>
+</body>
+</html>

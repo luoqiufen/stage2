@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 11:02:19
+ * @LastEditTime: 2020-07-02 09:57:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_04\笔记.html
+--> 
+第三章 php+Ajax
+第四天
+
+一、文件上传
+    1.默认： 表单提交
+        前端设置:
+            <form enctype="multipart/form-data" method="post"></form>
+            <input type="file">
+        后端操作 php: 
+            $_FILES :接收文件详细数据
+            把上传的文件存到服务器
+    2.无刷新上传文件: Ajax
+        触发的是: input[type=file]的change事件
+        发送Ajax请求:
+            1) 必须是post提交
+            2) 无需设置请求头
+            3) 获取文件信息,伪造成表单提交
+        <script>
+            // 1)
+            xhr.open('post','url');
+            // 2)
+            var file = input.files[0];
+            var data = new FormData();
+            data.append('img',file);
+            // 3)发送
+            xhr.send(data);
+        </script>
+
+二、封装一个工具： 发送Ajax请求
+    1.发送get请求
+    2.发送post请求
+    3.发送ajax请求
+
+四、jq的Ajax请求
+    1.get请求
+    <script>
+        $.get(url,data,success,dataType)
+        // url: 请求地址
+        // data: 传递的数据
+        // success: 响应成功的回调函数 function(response,static,xhr)
+        // dataType: 服务器响应的数据类型 "xml" "html" "text" "script" "json" "jsonp" 
+    </script>
+    
+    2.post请求
+    <script>
+        $.post(url,data,success,dataType)
+    </script>
+
+    3.发送ajax请求
+    <script>
+        $.ajax({
+            type:'get'|'post',//请求方式
+            url:'index.php',//请求地址
+            data:'act=login',//发送数据
+            dataType:'text/html/json',//响应的数据格式
+            succsess: function() {
+                // 响应成功,去做...
+                // response -> 响应的信息
+            },
+            beforeSend: function() {
+                // 发送请求之前去调用
+                // 表单验证可以在这写,符合验证再发送请求
+                return true;//发请求
+                return false;//阻止发请求
+            }
+        })
+        
+    </script>

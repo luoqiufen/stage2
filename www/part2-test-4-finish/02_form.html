@@ -1,0 +1,123 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-11 16:07:49
+ * @LastEditTime: 2020-07-13 09:05:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-coded:\web2004\www\part2-test-4-finish\02_form.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			font-size: 14px;
+		}
+		input[type=text]{
+			width: 220px;
+			height: 30px;
+		}
+		.search{
+			background: skyblue;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			width: 60px;
+			line-height: 34px;
+			font-size: 17px;
+			/*padding: 3px 0;*/
+			display: inline-block;
+
+		}
+		.p1{
+			width: 300px;
+			/*border:1px solid red;*/
+		}
+		.p1 span{
+			padding: 5px;
+			display: inline-block;
+			margin:3px;
+			background: #ccc;
+			color: #333;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+<form>
+	<input type="text" name="keywords">
+	<a href="#" class="search"> 搜索	</a>
+</form>
+<div>
+	<h3>历史记录:</h3>
+	<p class="p1">
+	</p>
+</div>
+<input type="button" value="清空历史记录" class="clear">
+
+<script src="./jquery-1.9.1.min.js"></script>
+<script>
+$(function(){
+//0)初始化:取历史记录显示到页面中
+function initData(){
+	var localData = localStorage.getItem('search%Words');
+	if(localData){//显示	
+		console.log(localData);
+		var arr = JSON.parse(localData);
+		console.log(arr);
+		$('.p1').html('');
+		for(var key in arr){
+			$('.p1').append("<span>"+arr[key].key+"</span>");//依次追加到p标签里
+		}
+	}
+}
+
+initData();
+
+//1)点击搜索按钮:保存搜索信息到历史记录里
+// - 追加到历史记录里
+$('.search').click(function(){  
+	var search = $("input[name=keywords]").val();
+	var history = localStorage.getItem('search%Words');
+	//存数据:先去判断 
+	// - 如果已经有数据，追加进去
+	// - 没有数据,写入
+	if(history){//追加进去
+		alert('有数据,正在追加...');
+		history = JSON.parse(history);//数组
+		console.log(history);//[{key:图书}]
+		history.push({"key":search});//追加进去
+		//数组->字符串
+		history = JSON.stringify(history);
+
+		localStorage.setItem('search%Words',history);//再一起写入本地存储
+
+	}else{
+		alert('没有数据,正在写入...');
+		var arr = [{"key":search}];
+		// 转换成字符串去存储
+		arr = JSON.stringify(arr);
+		
+		localStorage.setItem('search%Words',arr);
+	}
+	initData();
+})
+//2)点击“清空”：清除历史记录
+$('.clear').click(function(){
+	localStorage.removeItem('search%Words');
+	$('.p1').html('');
+})
+
+})
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

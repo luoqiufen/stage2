@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// 练习要求: 画图(prototype和__proto__和constructor)
+
+//1)定义构造函数1：教师类
+// 属性: 
+//    职业:教师
+//    姓名 授课科目 年龄 性别
+// 方法：
+//    上课时间(h)
+//    授课风格(什么风格)
+function Teacher(uname,subject,uage,usex){
+  this.uname = uname;
+  this.subject = subject;
+  this.uage = uage;
+  this.usex = usex;
+}
+Teacher.prototype = {
+  occu:'teacher',
+  time: function(t){
+    '上课时长是' + t;
+  },
+  style:function(way){
+    '授课风格是' + way;
+  }
+}
+var teacher1 = new Teacher('虹猫','汉语言','25','男');
+console.log(teacher1);
+
+
+
+//2)定义构造函数2：医生类
+// 属性:
+//  职业:医生
+//  姓名 性别 年龄 所属医院
+// 方法：
+//  门诊时间() 
+//  诊治科目()
+
+
+
+// 3)扩展 API
+// 字符串扩展： 
+// - 去除左侧空格
+// - 去除右侧空格
+// - 去除所有空格
+
+String.prototype.ltrim = function(){
+  return this.replace(/^\s+/,'');
+}
+String.prototype.rtrim = function(){
+  return this.replace(/\s+$/,'');
+}
+String.prototype.alltrim = function(){
+  return this.replace(/\s+/g,'');
+}
+
+console.log('   a  p p l  e   '.ltrim());
+console.log('   a  p p l  e   '.rtrim());
+console.log('   a  p p l  e   '.alltrim());
+console.log('   a  p p l  e   '.trim());
+
+// 数组扩展：
+// - 数组去重
+// - 取数值数组最大值
+
+// 数组去重
+Array.prototype.noRepeat = function(){
+  var newArr = [];
+  for(var i = 0 ; i < this.length ; i++){
+    if(newArr.indexOf(this[i]) == -1){
+      newArr.push(this[i]);
+    }
+  }
+  return newArr;
+}
+console.log([10,15,25,15,'aa','bb',25,'aa'].noRepeat())
+
+// 取最大值
+Array.prototype.getMax = function(){
+  var max = this[0];
+  for (var k = 0 ; k < this.length ; k++){
+    max = this[k] > max ? this[k] : max;
+  }
+  return max;
+}
+console.log([10,78,13,23,56,35].getMax());
+
+// Math扩展
+// - 任意区间的随机整数
+// Math -> 本身就是一个对象
+
+Math.getRandom = function(min,max) {
+  return Math.round(Math.random()*(max-min)+min);
+}
+console.log(Math.getRandom(5,25));
+
+
+
+</script>  
+</body>
+</html>

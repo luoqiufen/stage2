@@ -1,0 +1,92 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 10:53:53
+ * @LastEditTime: 2020-07-09 11:09:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\05_justify-content.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_justify-content</title>
+    <style>
+        .con{
+            height: 500px;
+            border: 1px solid red;
+            margin: 10px;
+            display: flex;/* 主轴: 水平轴 */
+            flex-direction: column;
+        }
+        .con div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            border: 1px solid blue;  
+        }
+        /* 对齐 */
+        .con1{
+            justify-content: flex-start;
+        }
+        .con2{
+            justify-content: flex-end;
+        }
+        .con3{
+            justify-content: center;
+        }
+        .con4{
+            justify-content: space-between;
+        }
+        .con5{
+            justify-content: space-around;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>主轴分布</h1>
+
+    <h1>顶部对齐</h1>
+    <div class="con con1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+    <h1>底部对齐</h1>
+    <div class="con con2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+    <h1>垂直居中对齐</h1>
+    <div class="con con3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+    <h1>两端对齐</h1>
+    <div class="con con4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+    <h1>等间距对齐</h1>
+    <div class="con con5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+</body>
+</html>

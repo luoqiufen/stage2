@@ -1,0 +1,94 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-07 17:09:52
+ * @LastEditTime: 2020-07-08 09:26:00
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_触摸事件.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_触摸事件</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{
+            font-family: 微软雅黑;
+        }
+        h1{
+            height: 200px;
+            border: 1px solid brown;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>标题文字</h1>
+    <div class="box1" id="box1">
+        春夏秋冬
+    </div>
+    <h1 id="t1">标题文字</h1>
+    <h1>标题文字</h1>
+    <h1>标题文字</h1>
+    <h1>标题文字</h1>
+
+    <script>
+        // 触摸事件
+        box1.addEventListener('touchstart',function(e) {
+            //  console.log(e);
+            //  console.log(e.touches);//触屏的信息 记录多点(手指)信息
+            //  console.log(e.touches[0]);//第一个触摸点的信息
+
+            console.log("touch-pageX:"+e.touches[0].pageX);
+            console.log("touch-pageY:"+e.touches[0].pageY);
+            console.log('-------------------------');
+            console.log("touch-clientX:"+e.touches[0].clientX);
+            console.log("touch-clientY:"+e.touches[0].clientY);
+            console.log('-------------------------');
+            console.log("touch-screenX:"+e.touches[0].screenX);
+            console.log("touch-screenY:"+e.touches[0].screenY);
+            console.log('-------------------------');
+        })
+        box1.onmousedown = function(e) {
+            // console.log(e);
+            console.log("mouse-pageX:"+e.pageX);
+            console.log("mouse-pageY:"+e.pageY);
+            console.log('-------------------------');
+            console.log("mouse-clientX:"+e.clientX);
+            console.log("mouse-clientY:"+e.clientY);
+            console.log('-------------------------');
+            console.log("mouse-screenX:"+e.screenX);
+            console.log("mouse-screenY:"+e.screenY);
+            console.log('-------------------------');
+        }
+
+        // 触摸滑动
+        box1.addEventListener('touchstart',function(e){
+            t1.innerHTML = "滑动:pageX:"+e.touches[0].pageX+"<br>";
+            t1.innerHTML += "滑动:pageY:"+e.touches[0].pageY+"<br>";
+            t1.innerHTML += "滑动:clientY:"+e.touches[0].clientY+"<br>";
+            t1.innerHTML += "滑动:clientY:"+e.touches[0].clientY+"<br>";
+        })
+
+        // 触摸结束
+        box1.addEventListener('touchend',function(e){
+            console.log('触摸结束');
+            console.log(e);
+            console.log("pageX:"+e.changedTouches[0].pageX);
+            console.log("pageY:"+e.changedTouches[0].pageY);
+            console.log("clientX:"+e.changedTouches[0].clientX);
+            console.log("clientY:"+e.changedTouches[0].clientY);
+            console.log('----------------------')
+        })
+    
+    </script>
+</body>
+</html>

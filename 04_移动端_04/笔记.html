@@ -1,0 +1,202 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 09:08:49
+ * @LastEditTime: 2020-07-11 10:12:32
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\笔记.html
+--> 
+第四章 移动端
+第四天
+
+一、Bootstrap框架介绍
+    前端框架: 用于构建响应式,移动端设备优先的web项目
+    基于html,css,javascript
+    Twitter开发的
+
+二、下载
+    1.Bootstrap官网
+    2.目录结构
+        css文件夹(bootstrap.css)
+        fonts文件夹(字体图标)
+        js文件夹
+            bootstrap.js
+            html5shiv.min.js
+            respond.min.js
+    3.怎么应用?
+        1) 不下载,在线引用
+        2) 可以把下载的boot文件包引入项目里
+        html页面里引入文件
+        <head>
+            <!-- 要设置viewport视口 -->
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,maximum-scale=2.0,minimun-scale=1.0">
+            <!-- 引入css文件 -->
+            <link rel="stylesheet" href="./boot/css/bootstrap.css">
+            <!-- 低于IE9: 可能不兼容 -->
+            <!-- [if lt IE9]>
+            <script src="./boot/js/html5shiv.min.js"></script>
+            <script src="./boot//js/respond.min.js"></script>
+            <![endif] -->
+        </head>
+        <body>
+            <!-- 末端引入js文件 -->
+            <script src="./boot/js/jquery-1.9.1.min.js"></script>
+            <script src="./boot/js/bootstrap.js"></script>    
+        </body>
+        --------------------------------------------
+        创建用户代码片段:
+            vscode->设置(左下角)->用户代码片段->新建全局代码片段文件: json格式文件
+            - 弹框(boot)->自动有文件格式
+            - 无弹框->boot.code-snippets
+        找到example:
+            "prefix": "boot",// 设置快捷键
+            "body":[    // 设置结构主体
+                "<head></head>",
+                "<body></body>"
+            ]
+        使用: boot+回车
+        -----------------------------------------------
+
+三、按钮(类): .btn
+    前提: .btn(现有btn类)
+    1) .btn-default 默认样式
+    2) .btn-primary 主要/首选项
+    3) .btn-success 成功
+    4) .btn-info    提示
+    5) .btn-warning 警告
+    6) .btn-danger  危险
+    6) .btn-link    链接样式
+
+四、排版(类)
+    1.标题 .h1-.h6
+        <h1></h1>... <h6></h6>
+        36 30 24 18 14 12
+    2. 对齐方式
+        .text-left 
+        .text-center 
+        .text-right 
+        .text-nowrap 
+        .text-justify
+    3.字母大小写
+        .text-lowercase
+        .text-uppercase
+        .text-capitalize 首字符大写
+    4.引用
+        <blockquote>
+            <p>内容</p>
+            <footer>
+                <cite>百度来源</cite>
+            </footer>
+        </blockquote>
+五、表格
+    前提: .table
+    <table class="table"></table>
+    1) .table-striped 条纹状
+    2) .table-hover 悬停时带样式
+    3) .table-bordered 带边框
+    4) .table-condensed 紧缩型(padding:5px;)
+
+    tr/th/td 修饰类
+    1) .active 活动状态
+    2) .success 成功状态
+    3) .info 提示信息
+    4) .warning 警告
+    5) .danger 危险
+
+六、表单<form action=""></form>
+    1.表单的类
+        .form-inline  -->内容及空间左右排列
+        .form-horizontal -->控件组里: 左右结构
+        ***控件组里 要设置 "列宽" col-xs-2
+    2.组合(label+控件)
+        .form-group  --给组合用
+        .form-control --给控件用
+        <div class="form-group">
+            <label>姓名</label>
+            <input class="form-control" type="text" name="uname">
+        </div>
+    3.控件类型
+        <input type="text" class="form-control">
+        <input type="password" class="form-control">
+
+        <!-- 单选(扩展选择区域) -->
+        <label>
+            <input type="radio" name="gender" value="男">男
+        </label>
+        <label>
+            <input type="radio" name="gender" value="女">女
+        </label>
+        <!-- 多选(扩展选择区域) -->
+        <label>
+            <input type="checkbox" name="like" value="0">睡觉
+        </label>
+        <label>
+            <input type="checkbox" name="like" value="0">打豆豆
+        </label>
+        <!-- 下拉列表 -->
+        <select name="province" class="form-control">
+            <option value="0">江苏省</option>
+            <option value="1">安徽省</option>
+            <option value="2">浙江省</option>
+        </select>
+        <!-- 多行文本域 -->
+        <textarea name="info" class="form-control" rows="10"></textarea>
+        <!-- 文件域 -->
+        <input type="file">
+        <!-- 按钮 -->
+        <input type="submit" class="btn btn-primary">
+    4.修饰尺寸(高度 普通默认34)
+        1) .input-lg 大型尺寸 46
+        2) .input-sm 小型尺寸 30
+    5.校验修饰类
+        1) .has-success 成功(绿色)
+        2) .has-warning 警告(黄色)
+        3) .has-error   报错(红色)
+        <div class="form-group has-error">
+            <label>用户名</label>
+            <input type="text" class="form-control">
+            <!-- control-label 可以让文字同步修饰 -->
+            <span class="control-label">用户名已被注册</span>
+        </div>
+    6.按钮相关:
+        1) 尺寸大小
+            .btn-lg(大按钮)
+            .btn-sm(小按钮)
+            .btn-xs(超小按钮)
+
+七、图片
+    1.响应式图片
+        .img-responsive 
+    2.形状
+        .img-circle 圆形/椭圆
+        .img-rounded 圆角矩形
+        .img-thumbnail 相框图
+
+八、辅助类
+    1.关闭按钮 .close
+        修改大小: font-size:20px;
+        <span class="close">&times;</span>
+    2.三角符号 .caret
+        <span class="caret"></span>
+    3.内容居中 .center-block
+        等同于: display:block;margin:0 auto;
+    4.清除浮动 .clearfix(给父元素)
+    5.显示/隐藏
+        .show / .hidden
+
+九、栅格化布局
+    1.容器
+        .container          <768px 满屏宽
+                            >=768px 左右有留白
+                            
+        .container-fluid    始终满屏宽
+    2.容器里分行(row)
+        <div class="container">
+            <div class="row"></div>
+        </div>
+    3.行里分列(col)
+        列分成了 12 等份
+            超小屏: col-xs-*    (<768px 手机)
+            小屏: col-sm-*      (>=768px 平板)
+            中等屏: col-md-*    (>=992px 显示屏)
+            大屏: col-lg-*      (>=1200px 超大显示屏)

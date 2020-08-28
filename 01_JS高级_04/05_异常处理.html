@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_异常处理</title>
+</head>
+<body>
+<script>
+    // 需求
+    // 传递2个数值,求和运算
+    function sum(num1,num2){
+        if(typeof(num1)=='number' && typeof(num2)=='number'){
+            return num1+num2;
+        }else{
+            throw new TypeError('必须都是数值');
+        }
+        
+    }
+    // console.log(sum(10,15));
+    // console.log(sum([10],[15]));
+    try{//尝试运行的代码
+        console.log(10,15);
+    }catch(err){
+        console.log(err);
+    }
+    
+</script>  
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<table>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+    </tr>
+    {{each stus}}
+    <!--  value index -->
+    <tr>
+        <td>{{$value.ucode}}</td>
+        <td>{{$value.uname}}</td>
+        <td>{{$value.uage}}</td>
+    </tr>
+    {{/each}}
+</table>

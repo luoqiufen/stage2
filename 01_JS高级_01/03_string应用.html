@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_string应用</title>
+</head>
+
+<body>
+    <script>
+        // 案例1
+        // 从url地址里提取数据参数
+        var url = "https://www.baidu.com/index.php?act=login&uanme=apple&upass=123&utel=15756894826&usex=男";
+
+        // 1)从?开始提取到结尾
+        var i = url.indexOf('?');
+        console.log(i); //31
+        var data = url.substr(i + 1);
+        console.log(data);
+        // 2)以&分割
+        var arr1 = data.split('&');
+        console.log(arr1);
+        for (var key in arr1) {
+            console.log(arr1[key]);
+            var arr2 = arr1[key].split('=');
+            console.log(arr2);
+            document.write(arr2[0]);
+            document.write('<input type=text value=' + arr2[1] + '><br><br>');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-08 09:26:36
+ * @LastEditTime: 2020-07-09 09:43:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_02\笔记.html
+--> 
+第四章 移动端
+第二天
+
+一、移动端 touch相关事件
+    三个事件: touchstart  touchmove  touchend
+    应用
+    <script>
+        dom.addEventListener('touchstart',function(e){
+            // 触摸点对象(多个对象->多点触摸)
+            // e.touches; | e.targetTouches;
+    
+            // 触摸点1:
+            // (0,0)-> 当前文档的左上角为参考坐标
+            e.touches[0].pageX;
+            e.touches[0].pageY;
+            // (0,0)-> 可视区域的左上角为参考坐标
+            e.touches[0].clientX;
+            e.touches[0].clientY;
+            // (0,0)-> 当前屏幕(PC:显示屏,移动端:手机显示屏)的左上角为参考坐标
+            e.touches[0].screenX;
+            e.touches[0].screenY;
+        })
+        
+        dom.addEventListener('touchmove',function(e){
+            // 触摸对象
+            e.touches[0];
+            e.targetTouches[0];
+        })
+  
+        dom.addEventListener('touchend',function(e){
+            // 触摸对象
+            e.changedTouches[0];
+        })
+
+    </script>
+
+二、移动端布局
+    1.Flexbox 弹性盒子布局
+        简单灵活
+        可以控制容器内部子元素的: 排列方式,对其方式,排列顺序
+        可适应于不同分辨率,响应式布局
+    2.Flex 盒子模型 
+        由容器和子元素组成
+        1) 容器(父盒子)
+            主轴(水平坐标轴): 左 -> 右
+            纵轴()          :上 -> 下
+    3.Flex的使用
+        学习CSS样式
+        容器的属性样式
+        子项的属性样式
+
+        注: flex布局下: clear,float都失效
+    4.容器的属性
+        1) display: flex;        自动换行
+           display: inline-flex; 不换行
+        2) flex-derection: row;
+                        row-reverse;
+                        column;
+                        column-reverse

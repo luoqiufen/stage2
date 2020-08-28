@@ -1,0 +1,60 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-04 10:38:54
+ * @LastEditTime: 2020-07-04 15:40:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\week3_test\dangdang\03_outer.html
+--> 
+<style>
+    *{margin: 0;padding: 0;color: grey;}
+    body{
+        font-family: "微软雅黑";
+        font-size: 14px;
+    }
+    .item{
+        width: 120px;
+        float: left;
+        margin: 25px;
+        height: 220px;
+    }
+    
+    .item img{
+        width: 120px;
+    }
+    .item h3{
+        overflow: hidden;
+        color: black;
+        height: 30px;
+        line-height: 30px;
+    }
+    
+    .item .box1{
+        overflow: hidden;
+        line-height: 25px;
+        height: 25px;
+    }
+    .item .price{
+        color: red;
+    }
+    .item .old{
+        margin-left: 5px;
+        text-decoration: line-through;
+    }
+</style>
+
+{{each books}}
+<a href="./04_php.php?key={{$index}}">
+    <div class="item">
+        <img src={{$value.img}} alt="">
+        <h3 class="book">{{$value.book}}</h3>
+        <div class="box1">
+            <span class="author">{{$value.author}}</span>
+            <span class="press">{{$value.press}}</span>
+        </div> 
+        <span class="price">{{$value.price}}</span>
+        <span class="old">{{$value.old}}</span>
+        <p class="e_book">{{$value.e_book}}</p>
+    </div>
+</a>
+{{/each}}

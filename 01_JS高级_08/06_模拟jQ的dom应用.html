@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_模拟jQ的dom应用</title>
+</head>
+
+<body>
+    <div class="box box1" title="盒子1" style="border:1px solid royalblue">盒子1</div>
+    <div class="box box2" style="border:1px solid blueviolet">盒子2</div>
+    <div class="box box3" style="border:1px solid greenyellow">盒子3</div>
+
+    <script>
+        // 1)功能1: 找dom元素 $(选择器)
+        // 使用 document.querySelectorAll(css选择器);
+        /* function $(selector) {
+            // 实例对象
+            return new Elems(selector);
+        }
+        console.log($('.box'));
+        console.log($('.box1')); */
+
+        // 构造函数: 构造对象: 属性 方法 
+        function Elems(selector) {
+            this.dom = document.querySelectorAll(selector);
+        }
+        // css()方法
+        Elems.prototype.css = function (pro, value) {
+            // console.log(arguments.length);
+            for (var i = 0; i < this.dom.length; i++) {
+                var len = arguments.length;
+                if (len == 1 && typeof (pro) == 'string') {
+                    // 如果是1个,且是String类型,获取操作
+                    return this.dom[0].style[pro];
+                } else if (len == 2) {
+                    // 如果是2个,设置1个操作
+                    this.dom[i].style[pro] = value;
+                } else if (len == 1 && typeof (pro) == 'object') {
+                    // 如果是1个,且是Object类型,添加多个样式
+                    for (var key in pro) {
+                        this.dom[i].style[key] = pro[key];
+                    }
+                }
+            }
+        }
+
+        // attr()
+         Elems.prototype.attr = function (attribute, value) {
+            for(var i = 0; i < this.dom.length; i++){
+                var len = arguments.length;
+                if(len == 1 && typeof(attribute) == 'string'){
+                    // 如果是1个,且是String类型,获取操作
+                    return this.dom[0].getAttribute(attribute);
+                }else if(len == 2){
+                    // 如果是2个,设置1个操作
+                    this.dom[i].setAttribute(attribute,value); 
+                } else if(len == 1 && typeof(attribute) == 'object'){
+                    // 如果是1个,且是Object类型,添加多个样式
+                    for(var key in attribute){
+                        // console.log(attribute[key]);
+                        this.dom[i].setAttribute(key,attribute[key]);
+                    }
+                }  
+            }
+        }
+
+        function $(selector) {
+            // 实例对象
+            return new Elems(selector);//有属性有方法
+        }
+        console.log($('.box'));
+        /* 
+        {
+            dom:[div,div,div]
+            __proto__:{
+                css:func
+            }
+        } */
+        // 获取
+        console.log($('.box').css('border'));
+
+        $('.box').css('width','200px');
+
+        $('.box').css({
+            'height':'200px',
+            'background':'skyblue'
+        });
+
+
+        console.log($('.box1').attr('title'));
+
+        $('.box2').attr('title', '盒子2');
+
+        $('.box2').attr({
+            'title': '盒子2',
+            'src': '01.png',
+            'id': 'box2'
+        });
+
+
+        // 功能2: 操作样式 $(dom).css()
+        // function 
+
+
+
+    </script>
+</body>
+
+</html>

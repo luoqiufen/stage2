@@ -1,0 +1,114 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-03 11:12:37
+ * @LastEditTime: 2020-07-21 16:04:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_06\笔记.html
+--> 
+第三章 php+Ajax
+第六天
+
+一、模板引擎
+    1.什么是模板引擎?
+        主要解决ajax请求数据,最终渲染成html结构,显示到页面中(渲染处理是js拼接) -'非常麻烦'
+        html结构就直接写在网页里
+        数据是js获取到的,做的是内容替换
+        原理: 利用js的正则替换
+
+二、ArtTemplate(腾讯)-模板引擎
+    1.优点:   
+        简单 快捷
+        容量小 运行高效
+        使用便捷
+    2.一个模板插件
+        template-native.js 原始语法
+            <%= 表达式 %>
+            <%逻辑语句%>
+        template-web.js 主流语法(简洁用法)
+            {{表达式}} | <%= 表达式 %>
+            {{逻辑语句}}
+    3.如何使用?
+        1) 引入模板引擎
+            <script src="./js/template-native.js"></script>
+        2) 创建模板 --> 不显示
+            <script type="text/html" id="demo">
+                <p>用户名: <% =uname %></p>
+                <p>密码: <% =upass %></p>
+                <p>年龄: <% =uage %></p>
+            </script>
+            <div class="box1">
+                <!-- 显示到这 -->
+            </div>
+        3) 渲染数据
+            <script>
+                var data = {
+                    "uname":"虹猫",
+                    "upass":13579,
+                    "uage":18
+                };
+                // 调用结果,返回渲染的html结构
+                var rs = template('demo',data)
+                // 把html结构显示出来(指定位置)
+                $('.box1').html(rs);
+            </script>
+        4) 获取外部html结构渲染数据
+            显示到当前页面
+            - outer.html - 模板页
+            <p>用户名:{{uname}}</p>
+            <p>年龄:{{age}}</p>
+            -------------------
+            -index.html
+            <script>
+                //请求outer.html -得到结构
+                $.get('outer.html','',function(response){ 
+                    //1) 处理成渲染函数
+                    var render = template.compile(response);//渲染函数
+                    //2) 渲染数据进去
+                    var rs = render({name:'apple',age:10});//渲染数据
+                    //3)显示在哪儿？
+                    box1.innerHTML = rs;
+                },'html')
+            </script>
+           
+        // -each循环
+        {{ each stus as value index }}
+            {{ value.name }}
+            {{ value.age }}
+        {{ /each }}
+
+        <script>
+        var data = {
+        'stus':[
+            {uname:'aa',uage:10},
+            {uname:'bb',uage:15},
+            {uname:'cc',uage:20}
+        ]
+        }
+        </script>
+        {{ each stus as value index }}
+        <!-- 
+        index: 0
+        value:{uname:'aa',uage:10}
+        -->
+        {{ each value as v i }}
+        <!-- 
+        i:uname / uage
+        v:aa  / 10 
+        -->
+        {{i}}:{{v}} <!--uname:aa -->
+
+        {{ /each }}
+        {{ /each }}
+
+        ---if判断----
+        {{ if color=='red'}}
+        <p>红色</p>
+        {{ else if color=='blue'}}
+        <p>蓝色</p>
+        {{ else if color=='green'}}
+        <p>绿色</p>
+        {{ else }} 
+        <p>黑色</p>
+        {{ /if }}
+        显示到当前页面

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_构造函数继承</title>
+</head>
+
+<body>
+    <script>
+        // 1)父类
+        function Father(province, city) {
+            this.province = province;
+            this.city = city;
+        }
+        Father.prototype.eat = function (food) {
+            console.log('喜欢吃' + food);
+        }
+
+
+        // 2)子类
+        function Son(province, city, uname, uage) {
+            // 继承父类
+            Father.apply(this, [province, city]);
+            // 添加自己的属性
+            this.uname = uname;
+            this.uage = uage;
+        }
+
+        var s1 = new Son('江苏省', '南京市','虹猫',25);
+        var s2 = new Son('安徽省', '南京市','蓝兔',23);
+
+        console.log(s1);
+        console.log(s2);
+
+        // 缺点:
+        // 只能访问私有属性
+
+        // 优点:
+        // 可以向父类传参
+    </script>
+</body>
+
+</html>

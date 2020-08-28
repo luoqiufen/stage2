@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//练习1:定义函数,获取文件后缀名
+// 譬如: images/01.png
+//       images/05.txt
+//       images/index.txt.html
+//       images/index.txt.html.js
+
+function suffix(filename){
+    var i =filename.lastIndexOf('.');
+    console.log(i);
+    var j = filename.substr(i+1);
+    return j;
+}
+console.log(suffix('images/index.txt.html'));
+console.log(suffix('images/index.txt.html.js'));
+
+
+//练习2：把以下内容变成首字符大写
+var str = "i am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.";
+
+var data = str.split(/\s/);
+console.log(data);
+
+var newStr = '';
+for(var key in data){
+    var change = data[key][0].toUpperCase();//首字母大写
+    var after = data[key].substr(1);
+    // console.log(change);
+    // console.log(after);
+    var newData = change+after;
+    // console.log(newData);
+    newStr += newData+' ';
+}
+console.log(newStr);
+
+//练习3:定义函数去掉空格
+// 1)去掉左侧开头空格
+// 2)去掉右侧结尾空格
+// 3)去掉所有空格
+
+// 函数1:去除左侧空格
+function left(str){
+    return str.replace(/^\s+/,'');
+}
+console.log(left('   aa   bb    cc   '));
+
+// 函数2:去除右侧空格
+function right(str){
+    return str.replace(/\s+$/,'');
+}
+console.log(right('   aa   bb    cc   '));
+
+// 函数:去除所有空格
+function all(str){
+    return str.replace(/\s/g,'');
+}
+console.log(all('   aa   bb    cc   '));
+
+// String的API:去除两端的空格 trim()
+console.log(' aa bb cc   '.trim());
+
+
+</script>    
+</body>
+</html>

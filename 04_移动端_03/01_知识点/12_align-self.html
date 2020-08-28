@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 15:20:35
+ * @LastEditTime: 2020-07-09 15:27:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\12_align-self.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12_align-self</title>
+    <style>
+        .con{
+            border: 2px solid red;
+            display: flex;
+            height: 300px;
+            /* 主轴: 水平轴 */
+            /* 子项的对齐方式: 参考交叉轴(纵轴) */
+            align-items: flex-end;
+        }
+        .con div{
+            width: 100px;
+            height: 100px;
+            background: peachpuff;
+            margin: 5px;
+        }
+        .con div:nth-child(2){
+            background: paleturquoise;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+</html>

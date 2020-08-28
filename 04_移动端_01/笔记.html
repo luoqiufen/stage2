@@ -1,0 +1,101 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-07 15:43:24
+ * @LastEditTime: 2020-07-07 19:14:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \wwwd:\web2004\2\2-code\04_移动端.01\笔记.html
+--> 
+第四章 移动端
+第一天
+
+一、移动端开发
+    主要分为2类
+    1) H5/webAPP
+    2) 移动APP
+
+二、移动端web
+    页面运行在移动设备上(通常也称为H5页面)
+    1) 设备: 智能手机/平板
+    2) 操作系统: 
+        安卓Android(谷歌)
+        苹果IOS
+        windowsPhone(微软)
+        塞班(诺基亚,摩托罗拉,西门子等共同研发)
+        黑莓(加拿大)
+    3) 浏览器
+        IE,Safari,360,opera...
+    4) 浏览器内核(了解)
+        IE: Trident
+        Mozilla: webkit 内核
+        Opera: Presto
+    5) 兼容性
+        移动端对 HTML5和CSS3 的兼容性更好
+
+三、移动端开发的适配性和性能要求
+    要去兼容不同设备尺寸
+    移动端设备的1px 不等于 PC端的 1px
+    如何来解决适配?
+    html页面: HTML5页面
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    </html>
+
+四、viewport(视口)
+    在meta标签里设置
+    <meta name="viewport" content="">
+    content: 设置视口 需要属性
+    width=device-width 设备宽
+    initial-scale=1.0 默认缩放比例
+    user-scalalbe=yes/no 是否支持用户手动缩放
+    maximum-scale=2 最大缩放值
+    minimum-scale=0.5 最小缩放值
+
+五、移动端事件
+    PC端:
+        mousedown mousemove mouseup
+    移动端:
+        touchstart touchmove touchend
+        HTML5新增了一个事件: 
+            visibilitychange: 显示/隐藏改变时触发
+            事件对象
+            <script>
+                box1.onmousedown = function(e){
+                    // 获取坐标点
+                    // 参考对象: 整个文档的左上角的参考坐标为(0,0)
+                    e.pageX;
+                    e.pageY;
+            
+            
+                    // 参考对象: 可视区域的左上角的参考坐标为(0,0)
+                    e.clientX;
+                    e.clientY;
+            
+            
+                    // 参考对象: 
+                    e.screenX;
+                    e.screenY;
+                }
+                box1.ontouchstart = function(e){
+                    // 第一个触摸点
+                    e.touches[0];
+                    e.targetTouches[0];
+            
+            
+                    e.touches[0].pageX;
+                    e.touches[0].pageY;
+            
+            
+                    e.touches[0].clientX;
+                    e.touches[0].clientY;
+                }
+            </script>

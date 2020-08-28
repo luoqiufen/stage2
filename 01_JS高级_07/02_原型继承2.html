@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_原型继承2</title>
+</head>
+<body>
+    <script>
+        // 父类 People
+        function People(country,province) {//私有属性
+            this.country = country;//国籍
+            this.province = province;//省份
+        }
+        // 共享
+        People.prototype.species = '人类';
+        People.prototype.eat = function(food) {
+            console.log('喜欢吃'+food);
+        }
+        People.prototype.drink = function(water) {
+            console.log('喜欢喝'+water);
+        }
+        People.prototype.play = function(game) {
+            console.log('经常玩'+game);
+        }
+
+        // 子类
+        function Students(sname,sgender,sage){//私有属性
+            this.sname = sname;//姓名
+            this.sgender = sgender;//性别
+            this.sage = sage;//年龄
+        }
+
+        console.log(Students.prototype);
+        // 改变方向 -> 实现继承
+        Students.prototype = new People('中国','浙江省');
+        console.log(Students.prototype);
+
+        // 添加子类 自己的共享 属性和方法
+        Students.prototype.identity = '学生';
+        Students.prototype.study = function(course){
+            console.log('学习'+course);
+        }
+        Students.prototype.join = function(club){
+            console.log('参加了'+club);
+        }
+        console.log(Students.prototype);
+
+        var stu1 = new Students('豆豆','男',25);
+        console.log(stu1);
+
+        var stu2 = new Students('猪无戒','男',30);
+        console.log(stu2);
+
+        console.log(stu1.species);
+        console.log(stu2.species);
+
+        stu1.eat('糖葫芦');
+        stu1.drink('满杯香水柠');
+
+        console.log(stu1.country,stu1.province);
+        console.log(stu2.country,stu1.province);
+
+        // 缺点: 不能再实例化子类时,向父类传参
+        // 导致 一些属性是固定不变的
+
+        // 优点: 可以访问私有属性和共享属性
+
+    </script>
+</body>
+</html>

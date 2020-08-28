@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 16:10:04
+ * @LastEditTime: 2020-07-06 17:32:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\03_webStorage\01_localStorage.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" name="form1">
+        标题: <input type="text" name="title"><br><br>
+        作者: <input type="text" name="author"><br><br>
+        内容: <textarea name="con"></textarea><br><br>
+        <input type="button" value="发布" id="btn">
+    </form>
+    <a href="./02_storage.html">跳转到第2页</a>
+    
+
+    <script>
+        // 如果有数据,直接显示(去找本地客户端存储的数据)
+        document.forms['form1']['author'].value = localStorage.getItem('author');
+
+        // 点击按钮,存储信息
+        btn.onclick = function() {
+            var title = document.forms['form1']['title'].value//标题
+            var author = document.forms['form1']['author'].value//作者
+            var con = document.forms['form1']['con'].value//内容
+            // 存储
+            document.cookie = 'title='+title+';Max-Age=30';
+
+            localStorage.setItem('author',author);
+            
+            sessionStorage.setItem('con',con);
+        }
+    
+    </script>
+</body>
+</html>

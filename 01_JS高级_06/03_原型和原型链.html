@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_原型和原型链</title>
+</head>
+<body>
+    <script>
+        //构造函数
+        // 猫类
+        物种:species = "猫科"
+        // 品质:breed
+        // 名字:cname
+        // 颜色:color
+        // 吃:eat(food)
+        function Cat(breed,cname,color) {
+            // 私有属性
+            this.breed = breed;
+            this.cname = cname;
+            this.color = color;
+        }    
+        // 在原型对象上 定义共享属性和方法
+        Cat.prototype = {
+            species : '猫科',
+            eat : function(food){
+                console.log('喜欢吃'+food);
+            }
+        };
+
+        // 创建一只具体的猫
+        var cat1 = new Cat('虎斑','Kiity','白色');
+        console.log(cat1);
+
+        console.log(cat1.__proto__ == Cat.prototype);//true
+    </script>
+</body>
+</html>

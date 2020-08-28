@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_jQ的DOM事件</title>
+    <script src="../jq/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function(){
+            $('input[name=title]').focus(function() {
+                $(this).css('background','lightgreen');
+            });
+            $('input[name=title]').focus(function() {
+                $(this).val('猪猪侠');
+            })
+
+            $('input[name=title]').on('blur',function() {
+                $(this).css('background','skyblue');
+            })
+            $('input[name=title]').on('blur',aa);
+            function aa() {
+                $('input[name=title]').val('')
+            }
+
+            // 解除绑定
+            $('input[name=title]').off('blur',aa);
+
+
+            // one 只执行一次
+            $('input[type=button]').one('click',function() {
+                alert('优惠券领取成功');
+            });
+
+            // 限制输出的文章字数为100字
+            // 动态提示: 还可以输入?个字
+            // input事件: 输入内容时触发
+            $('textarea').on('input',function(){
+                console.log($(this).val());
+                var off = 100 - $(this).val().length;
+                $('#span1').html('还能输入'+off+'字');
+            })
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <p>
+        <input type="text" name="title">
+        <input type="button" value="领取优惠券">
+        <textarea name="" id="" cols="30" rows="10" maxlength="100"></textarea>
+        <span id="span1">还能输入100字</span>
+    </p>
+</body>
+</html>

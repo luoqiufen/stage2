@@ -1,0 +1,89 @@
+第二阶段 JS高级
+第一天
+
+一、编辑工具 VScode 
+    1.百度搜索VScode，进入官网下载
+        安装插件：左侧扩展-搜索插件名-install
+    2.快捷键
+        1)注释:
+            ctrl+/ 单行注释
+            alt+shift+A 多行注释
+        2)复制行:(向上或向下)
+            shift + alt +up/down
+        3)运行在浏览器：
+            Alt + B  默认浏览器
+            Shift + Alt + B  其他浏览器
+        4)缩进
+            Tab    缩进
+            Shift + B   减少缩进
+        5)连续选择
+            ctrl + d    向下选择
+            ctrl + u    回退到上一个
+
+二、第二阶段课程
+    1.JS高级(面向对象-思维方式)
+    2.DOM+H5(开发小型的插件)
+    3.php+ajax(数据交互)
+    4.移动web(移动端页面/响应式页面)
+
+三、JS高级介绍
+    1.JS语言 特征
+        弱类型:类型由值决定
+        解释性语言:从上到下,从左到右,逐步解析执行的
+        基于面向对象:封装,继承,多态
+    2.一切皆对象
+    3.JS 运行机制
+        浏览器运行机制:
+            渲染引擎:(HTML+CSS)
+            脚本引擎:(js) -- v8引擎
+    4.数据类型
+        原始类型: string,boolean,number,null,undefined
+        引用类型Object: array,Date,RegExp...
+
+四、JS数据类型: string对象
+    有属性有方法
+    属性:str.length;
+    API方法:
+    <script>
+        // 1)查找:
+            str.indexOf('char',5);
+            str.lastIndexOf('char',5);
+            // 返回:数字下标 (找到了)/-1 (没找到)
+
+            // 正则查找 一个
+            'apple banana'.search(/[a-z]/i);//0
+            // 正则匹配多处(个)
+            'apple banana'.match(/a/g);//["a", "a", "a", "a"] 4个
+        // 2)替换
+            str.replace('abc','ABC');
+            str.replace(/abc/g,'ABC');
+        // 3)转换大小写
+            str.toUpperCase();
+            str.toLowerCase();
+        // 4)根据下标找字符
+            'apple'.charAt(2);//'p'
+            'apple'[2];//'p'
+        // 5)连接字符串
+            'apple'.concat('banana','pear');
+            'apple'+'banana'+'pear';
+        // 6)提取/截取字符
+            // substr(start,len)
+            'happy new year'.substr(2,2);//'pp'
+             // slice(start,end) 允许负数
+            'happy new year'.slice(2,6);//'ppy'
+            // substring(star,stop) 不支持负数
+            'happy new year'.substring(2,6);//'ppy'
+        // 7)指定分隔符,拆分成数组
+            // split() 
+            console.log('1992-3-15 15:23:24'.split('-'));//["1992", "3", "15 15:23:24"]
+
+            // 从-或:或空格 来分割
+            console.log('1992-3-15 15:23:24'.split(/[-:\s]/),5);//["1992", "3", "15", "15", "23"]
+        // 8)unicode编码
+            // 获取指定位置字符的unicode编码
+            'abc'.charCodeAt(0);//97
+            // 根据unicode编码创建字符
+            String.fromCharCode(97);//a
+
+    
+    </script>

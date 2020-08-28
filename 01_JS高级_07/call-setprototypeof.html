@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	.box1{
+		width: 300px;
+		border:1px solid red;
+	}
+
+	.box2{
+		margin:20px auto;
+		padding:10px;
+	}
+	.box3{
+		line-height: 40px;
+		font-size: 18px;
+	}
+	.box3 a{
+		text-decoration: none;
+		color: #333;
+	}
+
+
+	</style>
+</head>
+<body>
+<div class="box1">
+	<a href="">链接1</a>
+	<a href="">链接2</a>
+	<a href="">链接3</a>
+	<a href="">链接4</a>
+	<a href="">链接5</a>
+</div>	
+
+<script>
+//1)找到div	
+var div_obj =document.querySelector('.box1');
+console.log(div_obj);
+
+//2)操作类名
+console.log(div_obj.className);//box1
+//添加box2
+div_obj.className += ' box2';
+div_obj.className += ' box3';
+//移除box2 (有bug)
+console.log(div_obj.className);
+//'box1 box2 box3'
+var now=div_obj.className.replace('box2','');
+console.log(now);
+div_obj.className = now;
+
+//移除所有的类
+div_obj.className = '';
+
+
+//自定义继承
+var hamm={
+	sname:"hanmeimei",
+	sage:20,
+	intr(){
+		console.log(`I am ${this.sname},I am ${this.sage}`)
+	}
+}
+hamm.intr();//hamm.__proto__=Object.prototype
+
+var father={
+	bal:1000000,
+	car:"infiniti"
+}    //自定义继承
+Object.setPrototypeOf(hamm,father);
+console.dir(hamm);
+
+//bind与call的区别
+function calc(base,bonus){
+	console.log(this.ename+"总工资为"+(base+bonus))
+}
+var lilei={ename:"Lilei"}
+var hmm={ename:"Hanmeimei"}
+//lilei临时借用calc
+calc.call(lilei,10000,4000);
+//hmm临时借用calc
+calc.call(hmm,15120,4000);
+
+//lieli 买了一个与calc一样计算器，this->lilei
+var lilei_calc=calc.bind(lilei);
+lilei_calc(4000,2000);
+lilei_calc(6000,2000);
+lilei_calc.call(hmm,8000,1000);
+//call 立即调用  bind基于一个新函数，永久绑定this为指定对象，不会立即执行。
+</script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 14:05:54
+ * @LastEditTime: 2020-07-11 11:39:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_03\笔记.html
+--> 
+第三章 php+Ajax
+第三天
+
+一、Ajax支持的数据格式
+    response属性: (分类)
+        1) 文本(String): responseText
+        2) xml格式: responseXML
+        3) json格式: responseText
+
+二、文本格式：字符串
+    前端js: string
+    <script>
+        // 数据: uname=apple
+        接收响应信息: responseText
+    </script>
+    后端php: string
+    <?php
+    header("content-type:text/html;charset=utf-8");
+    echo 'ok';//响应信息
+    ?>
+
+三、XML格式
+    1.XML是什么?
+        EXtensible Markup Language
+        可扩展标记语言
+        类似于html
+        全都是自定义标记
+    2.XML的作用
+        传输数据
+        小型的数据库
+        可做配置使用
+    3.文件格式
+        .xml
+    4.xml的语法
+        头: <?xml version="1.0" encoding="utf-8"?>
+        必须有一个根节点
+        标签语法:
+        1) 双标记
+            <标签名 属性名1="值1" 属性名2="值3">内容</标签名>
+        2) 单标记
+            <标签名 属性名1="值1" 属性名2="值3" />
+    5.如何去操作xml数据
+        前端js: xml DOM操作(同html DOM)
+        操作dom相关API:
+            document.getElementByName();
+            getAttribute("属性名");获取属性
+        后端php: 读取xml文档
+            header("content-type: text/html;charset=utf-8");
+            file_get_contents("文件url");
+
+四、Json格式
+    1.json是什么?
+        JavaScript Object Notation
+        js的对象,ECMAScript一个子集
+    2.json的作用
+        类似于xml
+        存储和交换数据,传输数据
+        比XML更小、更快，更易解析
+        是目前使用非常广泛的数据格式
+    3.文件格式
+        .json
+    4.json的语法
+        必须是键值对组合
+        键值 必须用 ""
+        值可以是任意类型: string,number,boolean,[数组]
+        严格区分大小写
+        必须放在{}里
+    5.操作json
+        前端js: 操作json的API
+            <script>
+                // 1)把 json字符串 --> json对象
+                JSON.parse(json字符串);
+                // 2)把 json对象 --> json字符串
+                JSON.stringify(json对象);
+            </script>
+        后端:php 操作json的API
+            <?php
+                // 1)把 数组 --> json字符串
+                json_encode($arr);
+                // 2)把 json字符串 --> 数组
+                json_decode(json字符串,true)
+
+            ?>

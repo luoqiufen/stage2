@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08_回调函数</title>
+    <style>
+        .list{
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="list"></div>
+<script>
+    // 1)每隔1s输出1-10之间的数
+    var i = 0
+    var t1 = setInterval(function(){
+        if(i<10){
+            i++;
+            console.log(i);
+        }else{
+            clearInterval(t1)
+        }
+    },1000);
+
+    // 2)每隔1s输出5行p标签
+    var n =1;
+    function show(){
+        // document.write('<p>段落'+n+'</p>');
+        if(n<5){
+            n++;
+        }else{
+            clearInterval(t2);
+        }
+    }
+    var t2 = setInterval(show,1000);
+
+    // 利用计时器:自己定义函数
+    // 4s显示一个列表,指定完成之后去做的事情
+    
+    function showList(speed,callback){
+        var box = document.querySelector('.list');
+        var k = 0;//记录段落
+        // 显示列表过程:
+        var t3 = setInterval(function(){
+            if(k<4){//添加段落
+                k++;
+                box.innerHTML += '<p>第'+k+'行</p>';
+            }else{//添加完成
+                clearInterval(t3);
+                // alert('显示完成');
+                // 自定义动画完后才能之后的效果
+                callback();
+            }  
+        },speed);
+    }
+    /* showList(function(){
+        alert('显示完成');
+    }); */
+    showList(800,function(){
+        alert('显示完成');
+    });
+
+</script>
+</body>
+</html>

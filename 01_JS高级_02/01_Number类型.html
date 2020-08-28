@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_Number类型</title>
+</head>
+<body>
+<script>
+    // 1)Number类型
+    var n = 15; //整数 Int
+    var m = 20.5;//浮点数  Float 
+
+    // 数学运算
+    console.log(n+m);//35.5
+    console.log(1-0.2);//0.8
+    console.log(1-0.8);//0.19999
+    // 浮点数计算精度有误差
+    // toFixed(2) 保留两位小数
+    console.log((1-0.8).toFixed(2));//0.20
+
+    // 假如没有toFixed方法
+        var a = 1;
+        var b = 0.8;
+        var rs = (1*10-0.8*10)/10;//0.2
+        console.log(rs);
+</script>
+</body>
+</html>

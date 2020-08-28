@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_new关键字</title>
+</head>
+<body>
+    <script>
+        // 2)new关键字创建对象
+        var obj = new Object();
+        obj.uname = '小红';
+        obj.age = 18;
+        obj.read = function(book){
+                console.log('最近在读'+book);
+            };
+        obj.sing = function(song){
+                return '喜欢唱'+song;
+            };
+
+        console.log(obj);
+        console.log(obj.uname);
+        console.log(obj.age);
+        obj.uname = '小红abc';
+        console.log(obj.uname);
+        obj.read('《HTML+CSS》');
+        console.log(obj.sing('《烟火里的尘埃》'));
+
+        // 对比1和2
+        var obj1 = {};
+        var obj2 = new Object();
+
+        console.log(obj1);
+        console.log(obj2);
+
+        console.log(obj1==obj2);//false
+        // 对象都是独立的，互相不受影响
+        // 即使是两个空对象也不一样
+        obj1.ucode = 1001;
+        obj2.ucode = 1001;
+
+        obj1.ucode +='学号';
+
+        console.log(obj1);
+        console.log(obj2);
+
+
+    </script>
+</body>
+</html>

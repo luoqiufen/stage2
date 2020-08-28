@@ -1,0 +1,114 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-13 16:09:03
+ * @LastEditTime: 2020-07-13 17:36:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_05\08_导航条.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08_导航条</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+</head>
+<body>
+    <h3>导航条: LOGO+链接文字</h3>
+    <div class="navbar navbar-default container">
+        <!-- 头部: logo -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">LOGO</a>
+        </div>
+        <!-- 导航链接 -->
+        <ul class="nav navbar-nav">
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">视频</a></li>
+            <li><a href="#">游戏</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">淘宝 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">零食</a></li>
+                    <li><a href="#">服装</a></li>
+                    <li><a href="#">玩具</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3>导航条: LOGO+表单</h3>
+    <div class="navbar navbar-inverse">
+        <!-- logo -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">LOGO</a>
+        </div>
+        <!-- 表单: 搜索 -->
+        <form action="#" class="navbar-form">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                    
+                </div>
+                
+            </div>
+        </form>
+    </div>
+
+    <h3>导航条: LOGO+导航链接+搜索区域</h3>
+    <div class="navbar navbar-default">
+        <!-- 1) 头部: LOGO -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">LOGO</a>
+            <!-- 折叠按钮: 点击显示/隐藏导航区域 -->
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- 折叠区域: 2+3 -->
+        <div class="collapse navbar-collapse" id="collapse1">
+            <!-- 2) 导航链接 nav -->
+            <ul class="nav navbar-nav">
+                <li><a href="#">音乐</a></li>
+                <li><a href="#">视频</a></li>
+                <li><a href="#">游戏</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">淘宝 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">零食</a></li>
+                        <li><a href="#">服装</a></li>
+                        <li><a href="#">玩具</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- 3)搜索区域 form -->
+            <form action="#" class="navbar-form">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        
+    </div>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+</html>

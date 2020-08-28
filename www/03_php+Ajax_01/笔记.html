@@ -1,0 +1,198 @@
+<!--
+ * @Author: LuoQiufen
+ * @Date: 2020-06-28 09:31:50
+ * @LastEditTime: 2020-06-29 09:52:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_01\笔记.html
+--> 
+第二阶段
+第三章 php+Ajax
+第一天
+
+一、前后端
+    1.前端: 针对于浏览器开发,运行在浏览器上
+    语言: html css js
+    2.后端: 针对于服务器分开发,运行在服务器上
+    语言: php java python node
+
+二、服务器
+    1.什么是服务器?
+        就是一台具有计算机功能及特殊服务的计算机
+    2.服务器的分类
+        按类型分: 数据库服务器,邮件服务器,FTP服务器,web服务器...
+        按操作系统分: windows,linux
+        1) 服务器的软件
+            数据库服务器: mysql oracle
+            邮件服务器: postfix sendmail
+            FTP服务器: Fille Zilla
+            web服务器: Apache Tomcat
+        2) 服务器交互架构
+            C/S架构: Client/Serve
+                - 客户端/服务器
+                - 移动端APP/PC端客户端程序: 王者荣耀,饿了么,美团,淘宝...
+                优点: 效率高,有一部分工作是在客户端进行的
+                缺点: 无法跨平台,如果有更新必须本地更新
+            B/S架构: Browser/Serve
+                - 浏览器/服务器
+                - web网站: 淘宝网站,京东网站
+                优点: 可以跨平台,只要有浏览器就行
+                缺点: 效率低,更新都要在服务器端执行
+
+三、服务器环境搭建
+    1.web服务器软件: 集成的免费工具
+        WAMP: Windows + Apache + Mysql + PHP
+        其他系统: LAMP(Linux)/MAMP(Mac)
+    2.安装
+        1) 双击 wamp.exe 一键安装
+        2) 修改 虚拟目录(默认:c:wamp/www)
+            图标->Apache->httpd.conf(配置文件)
+
+            DocumentRoot "D:/web2004/www"
+            <Directory>
+                #deny from all
+                Allow from all
+            </Directory>
+            <Directory "D:/web2004/www">
+                Allow from all
+            </Directory>
+        3) 修改完保存,重启WAMP
+        4) 补充: 访问局域网ip地址
+            <Directory "D:/web2004/www">
+                Allow from all
+            </Directory>
+            查看本机ip:
+            window->运行:
+            输入 cmd 回车
+            输入 inconfig 回车
+            看到ip 172.17.12.5  
+        5) 测试: 在浏览器里输入地址
+            访问本地服务器
+                localhost
+                127.0.0.1
+            访问局域网
+                127.17.12.229(局域网ip)
+
+四、服务器语言： php
+    1. php是什么?
+        PHP Hypertext Preprocessor 
+        超文本预处理语言
+    2. 文件格式
+        .php
+    3. 运行在哪?
+        运行在服务器上,可以通过浏览器去访问
+    4.开发工具/编辑工具
+        vscode,phpStrom,zend studio...
+    5.php语言特点                                                                                                      
+        免费开源
+        跨平台
+        弱类型语言
+
+五、PHP语法
+    1. 语法标签
+        <?php
+        header("content-type:text/html;charset=utf-8");
+            php代码
+        ?>
+    2. 注释符号
+        // 单行注释
+        # 单行注释
+        /*
+            多行注释
+        */
+    3. 输出语句
+        1)echo语句
+        echo '内容1','内容2'...;
+        print '内容';
+        var_dump('内容');
+    4. 变量
+        声明变量:
+            $变量名 = 值;
+            $变量名1 = 值;
+            $变量名2 = 值;
+
+        引用变量:
+            $变量名;
+            echo $变量名
+
+        命名规则:
+            1)严格区分大小写
+            2)可以有字母,数字,_下划线组合,不能以数字开头
+            3)不能使用关键字
+    5. 常量
+        - 定义
+        define('常量名',值[,boo:false]);
+        - 引用
+        echo 常量名
+        <?php
+            define('uName','虹猫');
+            echo uName;
+        ?>
+    6. 数据类型
+        string,int,float,boolean,array,null,对象,资源...
+        <?php
+            1)string
+                $str1 = "aa'bb'cc";
+                $str1 = 'aa"bb"cc';
+                $str1 = "aa\"bb\"cc";
+
+            2)int和float
+                $num1 = 10;//int 
+                $num2 = 15.2;//float
+
+                $num1++;//11
+                $num2--;//14.2
+                $num1 +=5;//16
+                $num2 /=2;//7.1
+
+            //.连接符
+                $num2 .= 8;//string 7.18
+
+            //3)boolean 
+                $boo = true;
+                $boo = false;
+
+            //4)null 空
+                echo null;//null
+                echo NULL;//null
+
+        ?>
+    7. 数组 array 
+        <?php
+            //- 声明
+            $arr1 = array();
+            $arr2 = array(12,23,45,25);
+            $arr3 = array(
+                0=>'aa',
+                1=>'bb',
+                3=>'cc'
+            ); 
+            //关联数组 
+            $arr4 = array(
+            'uname' => 'apple',
+            'uage' => 10,
+            'ugender' => '男'
+            );
+        
+            //多维数组
+            $arr4 = array(
+            'uname'=>'李白',
+            'uage'=>20,
+            'like'=>array('篮球','羽毛球','乒乓球'),
+            'course'=>array('语文','数学','地理','化学')
+            );
+        
+            //获取数组长度
+            count($arr4);//4
+        ?>
+
+六、流程语句
+    1. if条件
+    2. switch分支
+    3. 循环语句
+        for循环
+        while循环
+        do-while循环
+    4. 数组循环遍历
+        foreach循环
+    

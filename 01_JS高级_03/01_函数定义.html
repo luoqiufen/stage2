@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01函数定义</title>
+</head>
+<body>
+<script>
+    // 函数function
+    // 方法1 整体提前到顶部
+    function fun1(num1,num2){
+       console.log( num1+num2);
+    }
+    fun1(10,15);                                                                                                                                                                                                                             
+    // 方法2
+    // 第一步:var fun2;声明提前到顶部
+    // 第二步 fun2 = function;赋值留在原地
+    var fun2 = function(n){
+        console.log(Math.pow(n,3));
+    }
+    fun2(5);
+
+    // 方法3:不推荐
+    var fun3 = new Function('a','b','c','console.log(a*b*c)');
+    fun3(3,4,5)
+    
+</script>
+</body>
+</html>

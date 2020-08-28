@@ -1,0 +1,99 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-03 08:59:21
+ * @LastEditTime: 2020-07-03 10:44:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\06_test\01_index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            var resp;
+            $.getJSON('./data1.json', '', function (response) {
+                // console.log(response);
+
+                //加载省级信息
+                showCon(response, $('select[name=province]'), 'proname');
+
+                // 默认显示第一个省份对应的城市
+                showCon(response[0]['city'], $('select[name=city]'));
+
+                // 显示省份和城市信息
+                // obj:数据信息
+                // selector:标签元素
+                function showCon(obj, selector, key) {
+                    var opt1 = '';
+                    for (var k in obj) {
+                        // opt1 += '<option value="' + k + '">' + obj[k][key] + '</option>';
+                        opt1 += '<option value="' + k + '">' + (key == null ? obj[k] : obj[k][key]) +
+                            '</option>';
+                    }
+                    selector.html(opt1);
+                }
+
+                // 点击省份,切换对应城市
+                $('select[name=province]').change(function () {
+                    // console.log('aa');
+                    var index = this.selectedIndex
+                    
+                    console.log(index);
+                    showCon(response[index]['city'], $('select[name=city]'))
+                })
+            });
+
+
+
+            $.get('./php1.php?act=add', '', function () {})
+
+            $('input[type=button]').click(function () {
+                var userName = $('input[name=uname]').val();
+                var gender = $('input[name=gender]:checked').val();
+
+                console.log("userName" + userName, "gender" + gender);
+
+                $.get('./php1.php?act=add', 'userName=' + userName + '&gender=' + gender, function (
+                    response) {});
+
+            })
+
+
+        })
+    </script>
+
+</head>
+
+<body>
+    <form action="">
+        <p>
+            学生名:
+            <input type="text" name="uname">
+        </p>
+        <p>
+            性别:
+            <input type="radio" name="gender" value="0">男
+            <input type="radio" name="gender" value="1">女
+        </p>
+        <p>
+            籍贯:
+            <select name="province"></select>
+            <select name="city"></select>
+        </p>
+        <p>班级:
+            <input type="text" name="class">
+        </p>
+        <p>
+            <input type="button" value="添加学生">
+        </p>
+    </form>
+
+</body>
+
+</html>

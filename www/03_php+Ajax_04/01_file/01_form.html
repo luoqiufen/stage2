@@ -1,0 +1,32 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 11:06:41
+ * @LastEditTime: 2020-07-01 11:24:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_04\01_form.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./02_index.php" enctype="multipart/form-data" method="POST">
+        <h3>发表文章</h3>
+        <p>
+            标题: <input type="text" name="title">
+        </p>
+        <p>
+            内容: <textarea name="con"></textarea>
+        </p>
+        <p>
+            图片: <input type="file" name="pic">
+        </p>
+        <input type="submit" value="发表">
+    </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_return返回值</title>
+</head>
+<body>
+<script>
+    // return 值
+    function fun1(a,b){
+        console.log('减法:',a-b);
+    }
+    fun1(10,6);
+
+    function fun2(a,b){
+        console.log('乘法:',a*b);
+        return '返回值';
+    }
+    fun2(10,6);
+
+    // return 值
+    function fun3(){
+        var name = '小明';
+        var age = 18;
+        var sex = '男';
+        return [name,age,sex];
+    }
+    console.log(fun3());//结果是return返回值
+    var info = fun3();
+    console.log(info);
+    
+</script> 
+</body>
+</html>

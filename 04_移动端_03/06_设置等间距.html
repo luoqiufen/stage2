@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 17:44:24
+ * @LastEditTime: 2020-07-09 17:55:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\06_设置等间距.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_设置等间距</title>
+    <style>
+        .con{
+           width: 80%;
+           border: 1px solid red;
+           margin: 10px auto;
+        } 
+        .con p{
+            width: 20%;
+            height: 100px;
+            float: left;
+            background: pink;
+            /* margin: 2.5%; */
+            margin: calc(20%/8);
+        }
+
+        /* 400-600px 3 */
+        @media screen and (min-width:400px) and (max-width:600px){
+            .con p{
+                width: 30%;
+                margin: calc(10%/6);
+            }
+        }
+        /* 小于400px 2 */
+        @media screen and (max-width:400px){
+            .con p{
+                width: 45%;
+                margin: calc(10%/4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+    </div>
+    
+</body>
+</html>

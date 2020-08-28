@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 17:34:27
+ * @LastEditTime: 2020-07-09 17:43:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\05_colum.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_colum</title>
+    <style>
+        .article{
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid red;
+            padding: 5px;
+            /* 分列 */
+            column-count: 4;
+            column-rule: 1px dashed blue;
+            column-gap: 30px;
+        }
+
+        /* 400-600px 显示3列 */
+        @media screen and (min-width:400px) and (max-width:600px){
+            .article{
+                column-count: 3;
+            }
+        }
+        /* 300-400px 显示2列 */
+        @media screen and (min-width:300px) and (max-width:400px){
+            .article{
+                column-count: 2;
+            }
+        }
+        /* 小于300px 显示1列 */
+        @media screen and (max-width:300px){
+            .article{
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body class="article">
+    <div>君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.君不见,黄河之水天上来,奔流到海不复回;君不见,高堂明镜悲白发,朝如青丝暮成雪.人生得意须尽欢,莫使金樽空对月.天生我材必有用,千金散尽还复来.</div>
+</body>
+</html>

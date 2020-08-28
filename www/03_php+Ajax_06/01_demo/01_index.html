@@ -1,0 +1,109 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-03 11:22:47
+ * @LastEditTime: 2020-07-03 16:25:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_06\01_demo\01_index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // 定义函数:数据渲染到对应的模板位置
+        // data :数据
+        // ele:模板标签 位置里
+        function showMess(data,ele){
+            // 1)循环遍历数组
+            // 指定的语法规则
+            var rs = ele.html();
+            for(var key in data){  
+                var str = "(&lt;%" + key + "%&gt;|{{" + key + "}})";
+                var reg = new RegExp(str,'g');
+                rs = rs.replace(reg, data[key]);
+            }
+            // 2)把替换的结果 渲染 到指定模板位置
+            ele.html(rs); 
+        }
+           
+    </script>
+
+    <!-- 显示信息1 -->
+    <h3>学生信息</h3>
+    <div class="box1">
+        <ul>
+            <li>学号:<%ucode%></li>
+            <li>姓名:{{uname}}</li>
+            <li>性别:{{usex}}</li>
+            <li>年龄:{{uage}}</li>
+        </ul>
+        <p>我叫{{uname}},我的学号是<%ucode%>,性别{{usex}},今年{{uage}}岁了</p>
+    </div>
+
+    <!-- 显示信息1 -->
+    <h3>商品信息</h3>
+    <div class="box2">
+        <ol>
+            <li>商品编号:{{procode}}</li>
+            <li>商品名:{{proname}}</li>
+            <li>单价:{{price}}</li>
+            <li>库存:{{num}}</li>
+            <li>出版社:{{public}}</li>
+        </ol>
+    </div>
+
+    
+    <script>
+        $(function () {
+            //请求数据
+            $.getJSON('./02_data.json', '', function (response) {
+                console.log(response);
+                // 测试:{{ucode}} 替换成 response['ucode'];
+                // {{uname}} 替换成 response['uname'];
+
+                var rs = $('.box1').html().replace(/{{ucode}}/g, response['ucode']); //替换的结果
+                $('.box1').html(rs); //结果显示到页面中
+                var rs = $('.box1').html().replace(/{{uname}}/g, response['uname']); //替换的结果
+                $('.box1').html(rs);
+
+                // 循环遍历去完成替换
+                var rs = $('.box1').html();
+                for (var key in response) {
+                    // 只允许一个语法
+                    // {{ ucode }}
+                    var reg = new RegExp('{{' + key + '}}', 'g');
+                    // <% ucode %>
+                    var str = new RegExp('&lt;%' + key + '%&gt;', 'g');
+                    
+                    // 允许两个个语法
+                    // {{ ucode }}
+                    // <% ucode %>
+                    var str = "(&lt;%" + key + "%&gt;|{{" + key + "}})";
+                    var reg = new RegExp(str,'g');
+                    rs = rs.replace(reg, response[key]);
+                }
+                $('.box1').html(rs);
+            })
+        })
+    </script>
+
+    <script>
+        $(function(){
+            $.getJSON('./03_data.json', '', function (response){
+                console.log(response);
+                showMess(response,$('.box2'))
+            })
+        })
+    </script>
+</body>
+
+</html>

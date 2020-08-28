@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_数组应用</title>
+</head>
+<body>
+<script>
+    // 案例1:把新闻信息显示到列表里,每行显示10个字,溢出的用...代替
+    var news = [
+        '你当像鸟飞往你的山（比尔·盖茨年度特别推荐)',
+        '家人闲坐，灯火可亲 汪曾祺散文集（愿你有家可回，有人可等)',
+        '汪曾祺图文作品集套装共4册：人间有味+人间小暖+人间有趣+人间草木',
+        '雅舍小品 （收录 谈话的艺术 骂人的艺术 时间即友谊等）',
+        '学习究竟是什么 得到App超过11万人都在学 万维钢通才丛书'
+    ];
+    function createNews(news_arr){
+        var newsList = '<ol>'
+        for(var key in news_arr){
+           newsList += '<li title="'+news_arr[key]+'">'+news_arr[key].substr(0,10)+'...</li>'
+        }
+        newsList +='</ol>'
+        return newsList;
+    }
+    document.write(createNews(news));
+
+    // 案例2:定义函数
+    // 返回:true(允许) false(不允许)
+    // 验证文件是否都符合上传要求
+    // 允许:png/gif/jpg/jpeg
+    var fileArr = [
+        'imgs/01.png',
+        'imgs/logo.ico.jpg',
+        'imgs/banner.png',
+        'imgs/index.css',
+        'img/head.html.gif',
+        'img/icon.jpeg'
+    ]
+    function check(arr){
+        // 1)定义格式要求
+        var reg = /(png|gif|jpg|jpeg)$/;
+        // 2)循环遍历
+        for(var key in arr){
+            var i = arr[key].lastIndexOf('.');
+            var j = arr[key].substr(i+1);//后缀名
+            console.log(j);
+            // 验证
+            if(reg.test(j)){//符合要求
+                
+            }else{
+                return false;
+            }
+        }
+        // for结束,都符合要求
+        return true;
+    }
+    console.log(check(fileArr));
+
+    // 扩展:验证用户名是否都符合要求
+    // 只能有中文,字母,数字
+    // 不能以数字开头
+    // 长度4-8位
+
+
+    
+</script>    
+</body>
+</html>

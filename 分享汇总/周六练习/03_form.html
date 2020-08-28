@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<form action="index.php">
+	<p>
+		姓名： <input type="text" name="uname">
+	</p>
+	<p>
+		年龄： <input type="text" name="uage">
+	</p>
+	<p>
+		证件照: <input type="file" name="headpic">
+	</p>
+	<div class="works">
+		<p>
+			工作经历：<textarea name="work0"></textarea> 
+			<input type="button" value="删除" class="delWork">
+		</p>
+	</div>
+	<p>
+		<input type="button" value="增加工作经历" class="addBtn">
+	</p>
+	<p>
+		<input type="button" value="提交" class="submitBtn">
+		<input type="button" value="存入草稿" class="saveBtn">
+	</p>
+
+</form>
+<script src="./jquery-1.9.1.min.js"></script>
+<script>
+$(function(){
+	// 技术：sessionStorage 本地存储，关闭浏览器失效
+	//0)初始化页面：如果有数据，数据不丢失
+	function init(){
+		var localData = sessionStorage.getItem('self_info');
+		if(localData){
+			localData = JSON.parse(localData);
+			$('input[name=uname]').val(localData.uname);
+			$('input[name=uage]').val(localData.uage);
+			if(localData.works){
+				var dom = '';
+				for(var key in localData.works){
+					dom += "<p>";
+					dom += "工作经历：<textarea name=work"+key+">"+localData.works[key]+"</textarea> ";
+					dom += "<input type='button' value='删除' class='delWork'>";
+					dom += "</p>";
+				}
+				$('.works').html(dom);
+			}
+		}
+	}
+	init();
+
+	//1)保存草稿:证件照可不存，因为已经存入后台
+	$('.saveBtn').click(function(){
+		var works = [];//存储多个工作经历
+		$('.works textarea').each(function(index,ele){
+			//不为空-就保存
+			$(ele).val() && works.push($(ele).val());
+		})
+
+		var data = {
+			"uname":$('input[name=uname]').val(),
+			"uage":$('input[name=uage]').val(),
+			"works":works
+		};
+		sessionStorage.setItem('self_info',JSON.stringify(data));
+
+	});
+
+
+	//2)增加工作经历 - 且"重新排序"
+	// 至多5条
+	$('.addBtn').click(function(){
+		if($('.works p').length<5){
+			$('.works').append($('.works p:first').clone(true));
+			$('.works p textarea:last').val('');
+		}else{
+			alert('最多5条');
+		}
+		sortWorks();
+	});
+
+
+	//3)工作经历排序
+	function sortWorks(){
+		$('.works p').each(function(index,ele){
+			$(ele).children('textarea').attr('name','work'+(index+1));
+		});
+	}
+
+
+	//4)删除按钮 - 且"重新排序"
+	//至少保留一项
+	$('.delWork').click(function(){
+		if($('.works p').length>1){//可以删
+			$(this).parent('p').remove();
+		}else{
+			alert('至少保留一项');
+		}
+		sortWorks();
+	})
+
+	//5)提交表单，数据初始化
+	$('.submitBtn').click(function(){
+		sessionStorage.removeItem('self_info');
+		$('form').submit();
+	})
+
+})
+</script>
+
+	
+</body>
+</html>

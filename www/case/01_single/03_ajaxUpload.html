@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上传单文件</title>
+</head>
+<body>
+  <form action="#"  method="post">
+    <h3>发表文章</h3>
+    <p>
+      标题: <input type="text" name="title">
+    </p>
+    <p>
+      内容: <textarea name="con"></textarea>
+    </p>
+    <p>
+      图片: <input type="file" name="pic" id="pic" multiple>
+    </p>
+    <p id="showImg">
+      <!-- <img src=""  width="120" height="120"> -->
+    </p>
+    <p> 
+      <input type="submit" value="发布">
+    </p>
+  </form>
+<script>
+//当图片上传时：图片控件发生改变时
+pic.onchange = function(){ 
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange=function(){  
+    if(xhr.readyState==4&&xhr.status==200){
+      console.log(xhr.responseText);
+      showImg.innerHTML = "<img src="+xhr.responseText+"  width='120' height='120'>";
+    }
+  }
+  xhr.open('post','./04_upload.php');//上传文件不需设置请求头
+  //xhr.setRequestHeader('content-type',"application/x-www-form-urlencoded");
+
+  //要自己收集文件的详细数据
+  // 伪造成form提交的数据
+  var file_input = pic.files[0];
+  // console.log(file_input);//文件的数据信息
+  //伪造成form提交的
+  var data = new FormData();
+  data.append('img',file_input);//把文件信息添加进来
+  
+
+  xhr.send(data);
+}
+
+
+
+</script>
+  
+</body>
+</html>

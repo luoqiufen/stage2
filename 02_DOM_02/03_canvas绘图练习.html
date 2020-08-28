@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_canvas绘图练习</title>
+    <style>
+    canvas{
+        border: 1px solid grey;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas1" height="200" width="180"></canvas>
+    <script>
+        var shape1 = canvas1.getContext('2d');
+        shape1.fillStyle = '#e2f13c';
+        // shape1.strokeStyle = 'red';
+        shape1.lineJoin = 'round';
+        shape1.lineWidth = '3';
+        shape1.moveTo(88,10);
+        shape1.lineTo(68,68);
+        shape1.lineTo(10,68);
+        shape1.lineTo(56,102);
+        shape1.lineTo(40,160);
+        shape1.lineTo(88,126);
+        shape1.lineTo(136,160);
+        shape1.lineTo(120,102);
+        shape1.lineTo(166,68);
+        shape1.lineTo(106,68);
+        shape1.lineTo(88,10);
+        shape1.lineTo(68,68);
+
+        shape1.fill();
+        // shape1.stroke();
+    </script>
+    <canvas id="canvas2" height="300"></canvas>
+    <script>
+        // 挖空(镂空)
+        // 用橡皮擦(清除矩形)
+        /* var shape2 = canvas2.getContext('2d');
+        shape2.fillStyle = 'red';
+        // shape2.arc(150,150,100,0,Math.PI*2,true);
+        shape2.fillRect(100,50,150,150);
+        shape2.clearRect(150,100,50,50);
+        shape2.fill();
+
+        shape2.beginPath();
+        shape2.fillStyle = 'orange';  
+        shape2.translate(100,50);
+        shape2.rotate(45*Math.PI/180);
+        shape2.translate(-50,-50);
+
+        shape2.fillRect(50,50,100,100);
+        shape2.closePath();
+
+        shape2.translate(100,100);
+        shape2.rotate(-45*Math.PI/180);
+        shape2.translate(-100,-100);
+        shape2.clearRect(75,75,50,50); */
+
+        var shape2 = canvas2.getContext('2d');
+        shape2.fillStyle = 'red';
+        // shape2.arc(150,150,100,0,Math.PI*2,true);
+        shape2.fillRect(100,50,150,150);
+        shape2.clearRect(150,100,50,50);
+        shape2.fill();
+
+        shape2.beginPath();
+        shape2.fillStyle = 'orange';  
+        shape2.translate(100,50);
+        shape2.rotate(45*Math.PI/180);
+        shape2.translate(-50,-50);
+
+        shape2.fillRect(50,50,100,100);
+        shape2.closePath();
+
+        shape2.translate(100,100);
+        shape2.rotate(-45*Math.PI/180);
+        shape2.translate(-100,-100);
+        shape2.clearRect(75,75,50,50);
+    </script>
+</body>
+</html>

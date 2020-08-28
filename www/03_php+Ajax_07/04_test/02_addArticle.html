@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script src="./04_cookie.js"></script>
+    <script>
+        $(function() {
+            // 获取控件
+            var code = $('input[name=code]');
+            var title = $('input[name=title]');
+            var author = $('input[name=author]');
+            var con = $('textarea[name=con]');
+
+            // 1) 先看用户是否有登录
+            if(cookies.get('uname')){
+                $('h1 font').html(cookies.get('uname'));
+            }else{//没有登录,返回登录页
+                alert('请先登录');
+                setTimeout(function(){window.location='./01_index.html'},1000);
+            }
+
+
+
+            // 点击发表按钮(永久储存)
+            // 方式1:发送到后端,存入数据库
+            // 方式2: 存储到本地 localStorage
+            $('#btn1').click(function() {
+                var data = {
+                    'code':code.val(),
+                    'title':title.val(),
+                    'author':author.val(),
+                    'con':con.val(),
+                }; // json->字符串
+                data = JSON.stringify(data);
+
+                // 永久存储
+                // console.log(localStorage.length);
+                // console.log(sessionStorage.length);
+                // 已经有的 信息个数+1
+            })
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <h1>您好，欢迎
+        <font color=red>xx</font>
+    </h1>
+
+    <!-- 文章列表 -->
+    <h3>文章列表</h3>
+    <table border=1 bordercolor=red cellspacing=0 cellpadding=10>
+        <tr>
+            <th>文章编号</th>
+            <th>文章标题</th>
+            <th>文章作者</th>
+            <th>文章内容</th>
+        </tr>
+    </table>
+
+    <h3>添加文章</h3>
+    <form action="#" name="form1">
+        编号:
+        <input type="text" name="code">
+        <br>
+        <br> 标题:
+        <input type="text" name="title">
+        <br>
+        <br> 作者:
+        <input type="text" name="author">
+        <br>
+        <br> 内容：
+        <textarea name="con" cols="30" rows="10"></textarea>
+        <br>
+        <br>
+        <input type="button" value="发表" id="btn1">
+        <input type="button" value="存入草稿" id="btn2">
+    </form>
+
+</body>
+
+</html>

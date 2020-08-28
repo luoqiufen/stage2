@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的主页</title>
+    <script src="../js/template-web.js"></script>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+    <h1>显示班级信息</h1>
+    <div class="box">
+
+    </div>
+
+    <script>
+        // 1)先找数据
+        $.getJSON('./data.json','',function(response) {//response-数据
+            // 获取到了,找模板渲染
+            $.get('./outer.html','',function(res) {
+                // 1) html模板处理 -> 返回函数
+                var render = template.compile(res);
+                // 2) 函数(数据) -> 渲染数据
+                var rs = render(response);
+                $('.box').html(rs);
+            },'html')
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_jQ扩展</title>
+    <script src="../jq/jquery-1.9.1.min.js"></script>
+    <script>
+    $(function(){
+        // 扩展API
+        // $对象
+        $.extend({
+            uname: '虹猫'
+        });
+        // $(dom对象)
+        $.fn.extend({
+            move: function(amount = 200, time = 1000) {
+                this.animate({
+                    'margin-left':amount
+                },time)
+            }
+        })
+        console.log($.uname);//虹猫
+        $('input[name=btn1]').move();
+        $('input[name=btn2]').move(300,2000);
+
+    })
+    
+    </script>
+</head>
+<body>
+    <input type="button" value="按钮" name="btn1"><br><br>
+    <input type="button" value="按钮" name="btn2">
+</body>
+</html>

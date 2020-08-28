@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_原型和原型链2</title>
+</head>
+<body>
+    <script>
+        // 构造函数1:
+        function Aa(uname){
+            this.uname = uname;
+        }
+        Aa.prototype.init = function(){
+            console.log('这是Aa函数');
+        }
+
+        // 构造函数2:
+        function Bb(uage){
+            this.uage = uage;
+        }
+        Bb.prototype.init = function(){
+            console.log('这是Bb函数');
+        }
+
+        // 创建实例
+        var a1 = new Aa('apple');
+        var b1 = new Bb('18');
+
+        console.log(a1);
+        console.log(b1);
+
+        console.log(a1.__proto__);//Aa.prototype
+        console.log(b1.__proto__);//Bb.prototype
+
+        console.log(a1.__proto__.__proto__);//Aa.prototype.__proto__ -->Object.prototype
+        console.log(b1.__proto__.__proto__);//Bb.prototype.__proto__ -->Object.prototype
+
+        console.log(a1.__proto__.__proto__ == b1.__proto__.__proto__);//true
+
+        console.log(a1.__proto__.__proto__.__proto__);//null 终点
+        console.log(b1.__proto__.__proto__.__proto__);//null
+    </script>
+</body>
+</html>

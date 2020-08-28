@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_指针关系</title>
+</head>
+<body>
+    <script>
+        // 1) String字符串 
+        var str1 = 'apple';//原始值
+        /*
+        程序有包装类: String()
+        原来: 'apple'
+        加工: new String() 
+         */
+        var str2 = new String('  ba  na  na  ');
+        console.log(str1);//apple
+        console.log(str2);//{}实例对象
+        console.log( str2.__proto__);//String.prototype 原型对象
+
+        var str3 = new String('pear');//实例
+        console.log(str3.__proto__);//String.prototype 原型对象
+
+        // 使用查询方法
+        console.log(str1.indexOf('a'));//0
+        console.log(str2.indexOf('a'));//1
+        console.log(str3.indexOf('a'));//2  
+
+        // 添加属性/方法
+        // str1,str2,str3
+        str1.uname = '小明';
+        str2.uage = '14';
+        str3.school = '南京大学';
+        console.log(str1.uname);//undefined
+        console.log(str2.uage);//14
+        console.log(str3.school);//南京大学
+
+        // 添加一个方法
+        /* str2.ltrim = function(){
+            console.log(str2.replace(/^\s+/,''));
+        }
+        str2.ltrim(); */
+
+        // 添加到原型对象上.变成共享的方法
+        String.prototype.ltrim = function(){
+            console.log(this.replace(/^\s+/,''));
+        }
+        str2.ltrim();
+
+        var str4 =  new String('  fsh    fdsk   jf    ');
+        str4.ltrim();
+
+    </script>
+</body>
+</html>

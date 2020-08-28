@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装分页</title>
+    <script src="../jquery-1.6.2.min.js"></script>
+    <script>
+        var news = [
+            '新闻1新闻1新闻1',
+            '新闻2新闻2新闻2新闻2新闻2',
+            '新闻3新闻3新闻3',
+            '新闻4新闻4新闻4',
+            '新闻5新闻5新闻5',
+            '新闻6新闻6新闻6',
+            '新闻7新闻7新闻7',
+            '新闻8新闻8新闻8',
+            '新闻9新闻9新闻9',
+            '新闻10新闻10新闻10',
+            '新闻11新闻11新闻11',
+            '新闻12新闻12新闻12',
+            '新闻13新闻13新闻13',
+            '新闻14新闻14新闻14',
+            '新闻15新闻15新闻15',
+            '新闻16新闻16新闻16',
+            '新闻17新闻17新闻17',
+            '新闻18新闻18新闻18',
+            '新闻19新闻19新闻19',
+            '新闻20新闻20新闻20',
+            '新闻21新闻21新闻21',
+            '新闻22新闻22新闻22',
+            '新闻23新闻23新闻23',
+            '新闻24新闻24新闻24',
+            '新闻25新闻25新闻25',
+            '新闻26新闻26新闻26',
+            '新闻27新闻27新闻27',
+            '新闻28新闻28新闻28',
+            '新闻29新闻29新闻29',
+            '新闻30新闻30新闻30',
+            '新闻31新闻31新闻31',
+            '新闻32新闻32新闻32',
+        ]
+        /* function aa(fun1,fun2){
+        }
+        aa(showCon(['fghgh'],1,1,'con'),paging('page'));
+
+
+        function showCon(content,num,current,selector1){
+            var tatalPage = Math.ceil(content.length/num);
+
+            var start = (current-1)*num;
+            var end = current*num;
+            var con = content.slice(start,end);
+
+            $(selector1).html(con);
+        }
+
+        function paging(selector2){
+            var page = '<a href=# onclick=showCon(current-1)>上一页</a>';
+            for(var i=1;i<=tatalPage;i++){
+                page += '<a href=# onclick=showCon('+i+')>'+i+'</a>';
+            }
+            page += '<a href=# onclick=showCon(current+1)>下一页</a>';
+            $(selector2).html(page);
+        }
+*/
+
+        /* 
+        内容：content 
+        每页数量：num
+        当前页：current
+        */
+        function aa(content, num, current) {
+            num == null ? num = 10 : num;
+            // num = num == null ? 10 : num
+            var tatalPage = Math.ceil(content.length / num);
+            current = 1;
+            // console.log(content);
+            console.log(num);
+            console.log(current);
+            console.log(tatalPage);
+
+            showCon(content, num, current);
+
+            /* var page = '<a href=# onclick=showCon(current-1)>上一页</a>';
+            for(var i=1;i<=tatalPage;i++){
+                page += '<a href=# onclick=showCon('+i+')>'+i+'</a>';
+            }
+            page += '<a href=# onclick=showCon(current+1)>下一页</a>';
+            $('page').html(page); */
+        }
+
+        // 显示
+        function showCon(content, num, current) {
+            // current = k;
+            var start = (current - 1) * num;
+            var end = current * num;
+            var con = content.slice(start, end);
+
+            $('.con').html(con);
+        }
+        aa(news, 4, 4);
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <div class="con"></div>
+    <div class="page"></div>
+    <script>
+        var news = [
+            '新闻1新闻1新闻1',
+            '新闻2新闻2新闻2新闻2新闻2',
+            '新闻3新闻3新闻3',
+            '新闻4新闻4新闻4',
+            '新闻5新闻5新闻5',
+            '新闻6新闻6新闻6',
+            '新闻7新闻7新闻7',
+            '新闻8新闻8新闻8',
+            '新闻9新闻9新闻9',
+            '新闻10新闻10新闻10',
+            '新闻11新闻11新闻11',
+            '新闻12新闻12新闻12',
+            '新闻13新闻13新闻13',
+            '新闻14新闻14新闻14',
+            '新闻15新闻15新闻15',
+            '新闻16新闻16新闻16',
+            '新闻17新闻17新闻17',
+            '新闻18新闻18新闻18',
+            '新闻19新闻19新闻19',
+            '新闻20新闻20新闻20',
+            '新闻21新闻21新闻21',
+            '新闻22新闻22新闻22',
+            '新闻23新闻23新闻23',
+            '新闻24新闻24新闻24',
+            '新闻25新闻25新闻25',
+            '新闻26新闻26新闻26',
+            '新闻27新闻27新闻27',
+            '新闻28新闻28新闻28',
+            '新闻29新闻29新闻29',
+            '新闻30新闻30新闻30',
+            '新闻31新闻31新闻31',
+            '新闻32新闻32新闻32',
+        ]
+        /* function aa(fun1,fun2){
+        }
+        aa(showCon(['fghgh'],1,1,'con'),paging('page'));
+
+
+        function showCon(content,num,current,selector1){
+            var tatalPage = Math.ceil(content.length/num);
+
+            var start = (current-1)*num;
+            var end = current*num;
+            var con = content.slice(start,end);
+
+            $(selector1).html(con);
+        }
+
+        function paging(selector2){
+            var page = '<a href=# onclick=showCon(current-1)>上一页</a>';
+            for(var i=1;i<=tatalPage;i++){
+                page += '<a href=# onclick=showCon('+i+')>'+i+'</a>';
+            }
+            page += '<a href=# onclick=showCon(current+1)>下一页</a>';
+            $(selector2).html(page);
+        }
+*/
+
+        /* 
+        内容：content 
+        每页数量：num
+        当前页：current
+        */
+
+        function aa(num, current, totalRows, fun) {
+            console.log(num, current, totalRows)
+            num == null ? num = 10 : num;
+            current == null ? current = 1 : current;
+            var tatalPage = Math.ceil(totalRows / num);
+
+            if (current == 1) {
+                current = current + 1;
+            }
+            if (current == tatalPage) {
+                current = current - 1;
+            }
+
+            var page = '<a href=# onclick="' + fun + '('+num+',' + (current - 1) + ')">上一页</a>';
+            for (var i = 1; i <= tatalPage; i++) {
+                page += '<a href=# onclick="' + fun + '('+num+',' + i + ')">' + i + '</a>';
+            }
+            page += '<a href=# onclick="' + fun + '('+num+',' + (current + 1) + ')">下一页</a>';
+            $('.page').html(page);   
+        }
+
+        // 显示
+        function showCon(num, current) {
+            // current = k;
+            var start = (current - 1) * num;
+            var end = current * num; 
+            var con = news.slice(start, end);
+            var totalRows = news.length;
+
+            $('.con').html('<li>' + con + '</li>');
+
+            aa(num, current,  , 'showCon');
+        }
+
+        showCon(5, 1);
+
+    </script>
+</body>
+
+</html>

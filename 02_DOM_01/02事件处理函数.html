@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02事件处理函数</title>
+</head>
+<body>
+    <p>
+        用户名: <input type="text" name="uname" id="uname">
+    </p>
+
+
+    <script>
+        console.log(event);//undefined
+
+        function fun1() {
+            console.log('函数1');
+            console.log(event);
+        }
+
+        fun1();//普通函数调用
+
+        window.onload = fun1;//fun1 是一个事件处理函数 event
+
+        // 输入框: 获取焦点 事件
+        uname.onfocus = function(e) {//事件处理函数
+            console.log(event);
+            console.log(e);
+            console.log(arguments[0]);
+            console.log(event == e && e == arguments[0]);
+            // type
+            // 目标元素
+
+            console.log(event.type);//事件类型
+            console.log(event.srcElement);//目标元素
+            console.log(event.target);//目标元素
+        }
+    
+    </script>
+</body>
+</html>

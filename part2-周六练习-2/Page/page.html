@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../jq/jquery-1.9.1.min.js"></script>
+
+    <script>
+        // 学生信息
+        var students = [
+            { "name": "鲁班1", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班2", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班3", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班4", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班5", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班6", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班7", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班8", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班9", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班10", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班11", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班12", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班13", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班14", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班15", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班16", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班17", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班18", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班19", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班20", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班21", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班22", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班23", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班24", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班25", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班27", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+            { "name": "鲁班28", "age": 20, "sex": "男", "birth": "2020-06-21", "province": "皖" },
+        ];
+
+        /* 分页函数 
+         * currentPage 当前页、默认1
+         * pageSize 每页多少条、默认每页10条数据
+         * totalRows 总条数
+         * functionName 点击事件函数名称,函数入参为(currentPage,pageSize)
+         */
+        function pageUtil(currentPage, pageSize, totalRows, functionName) {
+            // console.log("执行分页函数", "currentPage:" + currentPage, "pageSize:" + pageSize, "totalRows:" + totalRows);
+            pageSize = pageSize == null ? 10 : pageSize;
+            //计算总页数
+            var totalPage = Math.ceil(totalRows / pageSize);
+            if (currentPage == 1) {
+                currentPage++;
+            }
+            if (currentPage == totalPage) {
+                currentPage--;
+            }
+
+            var page = '<a href="avascript:;" onclick=' + functionName + '(' + (currentPage - 1) + ',' + pageSize + ')>上一页</a>';
+            for (var i = 1; i <= totalPage; i++) {
+                page += '<a href="avascript:;" onclick=' + functionName + '(' + i + ',' + pageSize + ')>' + i + '</a>';
+            }
+            page += '<a href="avascript:;" onclick=' + functionName + '(' + (currentPage + 1) + ',' + pageSize + ')>下一页</a>';
+            document.querySelector('.page').innerHTML = page;
+        }
+
+        /* 加载分页信息 */
+        function initContent(currentPage, pageSize) {
+            var startIndex = (currentPage - 1) * pageSize;
+            var endIndex = currentPage * pageSize;
+
+            if(students == null || students.length==0){
+                var html = '<span>暂无数据</span>';
+                $('.content').html(html);
+                return;
+            }
+
+            var totalRows = students.length;
+            //分隔数组
+            var dataList = students.slice(startIndex, endIndex);
+
+            var html = '';
+            html += '<table border="1" cellspacing="0">';
+            for (var i = 0; i < dataList.length; i++) {
+                html += '<tr>';
+                for (var fileName in dataList[i]) {
+                    html += '<td>';
+                    html += dataList[i][fileName];
+                    html += '</td>';
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            $('.content').html(html);
+            //加载分页信息
+            pageUtil(currentPage, pageSize, totalRows, "initContent");
+
+        }
+
+        $(function () {
+            //默认加载第一页
+            initContent(1, 5);
+        })
+
+    </script>
+    <style>
+        .content{
+            width: 520px;
+        }
+        .content table tr{
+            height: 40px;
+            text-align: center;
+        }
+        .content table tr td{
+            width: 100px;
+        }
+        .page{
+            text-align: center;
+            width: 520px;}
+        .page a{
+            display: inline-block;
+            width: 30px;
+            border: 1px solid grey;
+            margin: 10px;
+            text-decoration: none;
+            color: #333;
+            line-height: 25px;
+        }
+        .page a:first-child{
+            width: 60px;
+        }
+        .page a:last-child{
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 内容信息 -->
+    <div class="content">
+    </div>
+    <!-- 分页信息 -->
+    <div class="page"></div>
+</body>
+
+</html>

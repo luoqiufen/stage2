@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08_string类型</title>
+</head>
+<body>
+    <script>
+        //string字符串
+        // - 每个字符串都是一个对象
+        //属性：length
+        //方法：indexOf()
+        var str1 = 'applebanana';
+        console.log(str1.length);//11
+        var str2 = 'hello baby';
+        console.log(str2.length);//10 
+        
+        // 以下程序:
+        var num = 10;//全局变量
+        var obj = {
+            num:15,//num属性
+            price: 30.85,
+            calc:function(){//方法
+                num +=10;//全局变量num+10:20
+                console.log(num);//20
+                console.log(obj.num);//15
+            },
+            study:function(book){
+                console.log('最近在读'+book);
+            }
+        }
+        obj.calc();
+        obj.study('《智障是怎样炼成的》');
+    </script>
+</body>
+</html>

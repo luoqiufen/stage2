@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_原型继承</title>
+</head>
+<body>
+    <script>
+        // 1. 原型继承
+        // 子类.prototype = new 父类();
+
+        // 1)人类: People
+        // 国籍 省份
+        // 物种 species: 人类
+        // 行为 吃() 喝() 玩()
+        function People(country,province) {//私有属性
+            this.country = country;//国籍
+            this.province = province;//省份
+        }
+        People.prototype.species = '人类';
+        People.prototype.eat = function(food) {
+            console.log('喜欢吃'+food);
+        }
+        People.prototype.drink = function(water) {
+            console.log('喜欢喝'+water);
+        }
+        People.prototype.play = function(game) {
+            console.log('经常玩'+game);
+        }
+        
+        // 实例化 第一个人
+        var person1 = new People('中国','江苏省');
+        console.log(person1);
+
+
+        // 2)学生类: Students
+        // 身份:学生
+        // 姓名 性别 年龄
+        // 行为 学习 加入(社团)
+
+        function Students(sname,sgender,sage){//私有属性
+            this.sname = sname;//姓名
+            this.sgender = sgender;//性别
+            this.sage = sage;//年龄
+        }
+        Students.prototype.identity = '学生';
+        Students.prototype.study = function(course){
+            console.log('学习'+course);
+        }
+        Students.prototype.join = function(club){
+            console.log('参加了'+club);
+        }
+
+        // 实例化: 学生1
+        var stu1 = new Students('虹猫','男',25);
+        console.log(stu1);
+
+        // 修改指针:改路线
+        Students.prototype.__proto__ = new People('中国','浙江省');
+
+        var stu2 = new Students('蓝兔','女',24);
+        console.log(stu2);
+
+        // 严格意义上: __proto__ 是非标准属性
+        // 不建议直接用,只做查看继承关系的作用
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-02 14:03:45
+ * @LastEditTime: 2020-07-06 10:29:37
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\笔记.html
+--> 
+第三章 php+Ajax
+第五天
+
+一、jq的ajax请求的API
+    1.get请求
+    <script>
+        $.get('index.php','uname=apple&upass123',function(response,static,xhr){
+            // 响应成功,去执行
+        },'xml/text/html/json')
+    </script>
+
+    2.post请求
+    <script>
+        $.post('index.php?act=uname','uname=apple&upass123',function(response,static,xhr){
+            // 响应成功,去执行
+        },'xml/text/html/json')
+    </script>
+
+    3.ajax(get/post)请求
+    <script>
+        // 伪造form提交数据
+        var formObj = new FormData();//空数据对象
+        var formObj = new FormData(指定form);//指定form(所有包含name属性的控件信息)
+
+        // 如果要添加信息
+        formObj.append('uanme','猪猪侠');
+        // 添加文件
+        var file = $('input[type=file]');//文件控件
+        formObj.append('img',file.files[0]);
+
+        $.ajax({
+            type:'get|post',//默认get
+            url:'index.php?act=ajax',
+            // data使用方式1: 字符串
+            data:'uname=虹猫&upass=13579',
+            // data使用方式1: json对象 -> 字符串
+            data:{
+                uname:'蓝兔',
+                upass:'02468'
+            },
+            // data使用方式3
+            // 伪造form提交的数据
+            // 三个参数一起配合使用
+            data:formObj,
+            contentType:false,
+            processData:false,
+            // -----------
+            dataType:'xml/text/html/json/jsonp',
+            success:function(){
+                // 响应成功,执行...
+            },
+            beforeSend:function(){
+                // 请求之前去做...
+                return true;//允许请求
+                return false;//拒绝请求
+            }
+        })
+    </script>
+    4.getJSON - 指定获取json数据
+    <script>
+        $.getJSON('index.php','uname=黑猫警长',function(response){
+            console.log(response);//json对象
+        })
+    </script>
+
+二、同源和跨域
+    1.同源
+        浏览器的一个安全策略
+        协议,域名,端口  必须一致,才是同源
+        只允许访问同源的资源
+        例子: 
+        <!-- 端口号不同,不允许访问 -->
+        http://137.0.0.1:80
+        http://137.0.0.1:8080
+        <!-- 协议不同,不允许访问 -->
+        http://www.baidu.com
+        https://www.baidu.com
+        <!-- 域名不同,不允许访问 -->
+        http://www.baidu.com
+        http://www.taobao.com
+        
+        <!-- 协议/域名/端口都一直 -- 允许访问 -->
+        http://www.sina.com/art/index.php
+        http://www.sina.com/con/add.html
+
+    2.跨域
+        只要协议,域名,端口有任何一个不同,都是跨域
+        XMLHttpRequest只允许同源的资源,不能跨域
+
+        但是,有些网站如果有一些共享的资源,我们可以通过正规的方式去获取
+
+    3.如何解决跨域
+        1) jsonp跨域
+            原理：XMLHttpRequest不允许跨域
+            但是：带有 src 属性的标签是可以跨域的
+            <img src="任何地方的图片" alt="">
+            <script src="http://code.jquery.min.js"></script>
+            <iframe src="http://www.baidu.com"></iframe>
+
+            - 利用了script标签解决跨域问题
+            - 需要前后端配合设置
+            (1)原生：
+                前端:
+                <script>
+                    function init(response) {
+                        console.log(response)
+                    }
+                </script>
+                <script src="跨域url/index.callback=init"></script>
+
+                后端: index.php
+                echo $_GET['callback'].'("响应信息")';
+                echo 'init("响应信息")';
+
+            (2)JQ：dataType:'json'
+                <script>
+                    // get
+                    $.get('http://localhost/03_php+Ajax_05/05_index.php','callback=?',function(response){
+                        console.log('jq',response);
+                    },'jsonp');
+
+                    // ajax
+                    $.ajax({
+                        type:'get',
+                        url:'http://localhost/03_php+Ajax_05/05_index.php',
+                        data:'callback=?',
+                        dataType:'jsonp',
+                        success:function(response){
+                            console.log('ajax',response);
+                        }
+                    });
+                
+                </script>
+
+        2) CORS :资源共享
+            原理: 通过修改HTTP协议头,允许跨域访问
+            - 只需要服务器端设置好就行
+            header("Access-Control-Allow-Origin:*");//代表任意地址(源)
+            header("Access-Control-Allow-Origin:指定地址");//指定地址才允许跨域访问
+            header("Access-Control-Allow-Origin:http://www.baidu.com")
+
+            发送请求: 跟以前一样的,使用XMLHttpRequest发送请求
+            --------------------------------------------------------
+
+            对比 jsonp和cors跨域：
+            1)jsonp 只能发get请求;所有浏览器都支持,兼容性好
+                - 需要前后端配合设置
+            2)cors 允许任何方式请求,主流浏览器可以使用,低版本浏览器不能用
+                - 只需要服务器后端设置
+
+//-----------------------------------------------
+http请求:
+1) url地址变化
+    在地址栏输入:
+    http://localhost/index.html
+    在当前页面点了a链接
+    http://localhost/login.html?page=10
+    在页面提交表单
+    http://localhost/index.php?act=form
+
+2) url地址无变化,无刷新发送请求
+    用 Ajax 发送请求
+    原生的原理: 
+    <script>
+        var xhr;
+        if(XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }else{
+            xhr = new ActiveXObject('Microsoft XMLHttp');
+        }
+        xhr.onreadyStatechange = function(response){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                console.log(xhr.response);
+            }
+        }
+        // get
+        xhr.open('get','index.php?act=get');
+        xhr.send(null);
+
+        // post
+        xhr.open('get','index.php');
+        xhr.setRequestHeader('content-type','application/x-www-urlencoded');
+
+        xhr.send('uname=apple');
+        
+    
+    </script>

@@ -1,0 +1,37 @@
+{
+  "0":{
+    "uname":"apple",
+    "gender":"男",
+    "proname":"江苏省",
+    "cityname":"南京市",
+    "class":"一年级一班"
+  },
+  "1":{
+    "uname":"aaaaa",
+    "gender":"男",
+    "proname":"江苏省",
+    "cityname":"无锡市",
+    "class":"一年级二班"
+  },
+  "2":{
+    "uname":"bbbb",
+    "gender":"女",
+    "proname":"安徽省",
+    "cityname":"合肥市",
+    "class":"一年级三班"
+  },
+  "3":{
+    "uname":"ccccc",
+    "gender":"女",
+    "proname":"安徽省",
+    "cityname":"马鞍山市",
+    "class":"一年级四班"
+  },
+  "4":{
+    "uname":"dddd",
+    "gender":"女",
+    "proname":"安徽省",
+    "cityname":"黄山市",
+    "class":"一年级三班"
+  }
+}

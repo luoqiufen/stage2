@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_this关键字</title>
+</head>
+<body>
+    <script>
+        // this关键字
+        // 是一个指针,指向调用该函数的对象
+        // 默认,全局范围内指向 window
+        console.log(this);//this->window
+        var num1 = 10;
+        console.log(num1);//10
+        console.log(this.num1);//10
+        console.log(window.num1);//10
+
+        // window.alert('一个弹窗');
+        // alert('一个弹窗');
+        
+        // 全局的函数也属于window,看做是他的方法
+        function fun1(){
+            console.log(this);//window
+        }
+        // 调用
+        window.fun1();
+
+        // window:全局对象
+        // 在什么时候发生了变化?
+        // 自己创建对象
+        var obj1 = {
+            uname:'apple',
+            uage:18,
+            num1:20,
+            look:function(book){
+                console.log(this);//this->obj1
+                console.log(this.uname);//obj1.uname:apple
+                console.log(this.num1);//obj1.num1:20       
+                console.log(num1);//num1变量:10
+            }
+        };
+        console.log(obj1);//obj1是一个对象
+        console.log(obj1.uname);//'apple'
+        obj1.look('css语法');
+
+        // -----------------------------
+        // 自定义构造函数
+        function Students(ucode,uname,uage){
+            console.log(this);//this->window
+            this.ucode = ucode;//学号
+            this.uname = uname;//姓名
+            this.uage = uage;//年龄
+
+            // 方法
+            this.subject = function(course){
+                return this.uname+'选择了'+course;
+            };
+            this.join = function(club){
+                return this.uname+'加入了'+club;
+            };
+        }
+        // 使用
+        // 看做普通函数调用
+        Students(1001,'Lily',15);
+        console.log(window.uname);
+
+        // 当成构造函数来调用
+        var stu1 = new Students('1002','Jane',18);//this->stu1
+        console.log(stu1);
+    
+    </script>
+</body>
+</html>

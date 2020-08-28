@@ -1,0 +1,71 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 15:51:40
+ * @LastEditTime: 2020-07-10 16:13:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\07_控件尺寸.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_控件尺寸</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+    <style>
+        .form1{
+            border: 1px solid red;
+            margin: 10px auto;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+    <form action="#" class="form1">
+        <div class="form-group">
+            <label>普通</label>
+            <input type="text" class="form-control" placeholder="34px">
+        </div>
+        <div class="form-group">
+            <label>.input-lg</label>
+            <input type="text" class="form-control input-lg" placeholder="46px">
+        </div>
+        <div class="form-group">
+            <label>.input-sm</label>
+            <input type="text" class="form-control input-sm" placeholder="30px">
+        </div>
+
+        <h3>校验效果</h3>
+        <div class="form-group has-success">
+            <label>用户名</label>
+            <input type="text" class="form-control">
+            <span class="control-label">用户名可以使用</span>
+        </div>
+
+        <div class="form-group has-warning">
+            <label>用户名</label>
+            <input type="text" class="form-control">
+            <span class="control-label">用户名长度不够</span>
+        </div>
+
+        <div class="form-group has-error">
+            <label>用户名</label>
+            <input type="text" class="form-control">
+            <span class="control-label">用户名已被注册</span>
+        </div>
+    </form>
+</html>

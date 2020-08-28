@@ -1,0 +1,59 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 15:57:48
+ * @LastEditTime: 2020-07-09 16:13:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\02_案例2.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_案例2_图文混排</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        img{height: 100px;}
+        ul,li{list-style: none;}
+        ul{
+            border: 1px solid red;
+            width: 90%;
+            margin: 0 auto;
+        }
+        ul li{
+            background: #f3efef;
+            margin-bottom: 10px;
+            /* 容器 */
+            display: flex;
+            /* 对齐方式 */
+            align-items: center;
+        }
+        ul li>div{
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 图文混排 -->
+    <ul>
+        <li>
+            <img src="./img/57d228e1779f9.jpg">
+            <div>
+                <h1>标题1</h1>
+                <h3>作者: author1</h3>
+                <p>商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍...</p>
+            </div>
+        <li>
+            <img src="./img/57d2275ad5f87.jpg">
+            <div>
+                <h1>标题1</h1>
+                <h3>作者: author2</h3>
+                <p>商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍...</p>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

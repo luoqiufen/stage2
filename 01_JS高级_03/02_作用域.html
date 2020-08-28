@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_作用域</title>
+</head>
+<body>
+<script>
+    // 作用域
+    // <script>超级作用域 </ script>
+    // function(){超级作用域}
+    
+    var age = 18;
+    var num;
+    if(age>=18){
+        num = 10;
+        var str1 = 'apple';
+    }else{
+        num = 11;
+        var str2 = 'banana';
+    }
+    console.log(num);//10
+    console.log(str1);//'apple'
+
+    // 应用函数:求和
+    var num1 = 10;//全局
+    function sum(){
+        var num2 = 15;//局部
+        num1 += num2;//修改了num1:25
+        console.log(num1,num2);//25 15
+    }
+    console.log(num1);//10
+    sum();
+    console.log(num1);//25
+    // console.log(num2); //num2 is not defined 引用错误
+
+    // 函数2:求乘积
+    function calc(num1,num2){
+        console.log(num1,num2);//
+    }
+    calc(5,8);
+    // console.log(num3); //引用错误
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04_函数的属性</title>
+</head>
+<body>
+<script>
+    // function 函数类型
+    // 属性: length 函数形参个数
+    function fun1(uname,uage,sex,address){
+        // 如果实参个数 不等于 形参个数,给提示
+        console.log(arguments);//实参
+        if(arguments.length!=fun1.length){
+            console.log('传递的参数信息不正确');
+        }else{
+            console.log(uname,uage,sex,address);
+        }     
+        console.log(fun1.length);//4
+    }
+    fun1('aa',15,'男');
+    console.log(fun1.length);//4
+
+// 创建函数2
+function fun2(num1,num2){
+    console.log(arguments);//实参的信息 数组对象形式的
+    // console.log(arguments.length);//实参个数
+    // console.log(arguments.callee);//函数本身 fun2
+    // console.log(arguments.callee.length);//0
+
+    console.log(arguments[0]);//10
+    console.log(arguments[1]);//12
+    console.log(arguments[2]);//30
+
+    console.log('num1:',num1);//10
+    console.log('num2:',num2);//12
+}
+fun2(10,12,30);
+    
+</script>
+</body>
+</html>

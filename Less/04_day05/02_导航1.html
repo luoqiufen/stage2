@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel='stylesheet' href='../boot/css/bootstrap.css'>
+<!-- 低版本IE不能用 -->
+<!-- [if lt IE9]>
+<script src="../boot/js/html5shiv.min.js"></script>
+<script src="../boot/js/respond.min.js"></script>
+<![end if] -->
+</head>
+<body>
+<!-- 导航栏 .navbar-->
+<h3>1）常规导航栏 navbar</h3>
+<nav class="navbar navbar-default container">
+  <div class="container-fluid">
+    <!-- 标题 .navbar-header-->
+    <div class="navbar-header">
+      <!--logo或文字 .navbar-brand-->
+      <a class="navbar-brand">LOGO</a>
+    </div>
+
+    <!-- 添加链接:无序列表即可 .nav .navbar-nav-->
+    <ul class="nav navbar-nav">
+      <li><a href="#">天猫</a></li>
+      <li><a href="#">京东</a></li>
+      <li><a href="#">当当</a></li>
+      <li><a href="#">亚马逊</a></li>
+      <li><a href="#">淘宝</a></li>
+      <li><a href="#">hao123</a></li>
+      <li class="dropdown">
+        <!-- 按钮 -->
+        <a href="#" class="dropdown-toggle" 
+        data-toggle="dropdown">
+          公司简介 <b class="caret"></b>
+        </a>
+        <!-- 折叠列表 -->
+        <ul class="dropdown-menu">
+          <li><a href="#">公司起源</a></li>
+          <li><a href="#">发展历程</a></li>
+          <li><a href="#">业务项目</a></li>
+          <li><a href="#">未来规划</a></li>
+        </ul>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<h3>1-2）反色导航栏 navbar-inverse</h3>
+<nav class="navbar navbar-inverse container">
+  <div class="container-fluid">
+    <!-- 标题 .navbar-header-->
+    <div class="navbar-header">
+      <!--logo或文字 .navbar-brand-->
+      <a class="navbar-brand">LOGO</a>
+    </div>
+
+    <!-- 添加链接:无序列表即可 .nav .navbar-nav-->
+    <ul class="nav navbar-nav">
+      <li><a href="#">天猫</a></li>
+      <li><a href="#">京东</a></li>
+      <li><a href="#">当当</a></li>
+      <li><a href="#">亚马逊</a></li>
+      <li><a href="#">淘宝</a></li>
+      <li><a href="#">hao123</a></li>
+      <li class="dropdown">
+        <!-- 按钮 -->
+        <a href="#" class="dropdown-toggle" 
+        data-toggle="dropdown">
+          公司简介 <b class="caret"></b>
+        </a>
+        <!-- 折叠列表 -->
+        <ul class="dropdown-menu">
+          <li><a href="#">公司起源</a></li>
+          <li><a href="#">发展历程</a></li>
+          <li><a href="#">业务项目</a></li>
+          <li><a href="#">未来规划</a></li>
+        </ul>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<h3>2）Tab式导航栏 nav-tabs</h3>
+<ul class="nav nav-tabs container">
+  <li class="active"><a href="#">图书</a></li>
+  <li><a href="#">家居</a></li>
+  <li><a href="#">服饰</a></li>
+</ul>
+
+
+<h3>3）胶囊式导航 nav-pills</h3>
+<ul class="nav nav-pills container">
+  <li class="active"><a href="#">图书</a></li>
+  <li><a href="#">家居</a></li>
+  <li><a href="#">服饰</a></li>
+</ul>
+<h4> 3-2）两端对齐 nav-justified</h4>
+<ul class="nav nav-pills nav-justified container">
+  <li class="active"><a href="#">图书</a></li>
+  <li><a href="#">家居</a></li>
+  <li><a href="#">服饰</a></li>
+</ul>
+<h4> 3-3）垂直 nav-stacked</h4>
+<ul class="nav nav-pills nav-stacked container">
+  <li class="active"><a href="#">图书</a></li>
+  <li><a href="#">家居</a></li>
+  <li><a href="#">服饰</a></li>
+</ul>
+
+
+<h3>4)面包屑导航 breadcrumb</h3>
+<ul class="breadcrumb container">
+  <li ><a href="#">图书</a></li>
+  <li><a href="#">家居</a></li>
+  <li class="active">服饰</li>
+</ul>
+
+
+<h3>5）分页导航</h3>
+<nav class="Page navigation">
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li class="active"><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+</nav>
+
+
+  <script src="../boot/js/jquery-1.9.1.min.js"></script>
+<script src="../boot/js/bootstrap.js"></script>
+</body>
+</html>

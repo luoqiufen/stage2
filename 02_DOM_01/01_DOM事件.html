@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_DOM事件</title>
+</head>
+<body>
+    <div>
+        <input type="button" value="按钮1" id="btn1" onclick="setCss('border:1px solid red;width:300px')">
+        <input type="button" value="按钮2" id="btn2">
+        <input type="button" value="按钮3" id="btn3">
+        <input type="button" value="按钮4" id="btn4">
+    </div>
+    <p id="p1">文字内容段落文字文字内容段落文字文字内容段落文字鲁班大师鲁班大师鲁班大师鲁班大师鲁班大师鲁班大师鲁班大师鲁班大师鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号鲁班七号</p>
+
+
+    <script>
+        // 函数1: 修饰p
+        function setCss(css) {
+            p1.style = css;
+        }
+
+        /* // 方式2: 点击按钮2,添加样式
+        btn2.onclick = function() {
+            setCss('background: lightgreen;line-height:30px;');
+        } */
+
+        // 函数2: p添加元素
+        function append(child) {
+            p1.innerHTML += child;
+        }
+
+        // 方式2: 点击按钮2 添加样式,再添加一个子元素
+        // 只有1个事件处理函数
+        btn2.onclick = function() {//事件处理函数
+            setCss('background: lightgreen;line-height: 30px;width:400px;');
+            append('<a href=#>王者荣耀</a>');
+        }
+        
+        // 方式3: 点击按钮3 添加样式
+        // 单击: 2个事件处理函数
+        btn3.addEventListener('click',aa = function() {//事件处理函数1
+            setCss('background: skyblue;line-height:30px;width:400px;');
+        })
+        btn3.addEventListener('click',bb = function() {//事件处理函数2
+            append('<a href=#>球球大作战</a>');
+        })
+        
+        // 事件处理函数3
+        function init() {
+            p1.innerHTML += '<input type=button value="大头儿子">';
+        }
+        btn3.addEventListener('click',init);
+
+        // 移除事件处理
+        btn1.onclick = '';
+        btn2.onclick = '';
+
+        // 按钮3
+        // 移除最后一个
+        btn3.removeEventListener('click',init);
+        // 移除
+        btn3.removeEventListener('click',bb);
+        btn3.removeEventListener('click',aa);
+    
+    </script>
+</body>
+</html>

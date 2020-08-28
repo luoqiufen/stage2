@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_计算器</title>
+    <style>
+        input[type=text] {
+            width: 220px;
+            line-height: 40px;
+            text-align: right;
+            font-size: 20px;
+            padding-right: 10px;
+        }
+
+        .btns {
+            width: 230px;
+            border: 1px solid grey;
+            margin-top: 10px;
+        }
+
+        .btns input {
+            width: 40px;
+            height: 40px;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="txt">
+    <div class="btns" id="btns">
+        <input type="button" value="1">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <input type="button" value="4">
+        <input type="button" value="5">
+        <input type="button" value="6">
+        <input type="button" value="7">
+        <input type="button" value="8">
+        <input type="button" value="9">
+        <input type="button" value="0">
+        <input type="button" value="C">
+        <input type="button" value="+">
+        <input type="button" value="-">
+        <input type="button" value="*">
+        <input type="button" value="/">
+        <input type="button" value="=">
+    </div>
+
+    <script>
+        // 存储信息
+        var first;//记录第一个数
+        var type;//记录运算符
+        var state = 'false';//记录是否点击了运算符,默认:fou
+        
+        // 单击按钮
+        // 点的是数字: 记录到输入框
+        // 点的是C: 清零输入框内容
+        // 点的是运算符 + - * / : 准备运算
+        // 点的是 = : 计算结果
+        btns.onclick = function () {
+            var value = event.srcElement.value;
+            if (/[0-9]/.test(value)) {
+                getNum(value);
+            } else if (value == 'C') { //清零
+                txt.value = 0
+            } else if (/[\+\-\*/\/]/.test(value)) {
+                ysType(value);
+            } else if (value == '=') {
+                calc();
+            }
+        }
+
+        // 功能1: 点数字: 记录数字
+        function getNum(num) {
+            if(txt.value == 0 || state){//开始是0,覆盖进去
+                txt.value = num;
+                state = false;//还原状态
+            }else{//不是0.追加进去
+                txt.value += num;
+            }
+        }
+
+        // 功能2: 点运算符: 准备运算
+        // 先存储
+        function ysType(ys) {
+            first = txt.value;//存储第一个数
+            type = ys;//存储当前运算符
+            state = true;//点了运算符
+        }
+
+        // 功能3: 点=: 计算结果
+        function calc() {
+            switch(type){
+                case '+':txt.value = Number(first)+Number(txt.value);break;
+                case '-':txt.value = first-txt.value;break;
+                case '*':txt.value = first*txt.value;break;
+                case '/':txt.value = first/txt.value;break;
+            }
+            state = true;
+        }
+    </script>
+</body>
+
+</html>

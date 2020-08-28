@@ -1,0 +1,32 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 16:30:50
+ * @LastEditTime: 2020-07-06 20:00:13
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_07\03_webStorage\02_storage.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>显示在存储在客户端的数据</h1>
+    <p>cookie: <span id="span1"></span></p>
+    <p>localStorage: <span id="span2"></span></p>
+    <p>sessionStorage: <span id="span3"></span></p>
+
+
+    <script>
+        // 显示存储数据
+        span1.innerHTML = document.cookie;
+        span2.innerHTML = localStorage.getItem('author');
+        span3.innerHTML = sessionStorage.getItem('con');
+    
+    </script>
+</body>
+</html>,

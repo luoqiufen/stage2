@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分析执行过程1</title>
+</head>
+<body>
+    <script>
+        //查看以下程序，会输出什么?
+        /* function showBiBao() {
+            for (var i = 0; i < 5; i++) {
+                setTimeout( function timer() {
+                console.log(i);
+                }, 1000*i)
+            }
+        }
+        showBiBao(); */
+
+        // - 该程序如何解决依次输出1-5？？？
+
+        // 第一次循环
+        /* i:0
+            setTimeout(function(){
+                console.log(i);
+            },0); --没有间隔时间来调用 函数
+            
+            i:1
+            setTimeout(function(){
+                console.log(i);
+            },1000); --1秒之后去调用 函数
+
+            i:2
+            setTimeout(function(){
+                console.log(i);
+            },2000); --2秒之后去调用 函数
+
+            i:3
+            setTimeout(function(){
+                console.log(i);
+            },3000); --3秒之后去调用 函数
+
+            i:4
+            setTimeout(function(){
+                console.log(i);
+            },4000); --4秒之后去调用 函数
+
+            i:5 循环结束
+
+        */
+        // 闭包函数
+        function showBiBao(){
+            for (var i = 0; i < 5; i++) {
+                // i立即存储起来
+                (function(index){//index:形参
+                    setTimeout( function timer() {//setTimeout是全局的,用到了index局部变量
+                    //setTimeout调用function timer(),不需要return返回子函数
+                        console.log(index);
+                    }, 1000*index);
+                })(i);//i:实参
+            }
+        }
+        showBiBao();
+    </script>
+</body>
+</html>

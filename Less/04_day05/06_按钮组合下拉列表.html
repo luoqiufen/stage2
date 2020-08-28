@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel='stylesheet' href='../boot/css/bootstrap.css'>
+<!-- 低版本IE不能用 -->
+<!-- [if lt IE9]>
+<script src="../boot/js/html5shiv.min.js"></script>
+<script src="../boot/js/respond.min.js"></script>
+<![end if] -->
+</head>
+<body>
+<!-- 分隔的按钮 --》下拉列表 -->
+<div class="btn-group">
+  <button class="btn btn-default" data-toggle="dropdown" >图书</button>
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">科幻</a></li>
+    <li><a href="#">童话绘</a></li>
+    <li><a href="#">励志</a></li>
+    <li><a href="#">武侠</a></li>
+  </ul>
+</div>
+
+<div class="btn-group">
+  <button class="btn btn-danger" data-toggle="dropdown" >图书</button>
+  <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown" >
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">科幻</a></li>
+    <li><a href="#">童话绘</a></li>
+    <li><a href="#">励志</a></li>
+    <li><a href="#">武侠</a></li>
+  </ul>
+</div>
+
+<div class="btn-group">
+  <button class="btn btn-info" data-toggle="dropdown" >图书</button>
+  <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" >
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">科幻</a></li>
+    <li><a href="#">童话绘</a></li>
+    <li><a href="#">励志</a></li>
+    <li><a href="#">武侠</a></li>
+  </ul>
+</div>
+
+<!-- 输入框"组" (.input-group)带额外元素 -->
+<!-- .input-group-addon -->
+<!-- .input-group-btn -->
+<h3>输入框组：两边加元素 .input-group-addon</h3>
+<div class="input-group container">
+  <span class="input-group-addon">@</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon">#</span>
+</div>
+
+<h3>输入框组：两边加按钮 .input-group-btn</h3>
+<div class="input-group container">
+  <div class="input-group-btn">
+    <span class="btn btn-primary">标题</span>
+  </div>
+  <input type="text" class="form-control">
+  <div class="input-group-btn">
+    <span class="btn btn-primary">搜索</span>
+  </div>
+</div>
+
+
+
+
+
+
+
+<script src="../boot/js/jquery-1.9.1.min.js"></script>
+<script src="../boot/js/bootstrap.js"></script>
+</body>
+</html>

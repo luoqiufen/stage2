@@ -1,0 +1,72 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 19:04:06
+ * @LastEditTime: 2020-07-01 10:36:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_03\04_test\01_request.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <input type="text" name="keywords" id="text">
+        <input type="button" value="搜索" id="btn">
+    </p>
+    <div id="box">
+        <!-- 在这显示表格 -->
+    </div>
+    <script>
+        // 点击搜索按钮:
+        // 获取输入框里的类型名
+        // 传递给后端页面
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    console.log(xhr.response);
+                    if(xhr.response == 'no'){
+                        box.innerHTML = '呸';
+                    }else{
+                        // 响应操作数据: 后端回传过来的数据
+                        // 把 json字符串 转换成 json对象 再操作
+
+                        var data = xhr.responseText;
+                        var json_obj = JSON.parse(data);
+
+                        console.log(json_obj);
+
+                        var tab = '<table border="1" width="300" height="200" cellspacing="0">';
+                            for(var i in json_obj){
+                                tab += '<tr align="center">';
+                                for(var k in json_obj[i]){
+                                    tab += '<td>'+json_obj[i][k]+'</td>'
+                                }                               
+                                tab += '</tr>';
+                            }
+                        tab += '<table>';
+
+                        // 放到div
+                        box.innerHTML = tab;
+                    }
+                    
+                }
+            }
+            xhr.open('get','./02_response.php?keyword='+text.value);
+            xhr.send();
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

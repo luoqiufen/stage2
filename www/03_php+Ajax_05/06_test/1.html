@@ -1,0 +1,102 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-03 08:59:21
+ * @LastEditTime: 2020-07-06 19:35:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_05\06_test\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            // 1)省市联动
+            $.getJSON('./data1.json', '', function (response) {
+                // obj:数据信息
+                // selector:标签元素
+                // boo: 默认是true 二维数组所有数据
+                // 设为false,一维数组
+                function showCon(obj, selector, boo = true) {
+                    var opt = '';
+                    for (var k in obj) {
+                        var con = '';//存储option
+                        boo ? opt += '<option value="' + obj[k]['proname'] + '">' + obj[k]['proname'] + '</option>' :
+                            opt += '<option value="' + obj[k] + '">' + obj[k] + '</option>';
+                        /* if(boo){
+                            opt += '<option value="' + k + '">' + obj[k].proname + '</option>';
+                        }else{
+                            opt += '<option value="' + k + '">' + obj[k] + '</option>';
+                        } */
+                    }
+                    $(selector).html(opt);
+                }
+
+                showCon(response, $('select[name=province]'), 'proname', true); //显示省份
+                showCon(response[0]['city'], $('select[name=city]'), false); //默认显示第一个
+
+                // 交互
+                $('select[name=province]').change(function () {
+                    // console.log(this.selectedIndex);
+                    var index = this.selectedIndex
+                    showCon(response[index]['city'], $('select[name=city]'), false);
+                })
+            });
+
+            // 2)无刷新提交表单
+            $('input[type=button]').click(function () {
+                var data = {
+                    'uname': $('input[name=uname]').val(),
+                    'gender': $('input[name=gender]').val(),
+                    'province': $('select[name=province]').val(),
+                    'city': $('select[name=city]').val(),
+                    'class': $('input[name=class]').val(),
+                }
+                console.log(data);
+                $.post('./php1.php', data, function (response) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        //添加成功-跳转页面
+                        window.location = './02_list.html';
+                    }
+                });
+            })
+
+
+        })
+    </script>
+
+</head>
+
+<body>
+    <form action="">
+        <p>
+            学生名:
+            <input type="text" name="uname">
+        </p>
+        <p>
+            性别:
+            <input type="radio" name="gender" value="0">男
+            <input type="radio" name="gender" value="1">女
+        </p>
+        <p>
+            籍贯:
+            <select name="province"></select>
+            <select name="city"></select>
+        </p>
+        <p>班级:
+            <input type="text" name="class">
+        </p>
+        <p>
+            <input type="button" value="添加学生">
+        </p>
+    </form>
+
+</body>
+
+</html>

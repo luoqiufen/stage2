@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .article {
+            width: 500px;
+            line-height: 30px;
+            border: 1px solid black;
+        }
+
+        .pages {
+            width: 500px;
+            border: 1px solid blue;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .page a {
+            display: inline-block;
+            padding: 3px 5px;
+            border: 1px solid #CCC;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list"></div>
+    <div class="page"></div>
+
+    <script>
+        // 面向对象 封装 分页插件
+        // 批量生产
+        // arr:新闻数组
+        // num:每页数目
+        // selector1:放新闻的div选择器
+        // selector2:分页信息的盒子
+        function Pages(arr, num, selector1, selector2) {
+            // 私有属性
+            this.arr = arr; //新闻数组
+            this.num = num; //每页显示数目
+            this.content_obj = document.querySelector(selector1);
+            this.page_obj = document.querySelector(selector2)
+            this.total = Math.ceil(this.arr.length / this.num); //总页数
+            this.current = 1; //默认当前页为1
+
+        }
+
+        // 方法0:入口方法
+        /* Page.prototype.init = function(){
+            this.showCon(1);
+            this.showPage();
+        } */
+        // 方法1:显示新闻列表
+        Pages.prototype.showCon = function (index) {
+            this.current = index;
+            // slice(start,end);
+            var start = (this.current - 1) * this.num; //起始
+            var end = this.current * this.num; //结束
+            var nowArr = this.arr.slice(start, end); //当前页的新闻
+
+            var list = '<ul>';
+            for (var key in nowArr) {
+                list += '<li>' + nowArr[key] + '</li>';
+            }
+            list += '</ul>';
+            this.content_obj.innerHTML = list;
+
+            this.current == 1 ? this.current++ : this.current;
+            this.current == this.total ? this.current-- : this.current;
+            /* if (this.current == 1) {
+                this.current++;
+            }
+            if (this.current == this.total) {
+                this.current--;
+            } */
+        }
+        // 方法2:显示分页信息
+        Pages.prototype.showPage = function () {
+            var this1 = this;
+            var page = '<a href=# class=prev>上一页</a>';
+            for (var i = 1; i <= this.total; i++) {
+                page += '<a href=# class=num>' + i + '</a>';
+            }
+            page += '<a href=# class=next>下一页</a>';
+            this.page_obj.innerHTML = page;
+            // 分页显示完成:给a添加单击事件
+            var a_obj = this.page_obj.querySelectorAll('a');
+            for (var k = 0; k < a_obj.length; k++) {
+                a_obj[k].onclick = function () { //this->a
+                    // 如果点的是上一页: 当前页-1
+                    if (this.classList.contains('prev')) {
+                        this1.current--;
+                    }
+                    // 如果点击a: 显示对应的数字页
+                    if (this.classList.contains('num')) {
+                        // 更新当前页
+                        this1.current = this.innerHTML;
+                    }
+                    // 如果点的是下一页: 当前页+1
+                    if (this.classList.contains('next')) {
+                        this1.current++;
+                    }
+                    this1.showCon(this1.current);
+                }
+            }
+        }
+
+        var news = [
+            '新闻1新闻1新闻1',
+            '新闻2新闻2新闻2新闻2新闻2',
+            '新闻3新闻3新闻3',
+            '新闻4新闻4新闻4',
+            '新闻5新闻5新闻5',
+            '新闻6新闻6新闻6',
+            '新闻7新闻7新闻7',
+            '新闻8新闻8新闻8',
+            '新闻9新闻9新闻9',
+            '新闻10新闻10新闻10',
+            '新闻11新闻11新闻11',
+            '新闻12新闻12新闻12',
+            '新闻13新闻13新闻13',
+            '新闻14新闻14新闻14',
+            '新闻15新闻15新闻15',
+            '新闻16新闻16新闻16',
+            '新闻17新闻17新闻17',
+            '新闻18新闻18新闻18',
+            '新闻19新闻19新闻19',
+            '新闻20新闻20新闻20',
+            '新闻21新闻21新闻21',
+            '新闻22新闻22新闻22',
+            '新闻23新闻23新闻23',
+            '新闻24新闻24新闻24',
+            '新闻25新闻25新闻25',
+            '新闻26新闻26新闻26',
+            '新闻27新闻27新闻27',
+            '新闻28新闻28新闻28',
+            '新闻29新闻29新闻29',
+            '新闻30新闻30新闻30',
+            '新闻31新闻31新闻31',
+            '新闻32新闻32新闻32',
+        ];
+        var news1 = new Pages(news, 5, '.list', '.page');
+
+        news1.showCon(1);
+        news1.showPage();
+    </script>
+
+    <div class="list2"></div>
+    <div class="page2"></div>
+</body>
+
+</html>

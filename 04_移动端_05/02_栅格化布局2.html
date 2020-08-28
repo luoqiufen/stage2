@@ -1,0 +1,124 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-13 09:49:51
+ * @LastEditTime: 2020-07-13 10:46:37
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_05\02_栅格化布局2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+    <style>
+        .con1{
+            border:1px solid red;
+        }
+        .con1 p{
+            border: 2px solid blue;
+            height: 80px;
+        }
+        .con2{
+            border: 1px solid green;
+            padding: 0;
+        }
+        .con2 .box1{
+            height: 100px;
+            background: khaki;
+        }
+        .con2 .box2{
+            height: 100px;
+            background: rgb(140, 240, 193);
+        }
+        /* 布局3 */
+        .con3{
+            border: 1px solid fuchsia;
+        }
+        .con3 .row1{
+            line-height: 40px;
+            border: 1px solid skyblue;
+            background: rgb(108, 236, 129);
+        }
+        .con3 .box1{
+            height: 150px;
+            background: rgb(120, 206, 240);
+        }
+        .con3 .box2{
+            height: 150px;
+            background: rgb(194, 240, 120);
+        }
+        .con3 .box3{
+            height: 150px;
+            background: rgb(122, 120, 240);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- 
+    每列均分
+    PC(超大): 6列
+    PC(普通): 4列
+    pad: 3列
+    phone: 2列
+     -->
+    <h1>布局1: 适配PC端/pad端/phone端</h1>
+    <div class="con1 container">
+        <div class="row"></div>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子1</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子2</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子3</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子4</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子5</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子6</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子7</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子8</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子9</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子10</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子11</p>
+        <p class="col-lg-2 col-md-3 col-sm-4 col-xs-6">盒子12</p>
+    </div>
+
+    <!-- 
+    分2列
+    PC-lg: 2-10
+    PC-md: 3-9
+    pad-sm: 5-7
+    phone-xs: 6-6
+     -->
+    <h1>布局2: </h1>
+    <div class="con2 container-fluid">
+        <div class="box1 col-lg-2 col-md-3 col-sm-5 col-xs-6"></div>
+        <div class="box2 col-lg-10 col-md-9 col-sm-7 col-xs-6"></div>
+    </div>
+
+    <h1>布局3: </h1>
+    <div class="con3">
+        <div class="row1 row">
+            第一行
+        </div>
+        <div class="row2 row">
+           <div class="box1 col-lg-4 col-md-3 col-sm-5 col-xs-6">2-1</div>
+           <div class="box2 col-lg-3 col-md-9 col-sm-7 col-xs-6">2-2</div>
+           <div class="box3 col-lg-5 col-md-12 col-sm-12 col-xs-12">2-3</div>
+        </div>
+    </div>
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

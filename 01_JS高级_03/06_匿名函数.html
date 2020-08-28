@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_匿名函数</title>
+</head>
+<body>
+    <input type="button" value="添加" id="btn1">
+    <input type="button" value="删除" id="btn2">
+<script>
+    // 匿名函数
+    var aa = function(){
+        console.log('函数1');
+    }
+    aa();
+
+    var bb = function cc(){
+        console.log('函数2');
+    }
+    bb();
+    // cc();//无意义
+
+    btn1.onclick = function(){
+        alert('添加');
+    }
+    function del(){
+        alert('删除')
+    }
+    btn2.onclick = del;
+
+    // 匿名函数的其他用法
+    /*  会报错,不能独立运行
+    function(){
+        console.log('匿名函数');
+    } */
+
+    // 自调/自执行/立即执行函数
+    // 方法1: (匿名函数)(实参);
+    (function(num){
+        console.log('匿名函数:'+num);
+    })(10);
+
+    // 方法2:(匿名函数(实参));
+    (function(uname){
+        console.log('用户名:'+uname);
+    }('apple'));
+
+    // 自执行函数1
+    (function(){
+        console.log('aa');
+    })();
+    
+    // 自执行函数1
+    (function(){
+        console.log('bb');
+    }())
+
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+第一章 JS高级
+第八天
+
+一、寄生组合继承 封装
+    <script>
+        function extend(Father,child) {
+            function F() {}
+            F.prototype = Father.prototype;
+            child.prototype = new F();
+            child.prototype.constructor = child;
+        }
+        // 调用
+        extend(Father,Son);
+    </script>
+
+二、多态
+    同一操作,作用于不同对象,有不同的表现,产生不同的结果
+    实现: 
+        重载(利用arguments对象 模拟重载效果)
+        重写(可以重写继承过来的属性/方法)
+        jQ内置类型(本身就是多态)
+        <script>
+            // String Array
+            // toString()方法
+        </script>
+
+三、Object.prototype上的API
+    <script>
+        //1)检测原始类型
+        typeof 'aa';//string
+        typeof 15;//number
+        typeof true;//boolean
+        typeof undefined;//undefined
+        typeof null;//object
+        //2)检测引用类型
+        function typeName(obj){
+            return Object.prototype.toString.call(obj).slice(8,-1);
+        }
+
+        //------自定义类型(构造函数)------
+        //1) 对象 instanceof 类型名
+        // - 允许查询原型链
+        son1 instanceof Son;//true
+        son1 instanceof Father;//true
+
+        //2) 原型对象.isprototypeOf(对象)
+        // - 可查询原型链
+        Son.prototype.isprototypeOf(son1);//true
+        Father.prototype.isprototypeOf(son1);//true
+
+        //3) 检验是否是私有属性
+        // 对象.hasOwnProperty(属性名)
+        son1.hasOwnProperty('name');//true
+        son1.hasOwnProperty('country');//false---是共享的
+        son1.hasOwnProperty('gander');//false
+
+        //4) 检验是否有这个属性
+        // 属性名 in 对象
+        'name' in son1;//true
+        'country' in son1;//true
+        'gander' in son1;//false
+        // 检查是否是共享的属性
+        function isShareProperty(property,obj){
+            return property in obj && !obj.hasOwnProperty(property);
+        }
+
+        //5) 删除(私有属性)
+        delete son1.name;//可删
+        delete son1.study;//不可删
+        delete son1.country;//不可删
+    </script>
+
+四、面向对象的实现案例
+    1.Tab栏切换
+
+    2.jq扩展引用
+    <script>
+        //1) 扩展 $ 对象的属性和方法
+        $.extend({
+        age:10
+        });
+        //使用
+        $.age;//10
+
+        //2) 扩展 $(dom) 对象的属性和方法
+        $.fn.extend({
+        move:function(amount=200,time=1000){
+            this.animate({
+            "margin-left":amount
+            },time)
+        }
+        });
+        //使用
+        $('input[name=btn1]').move();
+        $('input[name=btn2]').move(300,1500);
+    </script>
+
+    3.模拟jQ的部分功能实现
+        找dom: $(css选择器)
+        操作样式: css()

@@ -1,0 +1,36 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 14:16:00
+ * @LastEditTime: 2020-06-30 14:30:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_03\01_text\01_request.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="学生姓名" id="btn">
+    <p id="p1"></p>
+
+    <script>
+        btn.onclick = function(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr);
+                    p1.innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open('get','./02_response.php?ucode=1001');
+            xhr.send(null);
+        }
+    
+    </script>
+</body>
+</html>

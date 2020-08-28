@@ -1,0 +1,166 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 18:56:26
+ * @LastEditTime: 2020-06-30 14:11:52
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \www\03_php+Ajax_02\11_test\01_login.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="register" name="register" action="./02_login.php?act=form" method="post">
+        <h3 style='color:blue'>用户注册</h3>
+        <p>
+            用户名:
+            <input type="text" name="uname">
+            <span id="txt1"></span>
+        </p>
+        <p>
+            昵称:
+            <input type="text" name="unick">
+            <span id="txt2"></span>
+        </p>
+        <p>
+            密码:
+            <input type="password" name="upass">
+            <span id="txt3"></span>
+        </p>
+        <input type="submit" value="注册" id="register">
+        &nbsp;
+        <input type="button" value="普通注册" id="btn">
+    </form>
+    <script>
+        var form = document.forms['register'];//表单
+        var uname_e = form['uname'];//用户名
+        var unick_e = form['unick'];//昵称
+        var upass_e = form['upass'];//密码
+        console.log(form,uname_e,unick_e,upass_e);
+
+        // 记录是否被注册过
+        var isRegister = false;
+
+        // 功能1: 用户名失去焦点,验证是否被注册过
+        uname_e.onblur = function () {
+            if(uname_e.value){//不为空
+                // 1.创建对象
+                var xhr = new XMLHttpRequest();
+                // 2.建立监听事件
+                xhr.onreadystatechange = function () {
+                    // console.log(xhr);
+                    if (xhr.readyState == 4 && xhr.status == 200) {//请求响应成功
+                        // console.log(xhr.responseText);
+                        if(xhr.responseText == 0){//已被注册
+                            txt1.innerHTML = '<font color="red">用户名已被注册,请重新输入!</font>';
+                            isRegister = true;
+                        }else if(xhr.responseText == 1){//未被注册
+                            txt1.innerHTML = '<font color="blue">用户名可以使用</font>';
+                            isRegister = false;
+                        }
+                    }
+                }
+                // 3.建立连接
+                xhr.open('get', './02_login.php?uname=' + uname_e.value);
+                // 4.发送请求
+                xhr.send(null);//参数可以省略 
+            }
+        }
+        
+    </script>
+
+    <script>
+        // 函数验证:
+        function checkUname () {
+            if(!uname_e.value){//为空
+                txt1.innerHTML = '<font color="red">用户名不能为空!</font>';
+                return false;
+            }else{
+                txt1.innerHTML = '';
+                return true;
+            }
+        }
+        function checkUnick () {
+            if(!unick_e.value){//为空
+                txt2.innerHTML = '<font color="red">昵称不能为空!</font>';
+                return false;
+            }else{
+                txt2.innerHTML = '';
+                return true;
+            }
+        }
+        function checkUpass () {
+            if(!upass_e.value){//为空
+                txt3.innerHTML = '<font color="red">密码不能为空!</font>';
+                return false;
+            }else{
+                txt3.innerHTML = '';
+                return true;
+            }
+        }
+
+        // 表单提交: onsubmit - 整体刷新
+        // url地址变化
+        // 点击 type=submit
+
+        form.onsubmit = function(){
+            // 调用验证:
+            console.log(checkUname());
+            console.log(checkUnick());
+            console.log(checkUpass());
+            console.log(isRegister);
+
+            // 用户名不为空,且未被注册,且昵称和密码都不为空,才允许提交
+            if(checkUname() && !isRegister && checkUnick() && checkUpass()){
+                // alert('允许提交');
+                return true;
+            }else{
+                // alert('拒绝提交');
+                return false;//阻止提交
+            }
+            
+        }
+    </script>
+
+    <script>
+        // 使用type=button按钮 
+        // 可以实现局部刷新
+        // 不跳转页面: 把表单数据 偷偷传递给 后端
+        // 单击功能
+
+        btn.onclick = function(){
+            // 验证通过,提交数据
+            if(checkUname() && !isRegister && checkUnick() && checkUpass()){
+                alert('开始提交');
+                // 用Ajax发请求去提交
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200){
+                        console.log(xhr.responseText);
+                        // 拿到注册结果,自己决定去做什么事情
+                        if(xhr.responseText == 'ok'){
+                            window.location = './03_登录.html';
+                        }
+                    }
+                };
+                xhr.open('post','./02_login.php?act=formAjax');
+                xhr.setRequestHeader('content-type','application/X-WWW-form-urlencoded');
+                xhr.send('uname='+uname_e.value+'&unick='+unick_e.value+'&upass='+upass_e.value);
+            }else{
+                alert('阻止提交');
+            }
+        }
+    
+    </script>
+
+
+
+</body>
+
+</html>

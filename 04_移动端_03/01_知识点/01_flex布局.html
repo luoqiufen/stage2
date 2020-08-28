@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 09:18:01
+ * @LastEditTime: 2020-07-09 09:37:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_03\01_flex布局.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_flex布局</title>
+    <style>
+        /* 容器1 */
+        .con1{
+            border: 1px solid sandybrown;
+            display: flex; 
+        }
+        .con1 div{
+            background: rgb(7, 163, 163);
+            margin: 5px;
+        }
+        /* 容器2 */
+        .con2{
+            width: 80%;
+            border: purple 1px solid;
+            display: flex;
+            margin: 0 auto;
+        }
+        .con2 p{
+            /* 不会永远是150;
+            初始状态默认为150 
+            容器变小,子项p会一起缩放去自适应容器盒子大小*/
+            width: 150px;
+            background: rgb(0, 179, 69);
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>容器1</h1>
+    <div class="con1">
+        <div>子项1子项1子项1子项1子项1子项1子项1子项1子项1子项1子项1子项1</div>
+        <div>子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2子项2</div>
+        <div>子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3子项3</div>
+    </div>
+
+    <h1>容器2</h1>
+    <div class="con2">
+        <p>段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1段落1</p>
+        <p>段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2段落2</p>
+        <p>段落3段落3段落3段落3段落3段落3段落3段落3段落3段落3段落33</p>
+    </div>
+</body>
+</html>

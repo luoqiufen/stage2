@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_分页案例</title>
+    <style>
+        .list{
+            width: 500px;
+            line-height: 30px;
+            border: 1px solid red;
+        }
+        .pages{
+            width: 500px;
+            border: 1px solid blue;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .pages a{
+            display: inline-block;
+            padding: 3px 5px;
+            border: 1px solid #CCC;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+            <!-- 呈现新闻列表 -->
+    </div>
+    <div class="pages">
+        <!-- 呈现分页信息 -->
+    </div>
+
+    <script>
+        // 新闻数目分页案例:
+        // 思路:
+        // 每页条数:6  num
+        // 页码(分多少页):Math.ceil(总数目/每页条数)  total=Math.ceil(总数/num)
+        // 当前页:默认1  current
+
+        /* 每一页显示的内容
+            start = (当前页-1)*条数
+            start = (current-1)*num
+            end = current*num
+            第一页:slice(0,6) 
+            第二页:slice(6,12) 
+            第三页:slice(12,18) 
+            第四页:slice(18,24) 
+            第五页:slice(24,30) 
+            第六页:slice(30,36) 
+        */
+        var news = [
+            '新闻1新闻1新闻1',
+            '新闻2新闻2新闻2新闻2新闻2',
+            '新闻3新闻3新闻3',
+            '新闻4新闻4新闻4',
+            '新闻5新闻5新闻5',
+            '新闻6新闻6新闻6',
+            '新闻7新闻7新闻7',
+            '新闻8新闻8新闻8',
+            '新闻9新闻9新闻9',
+            '新闻10新闻10新闻10',
+            '新闻11新闻11新闻11',
+            '新闻12新闻12新闻12',
+            '新闻13新闻13新闻13',
+            '新闻14新闻14新闻14',
+            '新闻15新闻15新闻15',
+            '新闻16新闻16新闻16',
+            '新闻17新闻17新闻17',
+            '新闻18新闻18新闻18',
+            '新闻19新闻19新闻19',
+            '新闻20新闻20新闻20',
+            '新闻21新闻21新闻21',
+            '新闻22新闻22新闻22',
+            '新闻23新闻23新闻23',
+            '新闻24新闻24新闻24',
+            '新闻25新闻25新闻25',
+            '新闻26新闻26新闻26',
+            '新闻27新闻27新闻27',
+            '新闻28新闻28新闻28',
+            '新闻29新闻29新闻29',
+            '新闻30新闻30新闻30',
+            '新闻31新闻31新闻31', 
+            '新闻32新闻32新闻32', 
+        ]
+        
+        // 1)记录信息
+        var num = 6; //记录每页显示的条数
+        var total = Math.ceil(news.length/num);//总页数
+        var current = 1;//当前页
+
+        // 2)显示新闻信息(默认第一页)
+        function showList(k){
+            current = k;
+            // slice(start,end);
+            var start = (current-1)*num;//起始
+            var end = current*num;//结束
+            var nowArr = news.slice(start,end);//当前页的新闻
+
+            var list = '<ul>';
+                for(var key in nowArr){
+                    list += '<li>'+nowArr[key]+'</li>';
+                }
+                list += '</ul>';
+                console.log(document.querySelector('.list'));
+                document.querySelector('.list').innerHTML=list;
+        }
+        showList(1);
+        // 3)显示分页信息
+        // 上一页 1 2 3 4 5 6 下一页
+        var pages = '<a href=#>上一页</a>';
+        // 页码1-total
+        for(var i=1;i<=total;i++){
+            pages += '<a href=# onclick=showList('+i+')>'+i+'</a>';
+        }
+        pages += '<a href=#>下一页</a>';
+        document.querySelector('.pages').innerHTML = pages;
+
+    </script> 
+   
+
+</body>
+</html>

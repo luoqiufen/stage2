@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>批量上传多文件</title>
+  <style>
+    #showImg span{
+      display: inline-block;
+      text-align: center;
+      line-height: 30px;
+    }
+    #showImg span img{
+      width: 120px;
+      height: 120px;
+    }
+  </style>
+</head>
+<body>
+  <form action="#"  method="post">
+    <h3>发表文章</h3>
+    <p>
+      标题: <input type="text" name="title">
+    </p>
+    <p>
+      内容: <textarea name="con"></textarea>
+    </p>
+    <p>
+      图片: <input type="file" name="pic" id="pic" multiple>
+    </p>
+    <p id="showImg">
+      <!-- <img src="" id="showImg"> -->
+    </p>
+    <p> 
+      <input type="submit" value="发布">
+    </p>
+  </form>
+<script>
+//当图片上传时：图片控件发生改变时
+pic.onchange = function(){ 
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange=function(){  
+    if(xhr.readyState==4&&xhr.status==200){
+      var json = JSON.parse(xhr.responseText);//多个图片路径集合
+      for(var key=0;key<json.length;key++){
+        //依次遍历，显示多张图到页面里
+        showImg.innerHTML += "<span>图片"+(key+1)+"<br><img src="+json[key]+"></span>";
+      }
+
+    }
+  }
+  xhr.open('post','./04_upload.php');//上传文件
+  
+  //要自己收集所有文件的详细数据
+  var data = new FormData();
+  //----------多文件处理-------------
+  // console.log(pic.files); //多个文件信息
+  for(var key=0;key<=pic.files.length;key++){//依次添加到data里
+    data.append('img'+key,pic.files[key]);
+  }
+  /*上传的信息大概如下：后端才可以区分文件
+    img0:{name:'01.jpg',size:123....}
+    img1:{name:'02.jpg',size:1114...}
+    img2:{name:'03.jpg',size:1123...}
+  */
+  xhr.send(data);
+}
+
+
+</script>
+  
+</body>
+</html>

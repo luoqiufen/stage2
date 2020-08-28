@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_匿名函数 当参数使用</title>
+</head>
+<body>
+<script>
+    // 函数的参数
+    // 形参:可以是任意类型
+    function fun1(str,num,arr,fun){
+        // 过程:
+        /* 
+        str = 'hello';
+        num = 20;
+        arr = ['江苏省','安徽省'];
+        fun = function(){
+            console,length('当参数的匿名函数');
+        }; */ 
+
+        console.log(str);
+        console.log(num);
+        console.log(arr);
+        console.log(fun);
+
+        // 调用fun
+        fun();
+    }
+
+    // 调用
+    fun1('hello',20,['江苏省','安徽省'],
+    function(){
+        console.log('当参数的匿名函数');
+    });
+
+    // 案例2
+    function calc(num1,num2,func){
+        console.log(num1);//15
+        console.log(num2);//25
+        console.log(func);//
+        /*
+        func = function(a,b){
+            console.log(a+b);
+        }
+        */
+       func(num1,num2);
+    }
+
+    // 1)加法运算
+    calc(15,25,function(a,b){
+        console.log(a+b);
+    });
+    // 2)减法运算
+    calc(10,5,function(a,b){
+        console.log(a-b);
+    });
+
+    // jq的方法
+    // 显示/隐藏
+    $('div').show(1000,function(){
+        // 回调函数
+        // 自定义过程:显示完成之后去做的事情
+    })
+    
+</script>
+</body>
+</html>

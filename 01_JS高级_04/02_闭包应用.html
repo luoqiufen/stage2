@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_闭包应用</title>
+</head>
+<body>
+<script>
+    var num1 = 5;//全局变量
+    function father(a){//a:局部变量
+        num1++;
+        a++;
+        var b = 8;
+        return function(){//子函数
+            b++;
+            console.log(num1,a,b)
+        }
+    }
+    var rs = father(2);//num1:6 一直留在内存里,---- a:3  销毁掉了
+    console.log(rs);
+    rs();// 6 3 9
+    rs();// 6 3 10
+
+    // 案例2:
+    var aa = (function(num){//父函数
+        console.log('自执行函数');
+        return function(){//子函数
+            num--;
+            console.log(num);
+        }
+    })(10);
+    console.log(aa);
+    aa();//9
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+.box1 {
+  width: 200px;
+  height: 300px;
+  background: red;
+}
+.box2 {
+  border: 1px solid red;
+  height: 150px;
+}
+h1 {
+  width: 80%;
+  height: 80px;
+  background: red;
+}
+h2 {
+  width: 90%;
+  height: 100px;
+  background: lightgreen;
+}
+p {
+  width: 260px;
+  height: 200px;
+  border: 1px solid blue;
+  padding: 20px;
+}

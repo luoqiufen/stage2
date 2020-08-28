@@ -1,0 +1,86 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 17:09:18
+ * @LastEditTime: 2020-07-10 17:28:09
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \2-code\04_移动端_04\09_辅助类.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09_辅助类</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./boot/css/bootstrap.css">
+    <!-- 低于IE9处理 -->
+    <!-- [if lt IE9] >
+    <script src="./boot/js/html5shiv.min.js"></script>
+    <script src="./boot/js/respond.min.js"></script>
+    < ![endif] -->
+    <style>
+        .picbox{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        .picbox p{
+            width: 100px;
+            line-height: 20px;
+            background: rgb(135, 235, 235);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>辅助类</h1>
+    <h3>三角符号 .caret</h3>
+    <p>服装类<span class="caret"></span></p>
+
+    <h3>内容块居中</h3>
+    <div class="picbox center-block">
+        <p class="center-block">虹猫蓝兔奇侠传</p>
+        <p>显示的盒子</p>
+        <p class="hidden">隐藏的盒子</p>
+    </div>
+
+    <div class="father clearfix">
+        <div class="left">左</div>
+        <div class="right">右</div>
+    </div>
+    <p class="bottom">这是底部</p>
+    <!-- 清除浮动 -->
+    <style>
+        .father{
+            width: 600px;
+            border: 2px solid red;
+            margin: 0 auto;
+        }
+        .left{
+            width: 200px;
+            height: 300px;
+            background: rgb(90, 245, 180);
+            float: left;
+        }
+        .right{
+            width: 200px;
+            height: 300px;
+            background: rgb(90, 196, 245);
+            float: right;
+        }
+        .bottom{
+            background: purple;
+        }
+    </style>
+
+
+
+    <!-- 引入js -->
+    <script src="./boot/js/jquery-1.9.1.min.js"></script>
+    <script src="./boot/js/bootstrap.js"></script>
+</body>
+
+</html>

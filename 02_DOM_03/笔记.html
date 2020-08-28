@@ -1,0 +1,37 @@
+第二章 DOM
+第三天
+
+一、鼠标三个事件
+    1.鼠标移动: onmousemove 
+    1.鼠标按下: onmousedown
+    1.鼠标弹起: onmouseup
+
+二、event对象:事件对象
+    event对象应用
+    <script>
+        dom.onmousedown = function(e){//事件处理函数
+            // 兼容写法
+            var e = event || arguments[0];
+        }
+    
+    </script>
+    坐标点:(在页面里的坐标点)
+        event.pageX
+        event.pageY
+
+三、DOM偏移位置
+    正常布局: 相对于document/body页面
+    dom.offsetLeft;
+    dom.offsetTop;
+
+    如果有absolute定位: 相对于定位的父级
+    dom.offsetLeft;
+    dom.offsetTop;
+
+四、获取在dom内部的坐标
+    正常布局
+        x: event.pageX - dom.offsetLeft;
+        y: event.pageY - dom.offsetTop;
+    absolute定位
+        x: event.pageX - dom.offsetLeft - father.offsetLeft;
+        y: event.pageY - dom.offsetTop - father.offsetTop;

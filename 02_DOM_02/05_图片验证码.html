@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05_图片验证码</title>
+    <style>
+        canvas{
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <p>
+            验证码: <input type="text">
+            <canvas id="canvas1" width="100" height="30" onclick="init()" title="点击更换验证码""></canvas>
+        </p>
+    </form>
+    <script> 
+        // 绘制验证码图片
+        var shape = canvas1.getContext('2d');
+        var code = '';//存储验证码内容信息
+        // 公共函数
+        // 随机数
+        function getRandom(min,max){
+            return Math.round(Math.random()*(max-min)+min);
+        }
+        // 随机颜色
+        function getColor(min,max){
+            var r = getRandom(min,max);
+            var g = getRandom(min,max);
+            var b = getRandom(min,max);
+            return 'rgb('+r+','+b+','+g+')'
+        }
+
+        // 1)画文字
+        // fillText(text,x,y)
+        // 随机旋转
+        function drawText() {
+            var str = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789魑魅魍魉妖魔鬼怪傻不愣登星星点灯';//字符库
+            code = '';
+            // 四个随机字符
+            for(var i=1;i<=4;i++) {
+                // 随机字符
+                var char = str[getRandom(0,str.length-1)];
+                code += char;
+                // 绘制到画布
+                shape.fillStyle = getColor(0,255);
+                // 坐标
+                // 字1:10-20,0-30
+                // 字2:30-40,0-30
+                // 字3:50-60,0-30
+                // 字4:70-80,0-30
+                var x = getRandom(20*i-10,20*i);
+                var y = getRandom(15,28);
+
+                shape.font = '14px 微软雅黑';
+
+                shape.fillText(char,x,y);
+            }
+            console.log(code);
+        }
+        // drawText()
+
+        // 2)画干扰点
+        // arc(x,y,r,0,2*Math.PI)
+        // 随机色,随机位置,随机大小
+        function draPoint() {
+            for(var i=0;i<20;i++){
+                shape.beginPath();
+                shape.fillStyle = getColor(0,255);
+                var x = getRandom(0,100);
+                var y = getRandom(0,30);
+                var r = Math.random()*2;
+                shape.arc(x,y,r,0,2*Math.PI);
+                shape.fill();
+                shape.closePath();
+            }
+        }
+
+        // 3)画干扰线
+        // moveTo(x,y) lineTo(x,y)
+        // 随机色,随机位置
+        function drawLine() {
+            for(var i = 0;i<5; i++){
+                shape.beginPath();
+                shape.strokeStyle = getColor(0,255);
+                /* var x = getRandom(0,100);
+                var y = getRandom(0,30); */
+                shape.moveTo(getRandom(0,100),getRandom(0,30));
+                shape.lineTo(getRandom(0,100),getRandom(0,30));
+                shape.stroke();
+                shape.closePath();
+            }
+        }
+        
+        // 综合函数:
+        function init() {
+            // 背景色块(矩形)
+            shape.fillStyle = 'rgb(240,240,240)';
+            shape.fillRect(0,0,100,30);
+            // 调用功能
+            drawText();
+            draPoint();
+            drawLine();
+        }
+        init();
+    </script>
+</body>
+</html>

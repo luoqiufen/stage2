@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_数据类型</title>
+</head>
+<body>
+<script>
+    // 1)原始类型:string
+    // 引用值
+    var str1 = 'apple',str2;
+        str2 = str1;
+    console.log(str1,str2);//apple apple
+        str1 = 'banana';
+    console.log(str1,str2);//banana apple
+
+    // 2)引用类型:array
+    // 引用值的地址
+    var arr1,arr2;
+        arr1 = ['a','b','c'];
+        arr2 = arr1;
+    console.log(arr1);//["a", "b", "c"]
+    console.log(arr2);//["a", "b", "c"]
+        arr2[0] = 15;
+    console.log(arr1);//[15, "b", "c"]
+    console.log(arr2);//[15, "b", "c"]
+
+</script>
+</body>
+</html>
